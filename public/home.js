@@ -1,6 +1,6 @@
 // Home page: gentle fade-up of sections as they scroll into view.
 document.documentElement.classList.add('js');
-const revealables = document.querySelectorAll('.section-intro, .package, .kit-card, .gallery figure, .reviews blockquote, .steps li, .service-cards a, .promises li');
+const revealables = document.querySelectorAll('.section-intro, .package, .kit-card, .gallery figure, .reviews blockquote, .steps li, .service-cards a, .promises li, .pillar, .lectern-copy');
 revealables.forEach(el => el.classList.add('reveal-up'));
 if ('IntersectionObserver' in window) {
   const io = new IntersectionObserver(entries => entries.forEach(e => {
