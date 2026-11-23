@@ -36,7 +36,7 @@
 /* 2. Brands and promises */
 .brands { padding: 46px 6% 56px; border-top: 1px solid #ffffff14; border-bottom: 1px solid #ffffff14; background: #08090e; }
 .brand-row { list-style: none; padding: 0; margin: 22px 0 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px 40px; }
-.brand-row li { font-size: clamp(20px, 2.4vw, 34px); font-weight: 700; letter-spacing: .06em; color: #f2f2f0; opacity: .82; }
+.brand-row li { font-size: clamp(18px, 1.85vw, 30px); font-weight: 700; letter-spacing: .06em; color: #f2f2f0; opacity: .82; }
 .promises { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .promises li { color: #9c9cab; font-size: 14px; line-height: 1.6; border-left: 2px solid var(--cyan); padding-left: 16px; }
 .promises b { display: block; color: var(--white); font-size: 16px; font-weight: 600; margin-bottom: 2px; }
