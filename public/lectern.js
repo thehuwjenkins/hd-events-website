@@ -17,6 +17,14 @@
     document.getElementById('lxWhatsApp').href = 'https://wa.me/447930547024?text=' + encodeURIComponent(text);
     document.getElementById('lxEmail').href = 'mailto:hello@hd-events.co.uk?subject=' + encodeURIComponent('Digital lectern quote') + '&body=' + encodeURIComponent(text);
   };
-  form.addEventListener('change', update);
+  form.addEventListener('change', event => {
+    const choice = event.target;
+    if (choice.matches('input[data-monitor]:checked')) {
+      form.querySelectorAll('input[data-monitor]').forEach(input => {
+        if (input !== choice) input.checked = false;
+      });
+    }
+    update();
+  });
   update();
 })();
