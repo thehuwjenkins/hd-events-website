@@ -77,6 +77,7 @@ def footer():
 
 WHATSAPP_BUTTON = f'<a class="wa-fixed" href="{WHATSAPP}" aria-label="Message HD Events on WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="white" stroke-width="2" d="M5 22a12 12 0 1 1 5 5l-7 2z"/><path fill="white" d="M11 9c-2 0-3 2-2 5 2 5 5 8 10 9 2 0 4-1 4-4l-4-2-2 2c-2-1-4-3-5-5l1-2-1-3z"/></svg><span>Message us</span></a>'
 DIALOG = f'<dialog id="enquiry"><div class="dialog-head"><h2>Tell us about your event.</h2><button id="close-enquiry" aria-label="Close enquiry form">×</button></div><p>Share the date, venue and what you need, and we will reply with recommendations and a quote.</p><iframe title="HD Events enquiry form" name="lc_contact_form" width="100%" height="600" src="{QUOTE}" loading="lazy"></iframe><div class="dialog-contact"><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us: {PHONE} ↗</a><a href="tel:{PHONE_LINK}">Call {PHONE}</a><a href="mailto:{EMAIL}">Email {EMAIL} ↗</a></div></dialog>'
+LX_SUMMARY = '<section id="lxBuildSummary" hidden><label for="lxSpec">Your lectern build</label><textarea id="lxSpec" readonly rows="5" style="width:100%"></textarea><button type="button" id="lxCopy">Copy build details</button><p id="lxCopyStatus" aria-live="polite">Paste your build into the enquiry details below.</p></section>'
 HEAD_COMMON = '''<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050609">
@@ -116,11 +117,11 @@ def money(n):
 def lectern_section():
     L = LECTERN
     inc = "".join(f"<li>{e(x)}</li>" for x in L["included"])
-    rows = "".join(
-        f'<label class="opt"><input type="checkbox" value="{u}" data-price="{"" if pr is None else pr}" data-name="{e(n)}">'
-        f'<span class="opt-box"><b>{e(n)}</b><span>{e(d)}</span></span><span class="opt-price">{"+ " + money(pr) if pr is not None else "Price on request"}</span></label>'
-        for u, n, d, pr in L["upgrades"])
-    table = "".join(f'<tr><td>{e(n)}</td><td>{e(d)}</td><td>{"+ " + money(pr) if pr is not None else "On request"}</td></tr>' for u, n, d, pr in L["upgrades"])
+    rows = "\n".join(
+        f'<label class="opt"><input type="checkbox" value="{u}" data-price="{"" if pr is None else pr}" data-name="{e(n)}"{" data-monitor" if mon else ""}>'
+        f'<span class="opt-box"><b>{e(n)}</b><span>{e(d)}</span></span><span class="opt-price">{money(pr) if pr is not None else "Price on request"}</span></label>'
+        for u, n, d, pr, mon in L["upgrades"])
+    table = "".join(f'<tr><td>{e(n)}</td><td>{e(d)}</td><td>{money(pr) if pr is not None else "On request"}</td></tr>' for u, n, d, pr, mon in L["upgrades"])
     lead = f'<li><b>Lead time</b>{e(L["lead_time"])}</li>' if L["lead_time"] else ""
     show = "".join(f'<figure><img src="/assets/{img}" alt="{e(cap)}" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>' for img, cap in L["showcase"])
     showcase = f'<section class="lx-show" aria-labelledby="show-title"><div class="section-intro"><p class="eyebrow"><i></i> SEE IT IN ACTION</p><h2 id="show-title">Built for the<br>moments that matter.</h2></div><div class="lx-show-row">{show}</div></section>'
@@ -134,7 +135,7 @@ def lectern_section():
       <form class="lx-config" aria-label="Choose upgrades">
         <p class="eyebrow">UPGRADES</p>{rows}
         <div class="lx-total" aria-live="polite"><div><span>Your build from</span><b id="lxTotal">{money(L["base_price"])}</b><small id="lxNote">ex VAT</small></div>
-          <div class="hero-actions"><a class="button solid" id="lxWhatsApp" href="{WHATSAPP}" target="_blank" rel="noopener">Send spec on WhatsApp <span>↗</span></a><a class="button" id="lxEmail" href="mailto:{EMAIL}">Email my spec <span>↗</span></a></div>
+          <div class="hero-actions"><button class="button solid" id="lxEnquire" type="button">Enquire about this build</button><a class="button" id="lxWhatsApp" href="{WHATSAPP}" target="_blank" rel="noopener">Send spec on WhatsApp <span>↗</span></a><a class="button" id="lxEmail" href="mailto:{EMAIL}">Email my spec <span>↗</span></a></div>
           <p class="hint">No commitment. We reply with a fixed quote and build date.</p></div>
       </form>
     </div>
@@ -270,7 +271,7 @@ def service_page(slug, p):
   </section>
 </main>
 {footer()}
-{DIALOG}
+{DIALOG.replace('<iframe', LX_SUMMARY + '<iframe', 1) if p.get("lectern") else DIALOG}
 <script src="/contact.js"></script>
 <script src="/nav.js"></script>
 <script src="/home.js"></script>
@@ -333,7 +334,7 @@ def main():
             "- Coverage: London-focused, delivering events nationwide across the UK.\n",
             "- Equipment brands: " + ", ".join(BRANDS) + ".\n",
             "- Corporate packages from £500 (Speaker Essentials: lectern with microphone, two Sennheiser wireless mics, compact PA, laptop audio connection, delivery, setup and collection; up to 150 guests).\n",
-            "- Custom digital lecterns built to specification from £1,466, or hire from £250 per day plus delivery.\n",
+            "- Custom digital lecterns built to specification from £1,465, or hire from £250 per day plus delivery.\n",
             "- Recent work includes a corporate dinner beneath Concorde, custom digital lecterns for the Brangwyn Hall in Swansea, concerts in cathedrals and theatres, and stadium and festival events.\n",
             f"- Contact: {PHONE} · {EMAIL} · WhatsApp {WHATSAPP}\n",
             "\n## Services\n"]

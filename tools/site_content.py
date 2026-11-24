@@ -240,14 +240,14 @@ PAGES["dry-hire"] = dict(
 PAGES["digital-lecterns"] = dict(
     short="Digital lecterns",
     title="Digital Lecterns for Sale & Hire UK | Custom Built with Screens | HD Events",
-    description="Custom digital lecterns built in the UK with screens, comfort monitors, mic inputs and Kramer CAT6. Built to spec from £1,466, or available to hire.",
+    description="Custom digital lecterns built in the UK with screens, comfort monitors, mic inputs and Kramer CAT6. Built to spec from £1,465, or available to hire.",
     nav="Digital Lecterns",
     eyebrow="DIGITAL LECTERNS · BUILT TO SPEC · SALE & HIRE",
     h1="Give your speakers<br><span>a stage.</span>",
     lead="Custom digital lecterns with full-height screens for your branding, slides or live content. Designed and built by HD Events to your specification, for permanent installation in your venue or available to hire for a single event.",
     hero="digital-lecterns.jpg",
     hero_alt="Two custom HD Events digital lecterns with built-in screens at the Brangwyn Hall, Swansea",
-    price="Buy from <b>£1,466</b> · Hire from <b>£250</b>/day",
+    price="Buy from <b>£1,465</b> · Hire from <b>£250</b>/day",
     intro_title="A lectern that works as hard as your speaker.",
     intro=[
         "A digital lectern turns the most-photographed spot in the room into a screen for your brand. Show your logo between speakers, sponsor content, speaker names or live slides, and change it in seconds.",
@@ -267,7 +267,7 @@ PAGES["digital-lecterns"] = dict(
     packages=False,
     lectern=True,
     faqs=[
-        ("How much does a digital lectern cost?", "Our custom digital lecterns start from £1,466. The final price depends on the screen, comfort monitor, microphone and connectivity options you choose."),
+        ("How much does a digital lectern cost?", "Our custom digital lecterns start from £1,465. The final price depends on the screen, comfort monitor, microphone and connectivity options you choose."),
         ("Can I hire a digital lectern?", "Yes. Our digital lecterns are available to hire from £250 per day plus delivery, either on their own or as part of a full AV package."),
         ("What can be shown on the lectern screen?", "Anything you can send to a display: your logo, sponsor slides, speaker names, video or a live feed of the presentation."),
         ("How does the lectern connect to the AV system?", "We can fit Kramer CAT6 converters so video and signals travel over a single network cable, keeping the stage tidy and the connection reliable."),
@@ -459,26 +459,28 @@ REDIRECTS = {
 # price: a number in pounds (shown as "+ £X"), or None to show "Price on request".
 # Fill these in and run tools/build_site.py; the configurator and price table update automatically.
 LECTERN = dict(
-    base_price=1466,
+    base_price=1465,
     base_name="HD Events Digital Lectern",
     included=[
         "Full-height front display for logos, slides and video",
         "Solid, stage-ready black cabinet",
-        "Microphone input built in",
-        "Rear connection panel: HDMI, powerCON power and XLR microphone",
+        "Rear connection panel with HDMI and powerCON power",
         "Hidden cable management",
         "Designed and built to order in the UK",
     ],
     upgrades=[
-        # (id, name, description, price)
-        ("comfort", "Built-in comfort monitor", "A screen set into the top so the speaker sees slides, notes or a timer without turning round.", None),
-        ("shelf", "Pull-out laptop shelf", "A sliding shelf inside the lectern for the presenter's laptop, out of sight.", None),
-        ("steel", "Brushed steel finish", "A premium stainless steel finish in place of the standard black.", None),
-        ("gooseneck", "Gooseneck microphone", "Slim professional gooseneck microphone fitted and wired.", None),
-        ("kramer", "Kramer CAT6 converters", "Video and signal over a single network cable to your AV system: tidy, reliable long runs.", None),
-        ("branding", "Custom branding", "Your logo or a full branded finish on the cabinet.", None),
-        ("player", "Built-in media player", "Show logos and content on the front screen without a laptop.", None),
-        ("case", "Flight case", "Road case for safe transport and storage.", None),
+        # (id, name, description, price, monitor) -- monitor=True: only one monitor option can be ticked
+        ("branding", "Custom branding", "Your logo or a branded finish on the cabinet.", 399, False),
+        ("comfort", "Comfort monitor (non-touch)", "A built-in presenter screen for slides, notes or a timer.", 300, True),
+        ("multi-touch", "Multi-touch presenter monitor", "The touchscreen alternative to the non-touch comfort monitor.", 450, True),
+        ("mic-inputs", "Built-in microphone inputs", "Add microphone connections to the lectern.", 125, False),
+        ("gooseneck", "Two gooseneck microphones", "Pair of gooseneck microphones. Built-in lectern inputs are a separate option.", 495, False),
+        ("padded-case", "Padded case", "Padded protection for the lectern.", 280, False),
+        ("case", "Flight case", "Road case for transport and storage.", 995, False),
+        ("shelf", "Pull-out laptop shelf", "A sliding shelf inside the lectern for the presenter's laptop, out of sight.", None, False),
+        ("steel", "Brushed steel finish", "A premium stainless steel finish in place of the standard black.", None, False),
+        ("kramer", "Kramer CAT6 converters", "Video and signal over a single network cable to your AV system: tidy, reliable long runs.", None, False),
+        ("player", "Built-in media player", "Show logos and content on the front screen without a laptop.", None, False),
     ],
     showcase=[
         ("lectern-steel-awards.jpg", "Brushed steel finish, branded for the 2026 Player Awards at the Brangwyn Hall"),
