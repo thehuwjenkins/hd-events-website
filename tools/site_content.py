@@ -404,3 +404,29 @@ REDIRECTS = {
     "/repairs.html": "/pa-repairs",
     "/repairs": "/pa-repairs",
 }
+
+# ---------- Digital lectern price list ----------
+# price: a number in pounds (shown as "+ £X"), or None to show "Price on request".
+# Fill these in and run tools/build_site.py; the configurator and price table update automatically.
+LECTERN = dict(
+    base_price=1466,
+    base_name="HD Events Digital Lectern",
+    included=[
+        "Full-height front display for logos, slides and video",
+        "Solid, stage-ready black cabinet",
+        "Microphone input built in",
+        "Cable management and rear connection panel",
+        "Designed and built to order in the UK",
+    ],
+    upgrades=[
+        # (id, name, description, price)
+        ("comfort", "Comfort monitor", "A screen for the speaker to see slides, notes or a timer without turning round.", None),
+        ("gooseneck", "Gooseneck microphone", "Slim professional gooseneck microphone fitted and wired.", None),
+        ("kramer", "Kramer CAT6 converters", "Video and signal over a single network cable to your AV system: tidy, reliable long runs.", None),
+        ("branding", "Custom branding", "Your logo or a full branded finish on the cabinet.", None),
+        ("player", "Built-in media player", "Show logos and content on the front screen without a laptop.", None),
+        ("case", "Flight case", "Road case for safe transport and storage.", None),
+    ],
+    hire_note="Available to hire for single events, on its own or as part of a full AV package. Hire is quoted per event.",
+    lead_time=None,  # e.g. "4 to 6 weeks"
+)

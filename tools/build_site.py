@@ -109,6 +109,40 @@ def packages_block():
     return m.group(0) if m else ""
 
 
+def money(n):
+    return f"£{n:,.0f}"
+
+
+def lectern_section():
+    L = LECTERN
+    inc = "".join(f"<li>{e(x)}</li>" for x in L["included"])
+    rows = "".join(
+        f'<label class="opt"><input type="checkbox" value="{u}" data-price="{"" if pr is None else pr}" data-name="{e(n)}">'
+        f'<span class="opt-box"><b>{e(n)}</b><span>{e(d)}</span></span><span class="opt-price">{"+ " + money(pr) if pr is not None else "Price on request"}</span></label>'
+        for u, n, d, pr in L["upgrades"])
+    table = "".join(f'<tr><td>{e(n)}</td><td>{e(d)}</td><td>{"+ " + money(pr) if pr is not None else "On request"}</td></tr>' for u, n, d, pr in L["upgrades"])
+    lead = f'<li><b>Lead time</b>{e(L["lead_time"])}</li>' if L["lead_time"] else ""
+    return f'''<section class="lx" id="build" aria-labelledby="build-title">
+    <div class="section-intro"><p class="eyebrow"><i></i> BUILD YOUR LECTERN</p><h2 id="build-title">Choose your<br><span>specification.</span></h2>
+    <p>Start with our standard digital lectern, add the upgrades you need, and send us your specification. We will confirm a fixed price and build date.</p></div>
+    <div class="lx-grid">
+      <div class="lx-base"><p class="eyebrow">STANDARD BUILD</p><h3>{e(L["base_name"])}</h3><p class="lx-from">From <b>{money(L["base_price"])}</b> <small>ex VAT</small></p>
+        <ul class="lx-inc">{inc}</ul>
+        <ul class="lx-facts"><li><b>Buy</b>Built to order, delivered and installed UK-wide</li><li><b>Hire</b>{e(L["hire_note"])}</li>{lead}</ul></div>
+      <form class="lx-config" aria-label="Choose upgrades">
+        <p class="eyebrow">UPGRADES</p>{rows}
+        <div class="lx-total" aria-live="polite"><div><span>Your build from</span><b id="lxTotal">{money(L["base_price"])}</b><small id="lxNote">ex VAT</small></div>
+          <div class="hero-actions"><a class="button solid" id="lxWhatsApp" href="{WHATSAPP}" target="_blank" rel="noopener">Send spec on WhatsApp <span>↗</span></a><a class="button" id="lxEmail" href="mailto:{EMAIL}">Email my spec <span>↗</span></a></div>
+          <p class="hint">No commitment. We reply with a fixed quote and build date.</p></div>
+      </form>
+    </div>
+    <div class="lx-table-wrap"><h3>Price list</h3><table class="lx-table"><thead><tr><th>Item</th><th>What it does</th><th>Price</th></tr></thead>
+      <tbody><tr><td><b>{e(L["base_name"])}</b></td><td>Standard build, as above</td><td><b>{money(L["base_price"])}</b></td></tr>{table}
+      <tr><td>Hire</td><td>{e(L["hire_note"])}</td><td>Quoted per event</td></tr></tbody></table><p class="hint">All prices exclude VAT and delivery. Final price confirmed on quote.</p></div>
+    <script type="application/json" id="lxData">{json.dumps({"base": L["base_price"], "name": L["base_name"]})}</script>
+  </section>'''
+
+
 # ---------- Service page ----------
 def service_page(slug, p):
     page_url = url(slug)
@@ -125,12 +159,7 @@ def service_page(slug, p):
     <div class="section-intro"><p class="eyebrow"><i></i> CORPORATE PACKAGES</p><h2 id="packages-title">Packages built<br>around your event.</h2>
     <p>Each package is a starting point, tailored to your venue, audience and running order.</p></div>
     {packages_block()}  </section>'''
-    lectern_cta = ""
-    if p.get("lectern"):
-        lectern_cta = f'''<section class="lectern-buy"><div><p class="eyebrow"><i></i> BUY OR HIRE</p><h2>Spec your lectern.</h2>
-    <p>Tell us where the lectern will be used, the screen and microphone you need and how it connects to your system. We will send a specification and fixed price.</p></div>
-    <div class="lectern-buy-box"><p class="lectern-price">Custom builds from <b>£1,466</b></p><p class="hint">Also available to hire for single events.</p>
-    <div class="hero-actions"><a class="button solid" href="{QUOTE}" data-enquiry>Request a lectern quote <span>↗</span></a><a class="button" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a></div></div></section>'''
+    lectern_cta = lectern_section() if p.get("lectern") else ""
 
     # Structured data
     offers = None
@@ -182,7 +211,7 @@ def service_page(slug, p):
       <p class="eyebrow"><i></i> {e(p["eyebrow"])}</p>
       <h1 id="page-title">{p["h1"]}</h1>
       <p class="hero-sub">{e(p["lead"])}</p>
-      <div class="hero-actions"><a class="button solid" href="{QUOTE}" data-enquiry>Request a quote <span>↗</span></a><a class="button" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a></div>
+      <div class="hero-actions">{'<a class="button solid" href="#build">Build your lectern <span>↓</span></a><a class="button" href="#build">See price list <span>↓</span></a>' if p.get("lectern") else f'<a class="button solid" href="{QUOTE}" data-enquiry>Request a quote <span>↗</span></a><a class="button" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a>'}</div>
       <p class="hero-price">{p["price"]} · London &amp; nationwide</p>
     </div>
   </section>
@@ -241,6 +270,7 @@ def service_page(slug, p):
 <script src="/nav.js"></script>
 <script src="/home.js"></script>
 <script src="/ribbons.js"></script>
+{'<script src="/lectern.js"></script>' if p.get("lectern") else ""}
 </body>
 </html>
 '''
