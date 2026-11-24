@@ -72,4 +72,19 @@ document.getElementById('close-enquiry').onclick = () => enquiryForm.close();
     });
     document.body.appendChild(notice);
   }
+}
+  // Visitors can reopen advertising consent and withdraw it at any time.
+  const footer = document.querySelector('footer');
+  if (footer) {
+    const settings = document.createElement('button');
+    settings.type = 'button';
+    settings.textContent = 'Advertising cookie settings';
+    settings.setAttribute('aria-label', 'Change advertising cookie preferences');
+    settings.style.cssText = 'background:transparent;color:inherit;border:1px solid currentColor;border-radius:5px;padding:6px 10px;margin:10px 0;cursor:pointer;font:inherit';
+    settings.addEventListener('click', () => {
+      try { localStorage.removeItem(consentKey); } catch (_) {}
+      window.location.reload();
+    });
+    footer.appendChild(settings);
+  }
 })();
