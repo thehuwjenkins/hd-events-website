@@ -72,7 +72,6 @@ document.getElementById('close-enquiry').onclick = () => enquiryForm.close();
     });
     document.body.appendChild(notice);
   }
-}
   // Visitors can reopen advertising consent and withdraw it at any time.
   const footer = document.querySelector('footer');
   if (footer) {
