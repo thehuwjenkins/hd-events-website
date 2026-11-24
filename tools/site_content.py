@@ -1,0 +1,406 @@
+# -*- coding: utf-8 -*-
+"""All page wording for the HD Events site, kept in one place.
+
+Edit text here, then run:  python3 tools/build_site.py
+Each page becomes public/<slug>.html and is served at https://www.hd-events.co.uk/<slug>
+"""
+
+SITE = "https://www.hd-events.co.uk"
+PHONE = "+44 7930 547024"
+PHONE_LINK = "+447930547024"
+EMAIL = "hello@hd-events.co.uk"
+WHATSAPP = "https://wa.me/447930547024"
+INSTAGRAM = "https://www.instagram.com/hdeventsuk"
+QUOTE = "https://676968.17hats.com/p#/embed/krssknhxgstpsxdddgbvbkxnfgbbfvtz"
+BRANDS = ["Sennheiser", "sE Electronics", "Allen & Heath", "Yamaha", "KV2 Audio", "NEXO"]
+
+# Top menu: (label, slug) or (label, [(label, slug, short description)])
+MENU = [
+    ("Corporate", "corporate-av-hire"),
+    ("Awards & Galas", "awards-gala-dinners"),
+    ("Entertainment", "live-entertainment"),
+    ("Festivals", "festivals-outdoor-events"),
+    ("Dry Hire", "dry-hire"),
+    ("Digital Lecterns", "digital-lecterns"),
+    ("More", [
+        ("AV installations", "av-installations", "Permanent sound, screens and lighting for venues"),
+        ("Event planning & licensing", "event-planning", "Planning, licensing, risk and compliance"),
+        ("PA repairs", "pa-repairs", "Fault-finding and repairs for PA equipment"),
+        ("Our work", "/#work", "Recent events and venues"),
+    ]),
+]
+
+PAGES = {}
+
+PAGES["corporate-av-hire"] = dict(
+    short="Corporate AV hire",
+    title="Corporate AV Hire London & UK | Conference Sound, Screens & Lighting | HD Events",
+    description="Corporate AV hire for conferences, AGMs and launches in London and across the UK. Sound, mics, screens, lighting and lecterns with technicians. From £500.",
+    nav="Corporate",
+    eyebrow="CORPORATE AUDIO VISUAL HIRE · LONDON & NATIONWIDE",
+    h1="Corporate events,<br><span>flawlessly delivered.</span>",
+    lead="Audio visual hire and technical production for conferences, AGMs, product launches, town halls and internal events. Every presenter clearly heard, every slide clearly seen, and a calm technical team running the show from first rehearsal to final session.",
+    hero="corporate-panel-foh.jpg",
+    hero_alt="Corporate panel discussion seen from the HD Events sound and video control desk",
+    price="Corporate packages from <b>£500</b>",
+    intro_title="Technical production that lets your content lead.",
+    intro=[
+        "Corporate audiences notice when the technology fails and rarely when it works. Our job is to make sure the only thing people remember is your message: a presenter who can be heard at the back of the room, slides that are sharp on every screen, and a programme that runs to time.",
+        "We supply, install and operate everything in-house, from a single lectern and microphone for a briefing to a full multi-session conference with stage, relay screens, lighting and a dedicated technical team. Each specification is designed around your venue, audience size and running order.",
+    ],
+    services_title="What we provide for corporate events",
+    services=[
+        ("Conference sound", "Speech-optimised sound systems from Allen & Heath, NEXO and KV2 Audio, tuned so every seat hears clearly without the sound ever feeling loud."),
+        ("Wireless microphones", "Sennheiser handheld, lapel and headset microphones for presenters, panel discussions and roaming audience Q&A, with spares on hand."),
+        ("Presentation & relay screens", "Presentation screens, relay screens for larger rooms, and confidence monitors so presenters can see their slides and notes without turning their back."),
+        ("Lighting", "Presenter and stage lighting that keeps speakers well lit for the room and on camera, plus atmosphere lighting that brings your brand colours into the space."),
+        ("Lecterns", "Branded and digital lecterns with built-in microphones and screens, from our own custom-built range."),
+        ("Show running", "Experienced technicians operating sound, slides and lighting throughout, working to your running order and producer's cues."),
+    ],
+    events=["Conferences", "AGMs", "Product launches", "Town halls", "Panel discussions", "Training days", "Press events", "Exhibitions", "Internal comms events"],
+    gallery=[("corporate-setup.jpg", "Sennheiser wireless receivers, mixing console and presentation control at a hotel conference"),
+             ("corporate-panel-stage.jpg", "Panel discussion on stage at a corporate conference"),
+             ("wireless-mics.jpg", "Row of Sennheiser wireless microphones ready for presenters")],
+    packages=True,
+    faqs=[
+        ("What AV do I need for a conference?", "Most conferences need a sound system sized to the room, wireless microphones for each presenter and the panel, a presentation screen with a way to play slides and video, and lighting on the stage or lectern. Rooms over around 150 guests usually benefit from relay screens so everyone has a clear view. Send us your venue and running order and we will specify exactly what is needed."),
+        ("Do you provide a technician on the day?", "Yes. For conference and AGM packages a technician from our own team operates sound, slides and lighting throughout the event. For smaller briefings we can set up, test and hand over, or stay on site, whichever you prefer."),
+        ("Do you cover events outside London?", "Yes. We focus on London but deliver corporate events across the UK, including Wales, the South West, the Midlands and the North."),
+        ("How much does corporate AV hire cost?", "Our Speaker Essentials package for smaller rooms starts from £500. Larger conferences and multi-room events are quoted individually, as the cost depends on audience size, screens, lighting and the length of the day. Every quote is itemised."),
+        ("Can you work with our venue's in-house AV?", "Yes. We regularly work alongside venue teams, either providing the full technical package or adding to what the venue already has, such as extra microphones, lecterns or relay screens."),
+        ("How far in advance should we book?", "As early as possible for busy conference periods, typically spring and autumn. We can often help at shorter notice, so it is always worth asking."),
+    ],
+    related=["awards-gala-dinners", "digital-lecterns", "dry-hire"],
+    service_type="Corporate audio visual hire",
+)
+
+PAGES["awards-gala-dinners"] = dict(
+    short="Awards & gala dinners",
+    title="Awards Ceremony & Gala Dinner AV Production | Sound, Screens, Lighting | HD Events",
+    description="Sound, screens, lighting and lecterns for awards ceremonies and gala dinners across London and the UK. Walk-up music, winner graphics and technicians.",
+    nav="Awards & Galas",
+    eyebrow="AWARDS CEREMONIES & GALA DINNERS",
+    h1="Big moments<br><span>deserve big nights.</span>",
+    lead="Technical production for awards ceremonies, gala dinners and charity balls. From the welcome speech and the winners' walk-up to the after-dinner entertainment and the last dance, we make sure every moment lands.",
+    hero="concorde-dinner.jpg",
+    hero_alt="Gala dinner set for hundreds of guests beneath Concorde, with HD Events stage, PA and lighting",
+    price="Bespoke packages, quoted for your event",
+    intro_title="One technical team, from first course to final song.",
+    intro=[
+        "An awards night moves quickly between very different moments: speeches over dinner, a host on stage, winners walking up to music, sponsor videos, and a band or DJ to finish. We design one system that handles all of it, so the evening flows without changeovers or surprises.",
+        "We have produced dinners in hotel ballrooms, historic halls and unusual spaces, including a corporate dinner for several hundred guests beneath Concorde in its hangar.",
+    ],
+    services_title="What we provide for awards and galas",
+    services=[
+        ("Sound for speech and music", "One system that is clear for speeches during dinner and powerful enough for the band or DJ afterwards."),
+        ("Presenter microphones & lecterns", "Lectern and handheld microphones for hosts and presenters, with branded or digital lecterns available."),
+        ("Screens & winner graphics", "Screens for category titles, nominee videos, sponsor content and live camera, with playback run from our control desk."),
+        ("Walk-up music & stings", "Walk-up and award music cued on time for every winner, alongside background music through dinner."),
+        ("Stage & atmosphere lighting", "Stage lighting for presenters and winners, plus uplighting and atmosphere lighting to transform the room."),
+        ("Show calling & operation", "Technicians running sound, video and lighting to your script, working closely with your host and event manager."),
+    ],
+    events=["Awards ceremonies", "Gala dinners", "Charity balls", "Corporate dinners", "Celebration events", "Sports dinners"],
+    gallery=[("concorde-dinner-wide.jpg", "Dinner tables beneath Concorde with stage and PA"),
+             ("allen-heath-night.jpg", "Allen & Heath console and Sennheiser wireless during an evening event"),
+             ("theatre-stage.jpg", "View from the stage across a large auditorium")],
+    packages=False,
+    faqs=[
+        ("What AV does an awards ceremony need?", "Typically a sound system for speech and music, a lectern and presenter microphones, screens for category titles and nominee content, walk-up music for each winner, and stage lighting so winners look good in photos. We put it all on one cue sheet so the night runs smoothly."),
+        ("Can you play our nominee videos and sponsor slides?", "Yes. Send us the content in advance and we build it into the show, then operate it live from the control desk."),
+        ("Can you also provide sound for a band or DJ after dinner?", "Yes. We design the system for both speeches and music, so there is no changeover between the formal part of the evening and the entertainment."),
+        ("Do you work outside London?", "Yes. We deliver awards and gala dinners across the UK."),
+        ("How much does awards night AV cost?", "Every awards night is different, so we quote individually based on guest numbers, screens, lighting and the running order. Send us your brief and we will send an itemised quote."),
+    ],
+    related=["corporate-av-hire", "live-entertainment", "digital-lecterns"],
+    service_type="Awards ceremony and gala dinner production",
+)
+
+PAGES["live-entertainment"] = dict(
+    short="Live music, theatre & entertainment",
+    title="Live Music, Theatre & Entertainment Sound and Lighting | HD Events",
+    description="Sound, lighting and visual production for concerts, live music, theatre and entertainment across London and the UK, with experienced engineers.",
+    nav="Entertainment",
+    eyebrow="LIVE MUSIC, THEATRE & ENTERTAINMENT",
+    h1="Sound and light<br><span>for unforgettable shows.</span>",
+    lead="Audio, lighting and visual production for concerts, live music, theatre and touring productions. From intimate acoustic sessions in historic venues to large auditoriums, we bring the technical detail that lets performers shine.",
+    hero="cathedral-show.jpg",
+    hero_alt="Candlelit concert in a cathedral with HD Events sound and lighting",
+    price="Production quoted for your show",
+    intro_title="Production that serves the performance.",
+    intro=[
+        "Great live sound is about more than volume. It is about clarity, balance and a system that suits the room, whether that is a cathedral, a theatre or a stadium. We specify and engineer every show to sound natural for the audience and comfortable for the performers.",
+        "We also provide production and stage management for theatre and touring work, coordinating venues, schedules and technical requirements so the performance can take centre stage.",
+    ],
+    services_title="What we provide for live events",
+    services=[
+        ("Front-of-house sound", "Allen & Heath and Yamaha consoles with KV2 Audio and NEXO systems, engineered for the room and the genre."),
+        ("Monitors & stage sound", "Stage monitoring and microphones, including sE Electronics and Sennheiser, so performers hear exactly what they need."),
+        ("Stage & atmosphere lighting", "Lighting design and operation for concerts and theatre, from warm acoustic looks to full rock-show lighting."),
+        ("Visuals & screens", "Screens and video playback to add content, captions or live camera to the show."),
+        ("Production & stage management", "Production management, tour and stage management for theatre and touring productions."),
+        ("Experienced engineers", "Engineers who have mixed everything from intimate sessions to festival stages."),
+    ],
+    events=["Concerts", "Live music", "Theatre", "Touring productions", "Church & cathedral events", "Community events"],
+    gallery=[("theatre-stage.jpg", "View from the stage across a large theatre auditorium"),
+             ("allen-heath-night.jpg", "Allen & Heath SQ-5 at front of house in a historic venue"),
+             ("outdoor-stage.jpg", "Outdoor stage with live band and KV2 Audio PA")],
+    packages=False,
+    faqs=[
+        ("Do you provide sound engineers for concerts?", "Yes. Our engineers mix front of house and monitors, or work alongside an artist's own engineer, using our Allen & Heath and Yamaha consoles."),
+        ("Can you provide sound for churches and cathedrals?", "Yes. Historic buildings need careful system design because of their long reverberation. We regularly provide sound for concerts and services in churches and cathedrals."),
+        ("Do you provide theatre production and stage management?", "Yes. We provide production, tour and stage management alongside sound and lighting."),
+        ("Can I just hire the equipment?", "Yes. If you have your own crew, see our dry hire page for sound and lighting equipment hire."),
+    ],
+    related=["festivals-outdoor-events", "dry-hire", "event-planning"],
+    service_type="Live entertainment sound and lighting production",
+)
+
+PAGES["festivals-outdoor-events"] = dict(
+    short="Festivals & outdoor events",
+    title="Festival & Outdoor Event Sound, Stage and Lighting Production | HD Events",
+    description="Festival and outdoor event production across the UK: KV2 Audio and NEXO stage sound, lighting, screens and crew, plus licensing and safety support.",
+    nav="Festivals",
+    eyebrow="FESTIVALS & OUTDOOR EVENTS",
+    h1="Outdoor stages,<br><span>festival standard.</span>",
+    lead="Sound, lighting and stage production for festivals, outdoor concerts, community events and sports venues. Systems designed for your site, crewed by people who know outdoor events, with planning and licensing support if you need it.",
+    hero="festival-stage-night.jpg",
+    hero_alt="Festival headline show at night with blue stage lighting",
+    price="Production quoted for your site",
+    intro_title="Built for the site, the crowd and the weather.",
+    intro=[
+        "Outdoor events bring challenges indoor shows never face: distance, wind, neighbours, power and the British weather. We design each system for your site and audience, with KV2 Audio and NEXO systems that deliver clear, even coverage without disturbing the neighbourhood.",
+        "Because we also provide event planning, licensing and risk assessment support, we can help shape the whole event, not just the stage.",
+    ],
+    services_title="What we provide for festivals and outdoor events",
+    services=[
+        ("Stage sound systems", "KV2 Audio and NEXO systems sized for your audience, from community stages to large outdoor crowds."),
+        ("Stage lighting", "Stage and effects lighting for evening shows and headline sets."),
+        ("Screens & visuals", "Screens for live camera, sponsor content and information."),
+        ("Backline & stage management", "Stage management and changeovers that keep the programme running on time."),
+        ("Planning, licensing & safety", "Support with event planning, licensing, risk assessments and noise management."),
+        ("Crew", "Experienced crew for build, show and derig."),
+    ],
+    events=["Festivals", "Outdoor concerts", "Community events", "Stadium events", "Sports events", "Fun days"],
+    gallery=[("festival-stage-day.jpg", "Outdoor festival stage with flown speaker systems"),
+             ("outdoor-stage.jpg", "Outdoor stage with KV2 Audio ES1.0 PA and live band"),
+             ("stadium-mic.jpg", "sE Electronics microphone pitchside at the Swansea.com Stadium")],
+    packages=False,
+    faqs=[
+        ("Can you provide the full stage production for a festival?", "Yes. We can provide sound, lighting, screens, stage management and crew, and support the planning, licensing and safety side too."),
+        ("Do you help with event licensing and risk assessments?", "Yes. See our event planning and licensing page. We help coordinate licensing, risk assessments and compliance."),
+        ("How do you manage noise at outdoor events?", "We design and aim the system for even coverage of the audience area, which keeps sound clear for the crowd while reducing spill to neighbours, and we can monitor levels during the event."),
+        ("Do you cover events across the UK?", "Yes. We deliver outdoor events across the UK."),
+    ],
+    related=["live-entertainment", "event-planning", "dry-hire"],
+    service_type="Festival and outdoor event production",
+)
+
+PAGES["dry-hire"] = dict(
+    short="Dry hire",
+    title="Dry Hire: PA, Sound & Lighting Equipment Hire | KV2, NEXO, Allen & Heath | HD Events",
+    description="PA, microphone, console and lighting dry hire for crews and production companies. KV2 Audio, NEXO, Allen & Heath, Yamaha and Sennheiser. UK-wide.",
+    nav="Dry Hire",
+    eyebrow="DRY HIRE · SOUND & LIGHTING EQUIPMENT",
+    h1="Professional equipment<br><span>for your own crew.</span>",
+    lead="Already have your production team? Hire professionally maintained sound and lighting equipment from the same stock we use on our own events. Send us your equipment list, venue and dates and we will confirm availability.",
+    hero="allen-heath-sq5.jpg",
+    hero_alt="Allen & Heath SQ-5 digital mixing console with Sennheiser wireless rack",
+    price="Hire quoted on your equipment list",
+    intro_title="The same equipment we trust on our own shows.",
+    intro=[
+        "All dry hire equipment comes from our own production stock, tested before every hire and packed in road cases. You get the same brands we use for corporate and live events: KV2 Audio, NEXO, Allen & Heath, Yamaha, Sennheiser and sE Electronics.",
+        "Collection or delivery can be arranged, and if you need a hand on the day we can add a technician.",
+    ],
+    services_title="Equipment available to hire",
+    services=[
+        ("Speaker systems", "KV2 Audio and NEXO systems, including compact NEXO PS10s for speech and the KV2 ES1.0 system for larger rooms and outdoor stages."),
+        ("Mixing consoles", "Allen & Heath and Yamaha digital consoles."),
+        ("Wireless microphones", "Sennheiser wireless systems with handheld, lapel and headset options, plus sE Electronics capsules."),
+        ("Wired microphones & stands", "Vocal and instrument microphones, stands and cabling."),
+        ("Lighting", "Stage and atmosphere lighting fixtures."),
+        ("Lecterns", "Digital and branded lecterns from our own range."),
+    ],
+    events=["Production companies", "Bands & artists", "Venues", "Event organisers", "Schools & colleges", "Churches"],
+    gallery=[("kv2-es10.jpg", "KV2 Audio ES1.0 speaker on an outdoor stage"),
+             ("nexo-ps10.jpg", "NEXO PS10 speaker"),
+             ("wireless-mics.jpg", "Sennheiser wireless microphones")],
+    packages=False,
+    faqs=[
+        ("What is dry hire?", "Dry hire means hiring the equipment only, without our technicians. It suits production companies, venues and bands who have their own crew."),
+        ("What brands do you hire?", "KV2 Audio, NEXO, Allen & Heath, Yamaha, Sennheiser and sE Electronics."),
+        ("Can you deliver the equipment?", "Yes, delivery and collection can be arranged, or you can collect."),
+        ("Can I add a technician to a dry hire?", "Yes. If you need help on the day we can add a technician for setup or the full event."),
+        ("How do I check availability?", "Send us your equipment list, venue and dates using the quote form or WhatsApp, and we will confirm availability and price."),
+    ],
+    related=["live-entertainment", "festivals-outdoor-events", "pa-repairs"],
+    service_type="Sound and lighting equipment dry hire",
+)
+
+PAGES["digital-lecterns"] = dict(
+    short="Digital lecterns",
+    title="Digital Lecterns for Sale & Hire UK | Custom Built with Screens | HD Events",
+    description="Custom digital lecterns built in the UK with screens, comfort monitors, mic inputs and Kramer CAT6. Built to spec from £1,466, or available to hire.",
+    nav="Digital Lecterns",
+    eyebrow="DIGITAL LECTERNS · BUILT TO SPEC · SALE & HIRE",
+    h1="Give your speakers<br><span>a stage.</span>",
+    lead="Custom digital lecterns with full-height screens for your branding, slides or live content. Designed and built by HD Events to your specification, for permanent installation in your venue or available to hire for a single event.",
+    hero="digital-lecterns.jpg",
+    hero_alt="Two custom HD Events digital lecterns with built-in screens at the Brangwyn Hall, Swansea",
+    price="Custom builds from <b>£1,466</b>",
+    intro_title="A lectern that works as hard as your speaker.",
+    intro=[
+        "A digital lectern turns the most-photographed spot in the room into a screen for your brand. Show your logo between speakers, sponsor content, speaker names or live slides, and change it in seconds.",
+        "Every lectern is built to order around how it will be used: the screen, the microphone, the speaker's monitor and how it connects to your AV system. We recently built a matching pair for the Brangwyn Hall in Swansea.",
+    ],
+    services_title="Options to build your lectern",
+    services=[
+        ("Built-in front display", "A full-height screen on the front for logos, slides, video or speaker names."),
+        ("Comfort monitor", "A monitor for the speaker to see slides, notes or a timer without turning around."),
+        ("Microphone inputs", "Built-in microphone connections ready for a gooseneck or your preferred microphone."),
+        ("Kramer CAT6 converters", "Reliable signal over a single network cable to your AV system, so long cable runs stay neat and dependable."),
+        ("Your branding & finish", "Finished to suit your venue and brand."),
+        ("And much more", "Tell us what your venue or event needs and we will design it in."),
+    ],
+    events=["Conference venues", "Hotels", "Universities & schools", "Councils & civic halls", "Corporate offices", "Places of worship"],
+    gallery=[],
+    packages=False,
+    lectern=True,
+    faqs=[
+        ("How much does a digital lectern cost?", "Our custom digital lecterns start from £1,466. The final price depends on the screen, comfort monitor, microphone and connectivity options you choose."),
+        ("Can I hire a digital lectern?", "Yes. Our digital lecterns are available to hire for single events, either on their own or as part of a full AV package."),
+        ("What can be shown on the lectern screen?", "Anything you can send to a display: your logo, sponsor slides, speaker names, video or a live feed of the presentation."),
+        ("How does the lectern connect to the AV system?", "We can fit Kramer CAT6 converters so video and signals travel over a single network cable, keeping the stage tidy and the connection reliable."),
+        ("Do you deliver and install lecterns across the UK?", "Yes. We deliver and set up lecterns across the UK, including London."),
+        ("How long does a custom build take?", "Lead times depend on the specification. We will confirm the timescale when we quote."),
+    ],
+    related=["corporate-av-hire", "awards-gala-dinners", "av-installations"],
+    service_type="Digital lectern sales and hire",
+)
+
+PAGES["av-installations"] = dict(
+    short="AV installations",
+    title="AV Installations for Venues | Sound Systems, Screens & Lighting | HD Events",
+    description="Permanent AV installations for venues, halls, churches and offices: sound systems, screens, projectors, lighting and digital lecterns, with training.",
+    nav="More",
+    eyebrow="AV INSTALLATIONS",
+    h1="Built for<br><span>your space.</span>",
+    lead="Permanent sound systems, screens, projectors and lighting, designed around the way you use your venue. Whether it is a new installation or an upgrade to an existing system, we make technology that is simple for your team to use every day.",
+    hero="allen-heath-night.jpg",
+    hero_alt="Allen & Heath console and wireless system in a historic venue",
+    price="Quoted after a site visit",
+    intro_title="Technology your team can actually use.",
+    intro=[
+        "The best installation is one that works every time someone walks in and switches it on. We design systems around your room, your events and the people who will use them, then train your team so they are confident on their own.",
+        "Our experience running live events means we know what works in practice, from speech clarity in reverberant halls to simple, reliable presentation connections.",
+    ],
+    services_title="What we install",
+    services=[
+        ("Sound systems", "Speech and music systems designed for the room."),
+        ("Microphones", "Wired and wireless microphones for presenters and performers."),
+        ("Screens & projectors", "Displays and projection for presentations and video."),
+        ("Lighting", "Stage and architectural lighting."),
+        ("Digital lecterns", "Custom digital lecterns built for your venue."),
+        ("Training & support", "Handover training for your team and ongoing support."),
+    ],
+    events=["Venues & halls", "Churches", "Schools & colleges", "Hotels", "Offices", "Theatres"],
+    gallery=[("church-pa.jpg", "NEXO PS10 speaker and microphones in a church"),
+             ("digital-lecterns.jpg", "Digital lecterns installed in a civic hall"),
+             ("allen-heath-sq5.jpg", "Allen & Heath digital console")],
+    packages=False,
+    faqs=[
+        ("Do you install sound systems in churches and halls?", "Yes. We design and install sound systems for churches, halls and other venues, with careful attention to speech clarity."),
+        ("Can you upgrade our existing system?", "Yes. We can assess what you have and recommend upgrades, reusing equipment where it makes sense."),
+        ("Do you provide training?", "Yes. We train your team at handover so they can use the system with confidence."),
+    ],
+    related=["digital-lecterns", "pa-repairs", "corporate-av-hire"],
+    service_type="Audio visual installation",
+)
+
+PAGES["event-planning"] = dict(
+    short="Event planning & licensing",
+    title="Event Planning, Licensing & Risk Assessments | HD Events",
+    description="Event planning, licensing, risk assessments and compliance support for festivals, outdoor events and corporate events across the UK.",
+    nav="More",
+    eyebrow="EVENT PLANNING & LICENSING",
+    h1="The thinking<br><span>behind the experience.</span>",
+    lead="From the first idea to show day, we help coordinate the detail: event planning, logistics, licensing, risk assessments and compliance. Tell us what you have in mind and we will help shape the next steps.",
+    hero="outdoor-stage.jpg",
+    hero_alt="Outdoor community event stage with live band",
+    price="Support tailored to your event",
+    intro_title="Planning that makes show day simple.",
+    intro=[
+        "A successful event is decided long before the doors open. We help organisers plan the timeline, the site, the suppliers and the paperwork, so that on the day everyone knows what is happening and why.",
+        "We support licensing applications, risk assessments, method statements and safety planning, always prepared for review and sign-off by the responsible person for your event.",
+    ],
+    services_title="How we help",
+    services=[
+        ("Event planning", "Timelines, schedules and running orders."),
+        ("Site planning", "Site layouts, stage and facility positions, and access routes."),
+        ("Licensing", "Support with premises licences and Temporary Event Notices."),
+        ("Risk assessments", "Event risk assessments, fire risk assessments and method statements."),
+        ("Supplier coordination", "Coordinating suppliers, crew and contractors."),
+        ("Show day management", "Production management on the day."),
+    ],
+    events=["Festivals", "Outdoor events", "Community events", "Corporate events", "Charity events"],
+    gallery=[("festival-stage-day.jpg", "Festival stage in daylight"),
+             ("cathedral-show.jpg", "Event in a cathedral"),
+             ("concorde-dinner-wide.jpg", "Corporate dinner beneath Concorde")],
+    packages=False,
+    faqs=[
+        ("Do you help with Temporary Event Notices?", "Yes. We can help you understand what licence your event needs and support the application."),
+        ("Do you write event risk assessments?", "Yes. We prepare risk assessments, fire risk assessments and method statements for review and sign-off by the responsible person."),
+    ],
+    related=["festivals-outdoor-events", "live-entertainment", "corporate-av-hire"],
+    service_type="Event planning and licensing support",
+)
+
+PAGES["pa-repairs"] = dict(
+    short="PA repairs",
+    title="PA Repairs | Speaker, Amplifier & Mixer Repair | HD Events",
+    description="Repairs for most PA equipment: speakers, amplifiers, mixers and microphones. Send the make, model and fault and we will advise on next steps.",
+    nav="More",
+    eyebrow="PA REPAIRS",
+    h1="Get your<br><span>sound back.</span>",
+    lead="Repairs for most PA-related equipment. Send us the make, model and a description of the fault, and we will tell you whether we can help and what to do next.",
+    hero="sennheiser-rack.jpg",
+    hero_alt="Rack of Sennheiser wireless receivers",
+    price="Assessment quoted per item",
+    intro_title="Professional repairs from working engineers.",
+    intro=[
+        "We maintain our own production equipment to a high standard, and offer the same care to yours. Whether it is a speaker that has started distorting, a crackling cable or a mixer channel that has stopped working, we will help diagnose the problem.",
+    ],
+    services_title="What we repair",
+    services=[
+        ("Speakers", "Active and passive loudspeakers."),
+        ("Amplifiers", "Power amplifiers and powered speakers."),
+        ("Mixers", "Analogue and digital mixing consoles."),
+        ("Microphones", "Wired and wireless microphones."),
+        ("Cables & connectors", "Cable repairs and re-terminations."),
+        ("Fault finding", "Diagnosis of intermittent and system faults."),
+    ],
+    events=["Venues", "Bands", "Churches", "Schools", "Production companies"],
+    gallery=[("allen-heath-sq5.jpg", "Mixing console"), ("nexo-ps10.jpg", "Loudspeaker"), ("wireless-mics.jpg", "Wireless microphones")],
+    packages=False,
+    faqs=[
+        ("What information do you need for a repair?", "The make and model, a description of the fault and when it happens. Photos or a short video help too."),
+        ("Can you repair any brand?", "We can help with most PA equipment. Send us the details and we will confirm."),
+    ],
+    related=["dry-hire", "av-installations", "live-entertainment"],
+    service_type="PA equipment repair",
+)
+
+# Old addresses that should send visitors (and search engines) to the new pages.
+REDIRECTS = {
+    "/pa-hire.html": "/dry-hire",
+    "/pa-hire": "/dry-hire",
+    "/lecterns.html": "/digital-lecterns",
+    "/lecterns": "/digital-lecterns",
+    "/live-av.html": "/live-entertainment",
+    "/live-av": "/live-entertainment",
+    "/theatre-production.html": "/live-entertainment",
+    "/theatre-production": "/live-entertainment",
+    "/installations.html": "/av-installations",
+    "/installations": "/av-installations",
+    "/repairs.html": "/pa-repairs",
+    "/repairs": "/pa-repairs",
+}

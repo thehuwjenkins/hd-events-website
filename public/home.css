@@ -1,7 +1,4 @@
 /* Home page: premium PA hire layout. Shared header, buttons, dialog and footer come from style.css. */
-.home header nav { display: flex; gap: 34px; font-size: 13px; }
-.home header nav a { color: #d8d8e0; text-decoration: none; }
-.home header nav a:hover { color: var(--cyan); }
 .home section { position: relative; }
 .home h2 { font-size: clamp(40px, 5.2vw, 76px); font-weight: 300; letter-spacing: -.05em; line-height: 1; margin: 18px 0 20px; }
 .section-intro { max-width: 760px; margin-bottom: 48px; }
@@ -144,7 +141,6 @@
   .pillars { grid-template-columns: repeat(2, 1fr); }
   .lectern-feature { grid-template-columns: 1fr; gap: 34px; }
   .lectern-photo { aspect-ratio: 16/10; }
-  .home header nav { display: none; }
 }
 /* Phone */
 @media (max-width: 700px) {
