@@ -51,7 +51,7 @@
 
 /* What we supply */
 .supply { padding: 110px 6% 90px; }
-.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .pillar { display: block; color: var(--white); text-decoration: none; border: 1px solid #ffffff17; border-radius: 22px; padding: 18px 18px 26px; background: #0c0d14; transition: border-color .25s, transform .25s; }
 .pillar:hover { border-color: #00eeed66; transform: translateY(-4px); }
 .pillar-photo { aspect-ratio: 4/3; border-radius: 14px; overflow: hidden; background: #15161f; margin-bottom: 20px; }
@@ -140,7 +140,8 @@
 @media (max-width: 1100px) {
   .kit-grid { grid-template-columns: repeat(2, 1fr); }
   .kit-card { min-height: 0; padding-top: 110px; }
-  .package-grid, .pillars { grid-template-columns: 1fr; max-width: 640px; }
+  .package-grid { grid-template-columns: 1fr; max-width: 640px; }
+  .pillars { grid-template-columns: repeat(2, 1fr); }
   .lectern-feature { grid-template-columns: 1fr; gap: 34px; }
   .lectern-photo { aspect-ratio: 16/10; }
   .home header nav { display: none; }
@@ -151,13 +152,13 @@
   #heroWave { opacity: .4; -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 18%, #0004 32%, #0002 70%, transparent 85%); mask-image: linear-gradient(180deg, #000 0%, #000 18%, #0004 32%, #0002 70%, transparent 85%); }
   .motion-toggle { right: 22px; bottom: 18px; }
   .ribbon-divider { height: 170px; }
-  .home .hire-hero h1 { font-size: clamp(44px, 12.5vw, 64px); }
+  .home .hire-hero h1 { font-size: clamp(36px, 10.2vw, 56px); }
   .packages, .kit, .work-gallery, .steps, .more-services, .supply, .lectern-feature { padding: 72px 22px; }
   .hire-hero.corporate .hero-media img { object-position: 60% 30%; }
   .hire-hero.corporate .hero-media::after { background: linear-gradient(180deg, #050609cc 0%, #05060999 40%, #050609f0 75%, #050609 100%); }
   .brands { padding: 34px 22px 40px; }
   .brand-row { justify-content: flex-start; gap: 12px 26px; }
-  .promises, .steps ol, .reviews, .service-cards { grid-template-columns: 1fr; }
+  .promises, .steps ol, .reviews, .service-cards, .pillars { grid-template-columns: 1fr; }
   .kit-grid { grid-template-columns: 1fr; }
   .gallery { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
   .gallery figure.big { grid-column: span 2; }
