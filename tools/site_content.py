@@ -23,6 +23,7 @@ MENU = [
     ("Dry Hire", "dry-hire"),
     ("Digital Lecterns", "digital-lecterns"),
     ("More", [
+        ("AV delivery & collection", "av-delivery-collection", "Delivered by technicians who can set up, crew and collect"),
         ("AV installations", "av-installations", "Permanent sound, screens and lighting for venues"),
         ("Event planning & licensing", "event-planning", "Planning, licensing, risk and compliance"),
         ("PA repairs", "pa-repairs", "Fault-finding and repairs for PA equipment"),
@@ -387,6 +388,49 @@ PAGES["pa-repairs"] = dict(
     ],
     related=["dry-hire", "av-installations", "live-entertainment"],
     service_type="PA equipment repair",
+)
+
+PAGES["av-delivery-collection"] = dict(
+    short="AV delivery & collection",
+    title="AV Delivery & Collection | Event Equipment Transport with Technicians | HD Events",
+    description="Event AV delivery and collection by experienced technicians, not just drivers. Set up, pack down, stay on as crew and collect the same night. London & UK.",
+    nav="More",
+    eyebrow="AV DELIVERY & COLLECTION · LONDON & NATIONWIDE",
+    h1="Delivered by technicians,<br><span>not just drivers.</span>",
+    lead="Event equipment delivery and collection with experienced AV technicians behind the wheel. They can set up and test on arrival, stay on as crew during the event, then pack down and take everything away the same night. One booking, no second trip, no early-morning collection.",
+    hero="corporate-setup.jpg",
+    hero_alt="Road cases, wireless receivers and mixing console set up by HD Events technicians",
+    price="Quoted per job",
+    intro_title="One trip. Delivered, crewed and collected.",
+    intro=[
+        "Most delivery services drop the kit at the door and leave. Ours are delivered by working AV technicians, so the person who arrives with your equipment knows exactly what it is, where it goes and how to make it work. They can unload, set up and test, or simply hand over to your team.",
+        "If you need an extra pair of hands, they can stay on as crew for the event. When the night is over, they pack down and load out there and then. No separate collection booking, no van coming back the next morning, and no tired crew trying to find someone to collect after a late finish.",
+        "We are a lean business without a central London warehouse, so we do not carry central London overheads. That keeps our rates competitive, while our technicians cover London and the rest of the UK.",
+    ],
+    services_title="What the service covers",
+    services=[
+        ("Delivery & collection", "Careful transport of sound, lighting, video and staging equipment to and from your venue, loaded and secured by people who handle AV every day."),
+        ("Set up & test", "On arrival our technician can rig, connect and test the equipment, or hand over to your crew if you prefer."),
+        ("Stay on as crew", "Need a hand during the show? The same technician can stay on as crew for the event, at an hourly or day rate."),
+        ("Same-night pack down", "At the end of the event they pack down, load out and collect, saving a second trip and an early-morning collection."),
+        ("Cross-hire runs", "Collect and return kit from other hire companies, so your cross-hires arrive and leave on time."),
+        ("Venue & production support", "Ideal for production companies, venues and event managers who need reliable logistics with technical know-how."),
+    ],
+    events=["Production companies", "Event managers", "Venues & hotels", "Hire companies", "Corporate events", "Festivals", "Weddings & parties"],
+    gallery=[("allen-heath-sq5.jpg", "Mixing console in its road case, ready to load"),
+             ("kv2-es10.jpg", "KV2 Audio speaker delivered and rigged on an outdoor stage"),
+             ("allen-heath-night.jpg", "Front-of-house setup at an evening event")],
+    packages=False,
+    faqs=[
+        ("How is this different from a normal courier?", "Your equipment is delivered by experienced AV technicians rather than general drivers. They can set up and test on arrival, stay on as crew, and pack down and collect at the end, so one booking covers everything."),
+        ("Can the driver stay on and help during the event?", "Yes. Our technician can stay on as crew during the event and then collect everything at the end of the night. This is charged as additional crew time."),
+        ("Can you collect at the end of the night instead of the next morning?", "Yes. Same-night collection is one of the main benefits. It saves a second trip, avoids next-morning venue access problems and means your own crew can go home after a late finish."),
+        ("Do you only deliver your own equipment?", "No. We can deliver and collect equipment from other hire companies, venues or production stores, as well as our own."),
+        ("Do you cover London?", "Yes. We cover London and the rest of the UK. Because we do not run a central London warehouse, our rates are competitive."),
+        ("How much does AV delivery and collection cost?", "Each job is quoted on distance, the size of the load and how long you need the technician on site. Send us the pick-up and delivery addresses, times and what is being moved, and we will send a clear quote."),
+    ],
+    related=["dry-hire", "corporate-av-hire", "festivals-outdoor-events"],
+    service_type="AV equipment delivery, collection and technical crew",
 )
 
 # Old addresses that should send visitors (and search engines) to the new pages.
