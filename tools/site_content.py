@@ -419,8 +419,13 @@ PAGES["av-delivery-collection"] = dict(
     events=["Production companies", "Event managers", "Venues & hotels", "Hire companies", "Corporate events", "Festivals", "Weddings & parties"],
     gallery=[("allen-heath-sq5.jpg", "Mixing console in its road case, ready to load"),
              ("kv2-es10.jpg", "KV2 Audio speaker delivered and rigged on an outdoor stage"),
-             ("allen-heath-night.jpg", "Front-of-house setup at an evening event")],
+             ("festival-stage-day.jpg", "Outdoor stage equipment delivered and rigged for a festival")],
     packages=False,
+    steps=[
+        ("Tell us the run", "Pick-up and drop-off addresses, times, what is being moved and whether you need a technician on site."),
+        ("We confirm a price", "A clear quote from £85 each way, with any multi-drop stops, set up or crew time itemised."),
+        ("Delivered, crewed, collected", "We deliver and set up, stay on as crew if needed, then pack down and collect at the end of the night."),
+    ],
     faqs=[
         ("How is this different from a normal courier?", "Your equipment is delivered by experienced AV technicians rather than general drivers. They can set up and test on arrival, stay on as crew, and pack down and collect at the end, so one booking covers everything."),
         ("Can the driver stay on and help during the event?", "Yes. Our technician can stay on as crew during the event and then collect everything at the end of the night. This is charged as additional crew time."),

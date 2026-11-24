@@ -145,6 +145,13 @@ def lectern_section():
   </section>'''
 
 
+DEFAULT_STEPS = [
+    ("Share your brief", "Venue, date, running order, audience size and anything you already have in place."),
+    ("We design the setup", "The right equipment for your venue, with a clear, itemised quote."),
+    ("We deliver and operate", "On site before your guests, a technician throughout where needed, and a clean, discreet derig."),
+]
+
+
 # ---------- Service page ----------
 def service_page(slug, p):
     page_url = url(slug)
@@ -240,11 +247,7 @@ def service_page(slug, p):
 
   <section class="steps" aria-labelledby="steps-title">
     <div class="section-intro"><p class="eyebrow"><i></i> HOW IT WORKS</p><h2 id="steps-title">From first brief<br>to final applause.</h2></div>
-    <ol>
-      <li><b>Share your brief</b>Venue, date, running order, audience size and anything you already have in place.</li>
-      <li><b>We design the setup</b>The right equipment for your venue, with a clear, itemised quote.</li>
-      <li><b>We deliver and operate</b>On site before your guests, a technician throughout where needed, and a clean, discreet derig.</li>
-    </ol>
+    <ol>{"".join(f"<li><b>{e(t)}</b>{e(d)}</li>" for t, d in p.get("steps", DEFAULT_STEPS))}</ol>
   </section>
 
   <section class="faq" aria-labelledby="faq-title">
