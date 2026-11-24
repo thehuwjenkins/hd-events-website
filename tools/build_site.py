@@ -138,7 +138,7 @@ def lectern_section():
     </div>
     <div class="lx-table-wrap"><h3>Price list</h3><table class="lx-table"><thead><tr><th>Item</th><th>What it does</th><th>Price</th></tr></thead>
       <tbody><tr><td><b>{e(L["base_name"])}</b></td><td>Standard build, as above</td><td><b>{money(L["base_price"])}</b></td></tr>{table}
-      <tr><td>Hire</td><td>{e(L["hire_note"])}</td><td>Quoted per event</td></tr></tbody></table><p class="hint">All prices exclude VAT and delivery. Final price confirmed on quote.</p></div>
+      <tr><td><b>Hire</b></td><td>Per day, on its own or with a full AV package</td><td><b>{money(L["hire_price"])}/day</b> + delivery</td></tr></tbody></table><p class="hint">All prices exclude VAT and delivery. Final price confirmed on quote.</p></div>
     <script type="application/json" id="lxData">{json.dumps({"base": L["base_price"], "name": L["base_name"]})}</script>
   </section>'''
 
@@ -328,7 +328,7 @@ def main():
             "- Coverage: London-focused, delivering events nationwide across the UK.\n",
             "- Equipment brands: " + ", ".join(BRANDS) + ".\n",
             "- Corporate packages from £500 (Speaker Essentials: lectern with microphone, two Sennheiser wireless mics, compact PA, laptop audio connection, delivery, setup and collection; up to 150 guests).\n",
-            "- Custom digital lecterns built to specification from £1,466; also available to hire.\n",
+            "- Custom digital lecterns built to specification from £1,466, or hire from £250 per day plus delivery.\n",
             "- Recent work includes a corporate dinner beneath Concorde, custom digital lecterns for the Brangwyn Hall in Swansea, concerts in cathedrals and theatres, and stadium and festival events.\n",
             f"- Contact: {PHONE} · {EMAIL} · WhatsApp {WHATSAPP}\n",
             "\n## Services\n"]

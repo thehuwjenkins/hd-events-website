@@ -246,7 +246,7 @@ PAGES["digital-lecterns"] = dict(
     lead="Custom digital lecterns with full-height screens for your branding, slides or live content. Designed and built by HD Events to your specification, for permanent installation in your venue or available to hire for a single event.",
     hero="digital-lecterns.jpg",
     hero_alt="Two custom HD Events digital lecterns with built-in screens at the Brangwyn Hall, Swansea",
-    price="Custom builds from <b>£1,466</b>",
+    price="Buy from <b>£1,466</b> · Hire from <b>£250</b>/day",
     intro_title="A lectern that works as hard as your speaker.",
     intro=[
         "A digital lectern turns the most-photographed spot in the room into a screen for your brand. Show your logo between speakers, sponsor content, speaker names or live slides, and change it in seconds.",
@@ -267,7 +267,7 @@ PAGES["digital-lecterns"] = dict(
     lectern=True,
     faqs=[
         ("How much does a digital lectern cost?", "Our custom digital lecterns start from £1,466. The final price depends on the screen, comfort monitor, microphone and connectivity options you choose."),
-        ("Can I hire a digital lectern?", "Yes. Our digital lecterns are available to hire for single events, either on their own or as part of a full AV package."),
+        ("Can I hire a digital lectern?", "Yes. Our digital lecterns are available to hire from £250 per day plus delivery, either on their own or as part of a full AV package."),
         ("What can be shown on the lectern screen?", "Anything you can send to a display: your logo, sponsor slides, speaker names, video or a live feed of the presentation."),
         ("How does the lectern connect to the AV system?", "We can fit Kramer CAT6 converters so video and signals travel over a single network cable, keeping the stage tidy and the connection reliable."),
         ("Do you deliver and install lecterns across the UK?", "Yes. We deliver and set up lecterns across the UK, including London."),
@@ -427,6 +427,7 @@ LECTERN = dict(
         ("player", "Built-in media player", "Show logos and content on the front screen without a laptop.", None),
         ("case", "Flight case", "Road case for safe transport and storage.", None),
     ],
-    hire_note="Available to hire for single events, on its own or as part of a full AV package. Hire is quoted per event.",
+    hire_note="Available to hire for single events from £250 per day plus delivery, on its own or as part of a full AV package.",
+    hire_price=250,
     lead_time=None,  # e.g. "4 to 6 weeks"
 )
