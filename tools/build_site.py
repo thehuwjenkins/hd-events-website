@@ -122,7 +122,9 @@ def lectern_section():
         for u, n, d, pr in L["upgrades"])
     table = "".join(f'<tr><td>{e(n)}</td><td>{e(d)}</td><td>{"+ " + money(pr) if pr is not None else "On request"}</td></tr>' for u, n, d, pr in L["upgrades"])
     lead = f'<li><b>Lead time</b>{e(L["lead_time"])}</li>' if L["lead_time"] else ""
-    return f'''<section class="lx" id="build" aria-labelledby="build-title">
+    show = "".join(f'<figure><img src="/assets/{img}" alt="{e(cap)}" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>' for img, cap in L["showcase"])
+    showcase = f'<section class="lx-show" aria-labelledby="show-title"><div class="section-intro"><p class="eyebrow"><i></i> SEE IT IN ACTION</p><h2 id="show-title">Built for the<br>moments that matter.</h2></div><div class="lx-show-row">{show}</div></section>'
+    return showcase + f'''<section class="lx" id="build" aria-labelledby="build-title">
     <div class="section-intro"><p class="eyebrow"><i></i> BUILD YOUR LECTERN</p><h2 id="build-title">Choose your<br><span>specification.</span></h2>
     <p>Start with our standard digital lectern, add the upgrades you need, and send us your specification. We will confirm a fixed price and build date.</p></div>
     <div class="lx-grid">
