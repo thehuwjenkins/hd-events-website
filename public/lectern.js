@@ -9,6 +9,11 @@
     let total = data.base, poa = [];
     picked.forEach(i => { if (i.dataset.price) total += Number(i.dataset.price); else poa.push(i.dataset.name); });
     document.getElementById('lxTotal').textContent = fmt(total);
+    const mini = document.getElementById('lxMiniTotal');
+    if (mini) {
+      mini.textContent = fmt(total);
+      document.getElementById('lxMiniCount').textContent = picked.length ? 'Your build · ' + picked.length + ' upgrade' + (picked.length > 1 ? 's' : '') : 'Standard build';
+    }
     document.getElementById('lxNote').textContent = 'ex VAT' + (poa.length ? ' + ' + poa.length + ' item' + (poa.length > 1 ? 's' : '') + ' priced on request' : '');
     const lines = ['Hi HD Events, I would like a quote for a digital lectern.', '', 'Build: ' + data.name + ' (from ' + fmt(data.base) + ')'];
     if (picked.length) { lines.push('Upgrades:'); picked.forEach(i => lines.push('- ' + i.dataset.name)); }
@@ -49,5 +54,13 @@
   });
   document.getElementById('lxCopy')?.addEventListener('click', copySpec);
   dialog?.addEventListener('close', () => { if (summary) summary.hidden = true; });
+  // On phones the total sits below a long list, so a small bar keeps it in view while choosing.
+  const bar = document.getElementById('lxMini'), send = document.getElementById('lxSend');
+  if (bar && 'IntersectionObserver' in window) {
+    let inForm = false, atTotal = false;
+    const show = () => { bar.hidden = !(inForm && !atTotal); };
+    new IntersectionObserver(([en]) => { inForm = en.isIntersecting; show(); }).observe(form);
+    new IntersectionObserver(([en]) => { atTotal = en.isIntersecting; show(); }).observe(send);
+  }
   update();
 })();

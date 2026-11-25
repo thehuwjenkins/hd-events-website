@@ -22,6 +22,7 @@ MENU = [
     ("Festivals", "festivals-outdoor-events"),
     ("Dry Hire", "dry-hire"),
     ("Digital Lecterns", "digital-lecterns"),
+    ("Events", "events"),
     ("More", [
         ("AV delivery & collection", "av-delivery-collection", "Delivered by technicians who can set up, crew and collect"),
         ("AV installations", "av-installations", "Permanent sound, screens and lighting for venues"),
@@ -253,14 +254,14 @@ PAGES["digital-lecterns"] = dict(
         "A digital lectern turns the most-photographed spot in the room into a screen for your brand. Show your logo between speakers, sponsor content, speaker names or live slides, and change it in seconds.",
         "Every lectern is built to order around how it will be used: the screen, the microphone, the speaker's monitor and how it connects to your AV system. We recently built a matching pair for the Brangwyn Hall in Swansea.",
     ],
-    services_title="Options to build your lectern",
+    services_title="Why a digital lectern",
     services=[
-        ("Built-in front display", "A full-height screen on the front for logos, slides, video or speaker names."),
-        ("Comfort monitor", "A monitor for the speaker to see slides, notes or a timer without turning around."),
-        ("Microphone inputs", "Built-in microphone connections ready for a gooseneck or your preferred microphone."),
-        ("Kramer CAT6 converters", "Reliable signal over a single network cable to your AV system, so long cable runs stay neat and dependable."),
-        ("Your branding & finish", "Finished to suit your venue and brand."),
-        ("And much more", "Tell us what your venue or event needs and we will design it in."),
+        ("Your brand in every photo", "The lectern is in almost every photo and stream of your event. A full-height screen keeps your logo, sponsors or speaker names in shot."),
+        ("Change it in seconds", "Switch from a welcome screen to sponsor slides, speaker names or a live feed between speakers. No reprinting, no new banners."),
+        ("Confident speakers", "Add a comfort monitor so speakers can see their slides, notes or a timer without turning their back on the audience."),
+        ("A tidy stage", "Power, video and microphones connect at one rear panel, with hidden cable management and optional single-cable CAT6 runs."),
+        ("Built for your venue", "Choose the screens, microphones, finish and case you need. We build it to order in the UK and install it for you."),
+        ("Buy it or hire it", "Buy a lectern for your venue, or hire one for a single conference, awards night or AGM, on its own or with a full AV package."),
     ],
     events=["Conference venues", "Hotels", "Universities & schools", "Councils & civic halls", "Corporate offices", "Places of worship"],
     gallery=[],
@@ -273,9 +274,12 @@ PAGES["digital-lecterns"] = dict(
         ("How does the lectern connect to the AV system?", "We can fit Kramer CAT6 converters so video and signals travel over a single network cable, keeping the stage tidy and the connection reliable."),
         ("Do you deliver and install lecterns across the UK?", "Yes. We deliver and set up lecterns across the UK, including London."),
         ("How long does a custom build take?", "Lead times depend on the specification. We will confirm the timescale when we quote."),
+        ("Should I buy or hire a digital lectern?", "Buy if your venue hosts speakers regularly, such as a conference centre, hotel, university or council chamber: it pays for itself and stays branded to you. Hire if you need one for a single event or a few events a year."),
+        ("Do your prices include VAT and delivery?", "No. All lectern prices are shown excluding VAT, and delivery and installation are quoted separately depending on where you are in the UK."),
     ],
     related=["corporate-av-hire", "awards-gala-dinners", "av-installations"],
     service_type="Digital lectern sales and hire",
+    hero_actions=[("Build &amp; price yours", "#build", "↓"), ("Hire one for an event", "#hire", "↓")],
 )
 
 PAGES["av-installations"] = dict(
@@ -397,7 +401,7 @@ PAGES["av-delivery-collection"] = dict(
     nav="More",
     eyebrow="AV DELIVERY & COLLECTION · LONDON & NATIONWIDE",
     h1="Delivered by technicians,<br><span>not just drivers.</span>",
-    lead="Event equipment delivery and collection with experienced AV technicians behind the wheel. They can set up and test on arrival, stay on as crew during the event, then pack down and take everything away the same night. One booking, no second trip, no early-morning collection.",
+    lead="Event equipment delivered and collected by experienced AV technicians. They can set up and test on arrival, stay on as crew, then pack down and take everything away the same night. One booking, no second trip.",
     hero="corporate-setup.jpg",
     hero_alt="Road cases, wireless receivers and mixing console set up by HD Events technicians",
     price="Delivery from <b>£85</b> each way",
@@ -437,6 +441,9 @@ PAGES["av-delivery-collection"] = dict(
     ],
     related=["dry-hire", "corporate-av-hire", "festivals-outdoor-events"],
     service_type="AV equipment delivery, collection and technical crew",
+    hero_actions=[("Price my delivery", "#price-delivery", "↓"), ("WhatsApp us", "WHATSAPP", "↗")],
+    facts=[("From £85", "each way"), ("Technician driver", "not just a courier"), ("Same-night collection", "no second trip"), ("Multi-drop runs", "several stops, one trip")],
+    delivery_quote=True,
 )
 
 # Old addresses that should send visitors (and search engines) to the new pages.
@@ -453,6 +460,7 @@ REDIRECTS = {
     "/installations": "/av-installations",
     "/repairs.html": "/pa-repairs",
     "/repairs": "/pa-repairs",
+    "/tickets": "/events",
 }
 
 # ---------- Digital lectern price list ----------
@@ -469,18 +477,18 @@ LECTERN = dict(
         "Designed and built to order in the UK",
     ],
     upgrades=[
-        # (id, name, description, price, monitor) -- monitor=True: only one monitor option can be ticked
-        ("branding", "Custom branding", "Your logo or a branded finish on the cabinet.", 399, False),
-        ("comfort", "Comfort monitor (non-touch)", "A built-in presenter screen for slides, notes or a timer.", 300, True),
-        ("multi-touch", "Multi-touch presenter monitor", "The touchscreen alternative to the non-touch comfort monitor.", 450, True),
-        ("mic-inputs", "Built-in microphone inputs", "Add microphone connections to the lectern.", 125, False),
-        ("gooseneck", "Two gooseneck microphones", "Pair of gooseneck microphones. Built-in lectern inputs are a separate option.", 495, False),
-        ("padded-case", "Padded case", "Padded protection for the lectern.", 280, False),
-        ("case", "Flight case", "Road case for transport and storage.", 995, False),
-        ("shelf", "Pull-out laptop shelf", "A sliding shelf inside the lectern for the presenter's laptop, out of sight.", None, False),
-        ("steel", "Brushed steel finish", "A premium stainless steel finish in place of the standard black.", None, False),
-        ("kramer", "Kramer CAT6 converters", "Video and signal over a single network cable to your AV system: tidy, reliable long runs.", None, False),
-        ("player", "Built-in media player", "Show logos and content on the front screen without a laptop.", None, False),
+        # (id, name, description, price, monitor, group) -- monitor=True: only one monitor option can be ticked
+        ("branding", "Custom branding", "Your logo or a branded finish on the cabinet.", 399, False, "Finish & branding"),
+        ("comfort", "Comfort monitor (non-touch)", "A built-in presenter screen for slides, notes or a timer.", 300, True, "Speaker screen (choose one)"),
+        ("multi-touch", "Multi-touch presenter monitor", "The touchscreen alternative to the non-touch comfort monitor.", 450, True, "Speaker screen (choose one)"),
+        ("mic-inputs", "Built-in microphone inputs", "Add microphone connections to the lectern.", 125, False, "Microphones"),
+        ("gooseneck", "Two gooseneck microphones", "Pair of gooseneck microphones. Built-in lectern inputs are a separate option.", 495, False, "Microphones"),
+        ("padded-case", "Padded case", "Padded protection for the lectern.", 280, False, "Protection & transport"),
+        ("case", "Flight case", "Road case for transport and storage.", 995, False, "Protection & transport"),
+        ("shelf", "Pull-out laptop shelf", "A sliding shelf inside the lectern for the presenter's laptop, out of sight.", None, False, "Built-in extras"),
+        ("steel", "Brushed steel finish", "A premium stainless steel finish in place of the standard black.", None, False, "Finish & branding"),
+        ("kramer", "Kramer CAT6 converters", "Video and signal over a single network cable to your AV system: tidy, reliable long runs.", None, False, "Built-in extras"),
+        ("player", "Built-in media player", "Show logos and content on the front screen without a laptop.", None, False, "Built-in extras"),
     ],
     showcase=[
         ("lectern-steel-awards.jpg", "Brushed steel finish, branded for the 2026 Player Awards at the Brangwyn Hall"),
@@ -493,3 +501,18 @@ LECTERN = dict(
     hire_price=250,
     lead_time=None,  # e.g. "4 to 6 weeks"
 )
+
+
+# ---------- Events we are hosting ----------
+# Add one dict() per event, then run tools/build_site.py. Events are listed by date, and once an
+# event's end time has passed it moves to "Past events" on its own (no rebuild needed).
+#   title        Event name
+#   start / end  "YYYY-MM-DDTHH:MM" (end is optional; it defaults to the end of the start day)
+#   venue, town  Where it is.  address: full address for Google (optional but recommended)
+#   poster       Image in public/assets/events/, e.g. "events/beach-fest-2027.jpg" (portrait works best)
+#   description  Two or three sentences: what it is, who is on, who it is for
+#   tickets      Link to the ticket page.  Leave "" for "Tickets coming soon"
+#   price        Optional, e.g. "From £15" or "Free entry"
+#   status       Optional: "sold out" or "cancelled"
+EVENTS = [
+]

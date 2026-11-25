@@ -61,7 +61,7 @@ def header(active=None):
 
 
 def footer():
-    links = [(l, t) for l, t in MENU if not isinstance(t, list)] + [(l, s) for l, s, _ in MENU[-1][1]]
+    links = [(l, t) for l, t in MENU if not isinstance(t, list) and t != "events"] + [(l, s) for l, s, _ in MENU[-1][1]]
     svc = "".join(f'<li><a href="{"/" + s if not s.startswith("/") else s}">{e(l)}</a></li>' for l, s in links)
     return f'''<footer class="site-footer">
   <div class="footer-grid">
@@ -69,7 +69,7 @@ def footer():
       <p>Corporate audio visual hire and event production across London and the UK. Sound, screens, lighting and digital lecterns, supplied and operated by our own technical team.</p></div>
     <div><h2>Services</h2><ul>{svc}</ul></div>
     <div><h2>Contact</h2><ul><li><a href="tel:{PHONE_LINK}">{PHONE}</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us ↗</a></li><li><a href="{QUOTE}" data-enquiry>Request a quote ↗</a></li></ul></div>
-    <div><h2>Follow</h2><ul><li><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="https://www.hd-events.co.uk/tickets" target="_blank" rel="noopener">Event tickets ↗</a></li></ul></div>
+    <div><h2>Follow</h2><ul><li><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="/events">Upcoming events</a></li></ul></div>
   </div>
   <div class="footer-base"><span>© {datetime.date.today().year} HD Events · Corporate audio visual hire · London &amp; nationwide</span><a href="#">Back to top ↑</a></div>
 </footer>'''
@@ -117,11 +117,13 @@ def money(n):
 def lectern_section():
     L = LECTERN
     inc = "".join(f"<li>{e(x)}</li>" for x in L["included"])
-    rows = "\n".join(
-        f'<label class="opt"><input type="checkbox" value="{u}" data-price="{"" if pr is None else pr}" data-name="{e(n)}"{" data-monitor" if mon else ""}>'
-        f'<span class="opt-box"><b>{e(n)}</b><span>{e(d)}</span></span><span class="opt-price">{money(pr) if pr is not None else "Price on request"}</span></label>'
-        for u, n, d, pr, mon in L["upgrades"])
-    table = "".join(f'<tr><td>{e(n)}</td><td>{e(d)}</td><td>{money(pr) if pr is not None else "On request"}</td></tr>' for u, n, d, pr, mon in L["upgrades"])
+    def opt(u, n, d, pr, mon):
+        return (f'<label class="opt"><input type="checkbox" value="{u}" data-price="{"" if pr is None else pr}" data-name="{e(n)}"{" data-monitor" if mon else ""}>'
+                f'<span class="opt-box"><b>{e(n)}</b><span>{e(d)}</span></span><span class="opt-price">{"+ " + money(pr) if pr is not None else "Price on request"}</span></label>')
+    order = ["Speaker screen (choose one)", "Microphones", "Finish & branding", "Built-in extras", "Protection & transport"]
+    groups = sorted({g for *_, g in L["upgrades"]}, key=lambda g: order.index(g) if g in order else 99)
+    rows = "\n".join(f'<fieldset class="opt-group"><legend>{e(g)}</legend>' + "".join(opt(*x[:5]) for x in L["upgrades"] if x[5] == g) + '</fieldset>' for g in groups)
+    table = "".join(f'<tr><td>{e(n)}</td><td>{e(d)}</td><td>{money(pr) if pr is not None else "On request"}</td></tr>' for u, n, d, pr, mon, g in L["upgrades"])
     lead = f'<li><b>Lead time</b>{e(L["lead_time"])}</li>' if L["lead_time"] else ""
     show = "".join(f'<figure><img src="/assets/{img}" alt="{e(cap)}" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>' for img, cap in L["showcase"])
     showcase = f'<section class="lx-show" aria-labelledby="show-title"><div class="section-intro"><p class="eyebrow"><i></i> SEE IT IN ACTION</p><h2 id="show-title">Built for the<br>moments that matter.</h2></div><div class="lx-show-row">{show}</div></section>'
@@ -133,16 +135,60 @@ def lectern_section():
         <ul class="lx-inc">{inc}</ul>
         <ul class="lx-facts"><li><b>Buy</b>Built to order, delivered and installed UK-wide</li><li><b>Hire</b>{e(L["hire_note"])}</li>{lead}</ul></div>
       <form class="lx-config" aria-label="Choose upgrades">
-        <p class="eyebrow">UPGRADES</p>{rows}
-        <div class="lx-total" aria-live="polite"><div><span>Your build from</span><b id="lxTotal">{money(L["base_price"])}</b><small id="lxNote">ex VAT</small></div>
+        <p class="eyebrow">ADD UPGRADES <small>Tick what you need. The total updates as you go.</small></p>{rows}
+        <div class="lx-total" id="lxSend" aria-live="polite"><div><span>Your build from</span><b id="lxTotal" class="lx-total-figure">{money(L["base_price"])}</b><small id="lxNote">ex VAT</small></div>
           <div class="hero-actions"><button class="button solid" id="lxEnquire" type="button">Enquire about this build</button><a class="button" id="lxWhatsApp" href="{WHATSAPP}" target="_blank" rel="noopener">Send spec on WhatsApp <span>↗</span></a><a class="button" id="lxEmail" href="mailto:{EMAIL}">Email my spec <span>↗</span></a></div>
           <p class="hint">No commitment. We reply with a fixed quote and build date.</p></div>
       </form>
     </div>
-    <div class="lx-table-wrap"><h3>Price list</h3><table class="lx-table"><thead><tr><th>Item</th><th>What it does</th><th>Price</th></tr></thead>
+    <div class="lx-mini" id="lxMini" hidden><span><small id="lxMiniCount">Standard build</small><b id="lxMiniTotal">{money(L["base_price"])}</b></span><a class="button solid small" href="#lxSend">Send my build <span>↓</span></a></div>
+    <div class="lx-table-wrap" id="prices"><h3>Price list</h3><table class="lx-table"><thead><tr><th>Item</th><th>What it does</th><th>Price</th></tr></thead>
       <tbody><tr><td><b>{e(L["base_name"])}</b></td><td>Standard build, as above</td><td><b>{money(L["base_price"])}</b></td></tr>{table}
       <tr><td><b>Hire</b></td><td>Per day, on its own or with a full AV package</td><td><b>{money(L["hire_price"])}/day</b> + delivery</td></tr></tbody></table><p class="hint">All prices exclude VAT and delivery. Final price confirmed on quote.</p></div>
     <script type="application/json" id="lxData">{json.dumps({"base": L["base_price"], "name": L["base_name"]})}</script>
+  </section>'''
+
+
+def buy_or_hire():
+    L = LECTERN
+    hire_msg = "Hi HD Events, I would like to hire a digital lectern.\n\nEvent date:\nVenue / town:\nHow many lecterns:\nAnything else (mics, screens, sound):"
+    from urllib.parse import quote
+    return f'''<section class="choose" id="hire" aria-labelledby="choose-title">
+    <div class="section-intro"><p class="eyebrow"><i></i> BUY OR HIRE</p><h2 id="choose-title">Two ways to get one.</h2></div>
+    <div class="choose-grid">
+      <article class="choose-card"><p class="eyebrow">BUY</p><h3>Built for your venue</h3><p class="choose-price">From <b>{money(L["base_price"])}</b> <small>ex VAT</small></p>
+        <p>For venues that host speakers often: conference centres, hotels, universities, councils and offices. Choose your options below and see the price as you go.</p>
+        <a class="button solid" href="#build">Build &amp; price yours <span>↓</span></a> <a class="text-link" href="#prices">See the full price list</a></article>
+      <article class="choose-card"><p class="eyebrow">HIRE</p><h3>For a single event</h3><p class="choose-price">From <b>{money(L["hire_price"])}</b><small>/day + delivery</small></p>
+        <p>For a conference, awards night, AGM or launch. Hire a lectern on its own, or with sound, microphones and screens from our corporate AV hire.</p>
+        <a class="button solid" href="{WHATSAPP}?text={quote(hire_msg)}" target="_blank" rel="noopener">Check availability on WhatsApp <span>↗</span></a> <a class="text-link" href="{QUOTE}" data-enquiry>Or send an enquiry</a></article>
+    </div>
+  </section>'''
+
+
+def facts_strip(facts):
+    return '<section class="facts" aria-label="At a glance"><ul>' + "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in facts) + "</ul></section>"
+
+
+def delivery_quote():
+    return f'''<section class="dq" id="price-delivery" aria-labelledby="dq-title">
+    <div class="section-intro"><p class="eyebrow"><i></i> PRICE YOUR DELIVERY</p><h2 id="dq-title">Tell us the run.<br><span>We’ll send a price.</span></h2>
+    <p>Fill in what you know and send it to us on WhatsApp or email. Delivery starts from £85 each way. The price depends on the distance, the size of the load, any extra stops and how long you need a technician on site.</p></div>
+    <form class="dq-form" id="dqForm" aria-label="Delivery details">
+      <label>Collect from<input name="from" placeholder="Address or postcode" autocomplete="off"></label>
+      <label>Deliver to<input name="to" placeholder="Venue and postcode" autocomplete="off"></label>
+      <label>Event date<input name="date" type="date"></label>
+      <label>Delivery time<input name="time" placeholder="e.g. by 2pm"></label>
+      <label>Collection<select name="collect"><option>Same night, after the event</option><option>Next day</option><option>Another date</option><option>Delivery only, no collection</option></select></label>
+      <label>Extra pick-ups or drop-offs<select name="stops"><option value="0">None</option><option value="1">1 extra stop</option><option value="2">2 extra stops</option><option value="3">3 or more</option></select></label>
+      <label class="wide">What is being moved?<textarea name="load" rows="3" placeholder="e.g. 2 speakers, 2 subs, a mixing desk in a case, 6 cable cases. Or the hire company's pick list."></textarea></label>
+      <fieldset class="wide dq-checks"><legend>Do you need the technician to</legend>
+        <label><input type="checkbox" name="setup"> Set up and test on arrival</label>
+        <label><input type="checkbox" name="crew"> Stay on as crew during the event</label>
+        <label><input type="checkbox" name="other"> Collect from or return to another hire company</label></fieldset>
+      <div class="wide dq-send"><a class="button solid" id="dqWhatsApp" href="{WHATSAPP}" target="_blank" rel="noopener">Send on WhatsApp <span>↗</span></a><a class="button" id="dqEmail" href="mailto:{EMAIL}">Send by email <span>↗</span></a>
+        <p class="hint">Nothing is booked until we confirm the price with you.</p></div>
+    </form>
   </section>'''
 
 
@@ -151,6 +197,17 @@ DEFAULT_STEPS = [
     ("We design the setup", "The right equipment for your venue, with a clear, itemised quote."),
     ("We deliver and operate", "On site before your guests, a technician throughout where needed, and a clean, discreet derig."),
 ]
+
+
+def hero_actions(p):
+    acts = p.get("hero_actions")
+    if not acts:
+        return f'<a class="button solid" href="{QUOTE}" data-enquiry>Request a quote <span>↗</span></a><a class="button" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a>'
+    out = []
+    for i, (label, href, arrow) in enumerate(acts):
+        ext = href == "WHATSAPP"
+        out.append(f'<a class="button{" solid" if i == 0 else ""}" href="{WHATSAPP if ext else href}"{" target=\"_blank\" rel=\"noopener\"" if ext else ""}>{label} <span>{arrow}</span></a>')
+    return "".join(out)
 
 
 # ---------- Service page ----------
@@ -221,17 +278,18 @@ def service_page(slug, p):
       <p class="eyebrow"><i></i> {e(p["eyebrow"])}</p>
       <h1 id="page-title">{p["h1"]}</h1>
       <p class="hero-sub">{e(p["lead"])}</p>
-      <div class="hero-actions">{'<a class="button solid" href="#build">Build your lectern <span>↓</span></a><a class="button" href="#build">See price list <span>↓</span></a>' if p.get("lectern") else f'<a class="button solid" href="{QUOTE}" data-enquiry>Request a quote <span>↗</span></a><a class="button" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a>'}</div>
+      <div class="hero-actions">{hero_actions(p)}</div>
       <p class="hero-price">{p["price"]} · London &amp; nationwide</p>
     </div>
   </section>
 
-  <section class="brands slim" aria-label="Brands we supply"><ul class="brand-row">{brands}</ul></section>
+  {facts_strip(p["facts"]) if p.get("facts") else f'<section class="brands slim" aria-label="Brands we supply"><ul class="brand-row">{brands}</ul></section>'}
 
   <section class="page-intro">
     <h2>{e(p["intro_title"])}</h2>
     <div>{"".join(f"<p>{e(x)}</p>" for x in p["intro"])}</div>
   </section>
+  {buy_or_hire() if p.get("lectern") else ""}
 
   <section class="svc" aria-labelledby="svc-title">
     <div class="section-intro"><p class="eyebrow"><i></i> {"OPTIONS" if p.get("lectern") else "SERVICES"}</p><h2 id="svc-title">{e(p["services_title"])}</h2></div>
@@ -245,6 +303,7 @@ def service_page(slug, p):
 
   {packages}
   {lectern_cta}
+  {delivery_quote() if p.get("delivery_quote") else ""}
 
   <section class="steps" aria-labelledby="steps-title">
     <div class="section-intro"><p class="eyebrow"><i></i> HOW IT WORKS</p><h2 id="steps-title">From first brief<br>to final applause.</h2></div>
@@ -276,7 +335,162 @@ def service_page(slug, p):
 <script src="/nav.js"></script>
 <script src="/home.js"></script>
 <script src="/ribbons.js"></script>
-{'<script src="/lectern.js"></script>' if p.get("lectern") else ""}
+{'<script src="/lectern.js"></script>' if p.get("lectern") else ""}{'<script src="/delivery.js"></script>' if p.get("delivery_quote") else ""}
+</body>
+</html>
+'''
+
+
+# ---------- Events page ----------
+EVENTS_PAGE = dict(
+    title="Upcoming Events & Tickets | HD Events",
+    description="Events hosted by HD Events: dates, venues and tickets for our upcoming live music, festival and community events in South Wales and beyond.",
+    hero="festival-stage-night.jpg",
+)
+
+
+def _when(ev):
+    start = datetime.datetime.fromisoformat(ev["start"])
+    end = datetime.datetime.fromisoformat(ev["end"]) if ev.get("end") else start.replace(hour=23, minute=59)
+    return start, end
+
+
+def _nice_time(t):
+    h, m = t.hour % 12 or 12, t.minute
+    return f"{h}{':%02d' % m if m else ''}{'am' if t.hour < 12 else 'pm'}"
+
+
+def _nice_dates(start, end):
+    day = lambda d: d.strftime("%a ") + str(d.day) + d.strftime(" %B %Y")
+    if end.date() != start.date():
+        return f"{start.strftime('%a ')}{start.day} – {day(end)}"
+    has_time = (start.hour, start.minute) != (0, 0)
+    return day(start) + (" · " + _nice_time(start) if has_time else "")
+
+
+def event_card(ev):
+    start, end = _when(ev)
+    status = (ev.get("status") or "").lower()
+    where = ", ".join(x for x in (ev.get("venue"), ev.get("town")) if x)
+    poster = (f'<img src="/assets/{e(ev["poster"])}" alt="Poster for {e(ev["title"])}" loading="lazy">' if ev.get("poster")
+              else f'<div class="ev-noposter" aria-hidden="true"><span>{e(ev["title"])}</span></div>')
+    tag = f'<span class="ev-status">{e(status.title())}</span>' if status else ""
+    if status == "cancelled":
+        cta = '<span class="button ev-off" aria-disabled="true">Cancelled</span>'
+    elif status == "sold out":
+        cta = '<span class="button ev-off" aria-disabled="true">Sold out</span>'
+    elif ev.get("tickets"):
+        cta = f'<a class="button solid ev-tickets" href="{e(ev["tickets"])}" target="_blank" rel="noopener">Buy tickets <span>↗</span></a>'
+    else:
+        cta = '<span class="button ev-off" aria-disabled="true">Tickets coming soon</span>'
+    price = f'<span class="ev-price">{e(ev["price"])}</span>' if ev.get("price") else ""
+    return f'''<article class="ev-card" data-end="{end.isoformat()}">
+      <figure class="ev-poster">{poster}{tag}</figure>
+      <div class="ev-body">
+        <p class="ev-date"><time datetime="{start.isoformat()}">{_nice_dates(start, end)}</time></p>
+        <h3>{e(ev["title"])}</h3>
+        {f'<p class="ev-where">{e(where)}</p>' if where else ""}
+        <p class="ev-desc">{e(ev.get("description", ""))}</p>
+        <div class="ev-cta">{cta}{price}</div>
+      </div>
+    </article>'''
+
+
+def event_jsonld(ev):
+    start, end = _when(ev)
+    status = (ev.get("status") or "").lower()
+    place = {"@type": "Place", "name": ev.get("venue") or ev.get("town") or "", "address": ev.get("address") or ", ".join(x for x in (ev.get("venue"), ev.get("town")) if x)}
+    out = {"@type": "Event", "name": ev["title"], "startDate": start.isoformat(), "endDate": end.isoformat(),
+           "eventStatus": "https://schema.org/EventCancelled" if status == "cancelled" else "https://schema.org/EventScheduled",
+           "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": place,
+           "description": ev.get("description", ""), "organizer": {"@id": ORG_ID}}
+    if ev.get("poster"):
+        out["image"] = [SITE + "/assets/" + ev["poster"]]
+    if ev.get("tickets"):
+        offer = {"@type": "Offer", "url": ev["tickets"], "priceCurrency": "GBP",
+                 "availability": "https://schema.org/SoldOut" if status == "sold out" else "https://schema.org/InStock"}
+        m = re.search(r"£\s*([\d.,]+)", ev.get("price") or "")
+        if m:
+            offer["price"] = m.group(1).replace(",", "")
+        elif re.search(r"free", ev.get("price") or "", re.I):
+            offer["price"] = "0"
+        out["offers"] = offer
+    return out
+
+
+def events_page():
+    P = EVENTS_PAGE
+    page_url = url("events")
+    evs = sorted(EVENTS, key=lambda ev: ev["start"])
+    cards = "\n    ".join(event_card(ev) for ev in evs)
+    graph = [
+        {"@type": "WebPage", "@id": page_url + "#webpage", "url": page_url, "name": P["title"], "description": P["description"],
+         "isPartOf": {"@id": SITE + "/#website"}, "dateModified": TODAY, "inLanguage": "en-GB"},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Events", "item": page_url}]},
+        ORG,
+    ] + [event_jsonld(ev) for ev in evs]
+    return f'''<!doctype html>
+<html lang="en-GB">
+<head>
+{HEAD_COMMON}
+<title>{e(P["title"])}</title>
+<meta name="description" content="{e(P["description"])}">
+{social(P["title"], P["description"], page_url, P["hero"])}
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/home.css">
+<link rel="stylesheet" href="/site.css">
+{jsonld({"@context": "https://schema.org", "@graph": graph})}
+</head>
+<body class="home page events-page">
+<a class="skip" href="#main">Skip to content</a>
+{header("Events")}
+{WHATSAPP_BUTTON}
+<main id="main">
+  <section class="page-hero short" aria-labelledby="page-title">
+    <div class="hero-media" aria-hidden="true"><img src="/assets/{P["hero"]}" alt=""></div>
+    <div class="hero-inner">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">/</span> <span aria-current="page">Events</span></nav>
+      <p class="eyebrow"><i></i> EVENTS BY HD EVENTS</p>
+      <h1 id="page-title">What’s on.<br><span>Get your tickets.</span></h1>
+      <p class="hero-sub">The events we are hosting this year. Choose an event to find out more and buy tickets.</p>
+    </div>
+  </section>
+
+  <section class="events" aria-labelledby="upcoming-title">
+    <div class="section-intro"><p class="eyebrow"><i></i> UPCOMING</p><h2 id="upcoming-title">Upcoming events</h2></div>
+    <div class="ev-grid" id="evUpcoming">
+    {cards}
+    </div>
+    <div class="ev-empty" id="evEmpty"{"" if not evs else " hidden"}>
+      <h3>New dates coming soon.</h3>
+      <p>We announce our events here and on Instagram first.</p>
+      <a class="button" href="{INSTAGRAM}" target="_blank" rel="noopener">Follow us on Instagram <span>↗</span></a>
+    </div>
+  </section>
+
+  <section class="events past" id="evPastWrap" aria-labelledby="past-title" hidden>
+    <div class="section-intro"><p class="eyebrow"><i></i> PAST EVENTS</p><h2 id="past-title">Thanks for coming.</h2></div>
+    <div class="ev-grid" id="evPast"></div>
+  </section>
+
+  <section class="closing" id="contact">
+    <div class="sound-ribbon" data-ribbon="3" aria-hidden="true"><canvas></canvas></div>
+    <div class="eyebrow"><i></i> RUNNING YOUR OWN EVENT?</div>
+    <h2>We can help<br><span>make it happen.</span></h2>
+    <div class="closing-bottom"><p>Sound, lighting, staging, planning and licensing<br>for festivals, concerts and community events.</p>
+      <a class="button solid" href="{QUOTE}" data-enquiry>Request a quote <span>↗</span></a></div>
+    <div class="contact-options"><a class="button whatsapp" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a><a class="phone" href="tel:{PHONE_LINK}">{PHONE}</a><a href="mailto:{EMAIL}">{EMAIL} ↗</a></div>
+  </section>
+</main>
+{footer()}
+{DIALOG}
+<script src="/contact.js"></script>
+<script src="/nav.js"></script>
+<script src="/home.js"></script>
+<script src="/ribbons.js"></script>
+<script src="/events.js"></script>
 </body>
 </html>
 '''
@@ -317,13 +531,14 @@ def main():
     update_home()
     for slug, p in PAGES.items():
         write(slug + ".html", service_page(slug, p))
+    write("events.html", events_page())
     # Remove page files that have moved (the redirects send visitors to the new pages)
     for old in REDIRECTS:
         if old.endswith(".html") and os.path.exists(os.path.join(ROOT, old[1:])):
             os.remove(os.path.join(ROOT, old[1:]))
     write("_redirects", "".join(f"{a} {b} 301\n" for a, b in REDIRECTS.items()))
     write("_headers", "/assets/*\n  Cache-Control: public, max-age=2592000\n/*.css\n  Cache-Control: public, max-age=86400\n/*.js\n  Cache-Control: public, max-age=86400\n")
-    urls = [("", "1.0")] + [(s, "0.9" if PAGES[s]["nav"] != "More" else "0.6") for s in PAGES]
+    urls = [("", "1.0")] + [(s, "0.9" if PAGES[s]["nav"] != "More" else "0.6") for s in PAGES] + [("events", "0.8")]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
           "".join(f"  <url><loc>{url(s)}</loc><lastmod>{TODAY}</lastmod><priority>{pr}</priority></url>\n" for s, pr in urls) + "</urlset>\n")
     bots = ["Googlebot", "Bingbot", "Google-Extended", "GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User", "Applebot", "Applebot-Extended", "DuckDuckBot"]
@@ -340,6 +555,7 @@ def main():
             "\n## Services\n"]
     for slug, p in PAGES.items():
         llms.append(f"- [{p['title'].split(' | ')[0]}]({url(slug)}): {p['description']}\n")
+    llms.append(f"- [Upcoming events and tickets]({url('events')}): {EVENTS_PAGE['description']}\n")
     write("llms.txt", "".join(llms))
 
 
