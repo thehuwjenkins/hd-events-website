@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aberavon Beach Fest | Register your interest</title>
+<meta name="description" content="Aberavon Beach Fest is coming back to the seafront: live music, Kids Fest, the Steel Town Market, beach games and holistic mornings. Register your interest to hear first about dates, line-up and early-bird tickets.">
+<meta name="theme-color" content="#fef2e8">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aberavon Beach Fest is coming back">
+<meta property="og:description" content="Live music, Kids Fest, the Steel Town Market and more on Aberavon seafront. Register your interest to hear first.">
+<meta property="og:image" content="/assets/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/logo-sm.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#05264f;--coral:#fb7a72;--cream:#fef2e8;--sand:#f7e2cf;--teal:#86c3bf;--sun:#ffc04a;--ink:#05264f;--white:#fffaf5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font:400 17px/1.6 'Space Grotesk',system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3,.display{font-family:'Rubik',system-ui,sans-serif;font-weight:900;letter-spacing:-.01em;line-height:1;margin:0;text-transform:uppercase}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+html,body{overflow-x:clip}
+.skip{position:absolute;left:-999px}.skip:focus{left:16px;top:16px;z-index:99;background:#fff;padding:10px}
+.btn{display:inline-flex;align-items:center;gap:12px;border:0;border-radius:999px;padding:17px 30px;font:800 17px 'Rubik',sans-serif;text-transform:uppercase;letter-spacing:.02em;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-coral{background:var(--coral);color:var(--white);box-shadow:0 6px 0 var(--navy)}
+.btn-coral:hover{transform:translateY(-3px);box-shadow:0 9px 0 var(--navy)}
+.btn-coral:active{transform:translateY(3px);box-shadow:0 2px 0 var(--navy)}
+.btn-ghost{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 3px var(--navy)}
+.btn-ghost:hover{background:var(--navy);color:var(--cream)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:4px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 20px 230px;overflow:hidden}
+.top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:18px 24px;z-index:5;font-weight:700;font-size:14px}
+.top a{text-decoration:none}
+.top .pill{background:var(--navy);color:var(--cream);border-radius:999px;padding:10px 18px}
+.hero .logo{width:min(760px,92vw);position:relative;z-index:3;filter:drop-shadow(0 4px 0 rgba(5,38,79,.08));animation:pop 1s cubic-bezier(.2,1.4,.4,1) both}
+.kicker{display:inline-block;background:var(--navy);color:var(--cream);font:800 15px 'Rubik',sans-serif;text-transform:uppercase;letter-spacing:.08em;padding:9px 18px;border-radius:999px;margin-bottom:26px;position:relative;z-index:3;animation:pop .8s .1s both}
+.hero h1{font-size:clamp(30px,4.6vw,58px);margin:30px 0 14px;position:relative;z-index:3;animation:rise .9s .25s both}
+.hero h1 span{color:var(--coral)}
+.hero p.lead{max-width:640px;margin:0 auto 30px;font-size:clamp(17px,1.6vw,20px);position:relative;z-index:3;animation:rise .9s .35s both}
+.hero .cta{position:relative;z-index:3;display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:rise .9s .45s both}
+@keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+/* scenery */
+.scene{position:absolute;inset:0;pointer-events:none;z-index:1}
+.sun{position:absolute;top:70px;left:max(2vw,10px);width:clamp(140px,19vw,260px)}
+.sun .rays{transform-origin:100px 100px;animation:spin 40s linear infinite}
+.sun .core{animation:pulse 4s ease-in-out infinite;transform-origin:100px 100px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{transform:scale(1.06)}}
+.cloud{position:absolute;width:clamp(120px,14vw,200px);animation:drift linear infinite}
+.cloud.c1{top:70px;right:-220px;animation-duration:60s;opacity:.9}
+.cloud.c2{top:20%;right:5%;animation:bob 8s ease-in-out infinite;width:clamp(90px,10vw,150px)}
+.cloud.c3{top:62%;left:4%;animation:bob 7s ease-in-out infinite;width:clamp(100px,11vw,170px)}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(calc(-100vw - 260px))}}
+@keyframes bob{50%{transform:translateY(-12px)}}
+.note{position:absolute;width:30px;color:var(--navy);animation:float 6s ease-in-out infinite}
+.note.n1{top:36%;left:7%}.note.n2{top:34%;right:9%;animation-delay:-2s}.note.n3{top:50%;right:20%;animation-delay:-4s}.note.n4{top:64%;left:3%;animation-delay:-1s;width:24px}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-22px) rotate(10deg)}}
+.island{position:absolute;right:max(2vw,6px);bottom:118px;width:clamp(170px,22vw,330px);z-index:2}
+.gull{animation:bob 3.2s ease-in-out infinite;transform-box:fill-box}
+.parasol{transform-origin:52px 160px;animation:sway 5s ease-in-out infinite;transform-box:view-box}
+.palm{transform-origin:250px 210px;animation:sway 6s ease-in-out infinite;transform-box:view-box}
+@keyframes sway{50%{transform:rotate(3deg)}}
+.waves{position:absolute;left:0;right:0;bottom:0;height:150px;z-index:2;overflow:hidden}
+.waves svg{position:absolute;left:0;width:200%;height:40px;animation:wave linear infinite}
+.waves .w1{bottom:96px;animation-duration:16s}.waves .w2{bottom:52px;animation-duration:11s;animation-direction:reverse}.waves .w3{bottom:8px;animation-duration:8s}
+@keyframes wave{to{transform:translateX(-50%)}}
+
+/* ---------- Marquee ---------- */
+.marquee{background:var(--navy);color:var(--cream);overflow:hidden;padding:18px 0;transform:rotate(-1.5deg);margin:-14px -10px 0;position:relative;z-index:4}
+.marquee .track{display:flex;width:max-content;animation:ticker 30s linear infinite}
+.marquee span{font:900 clamp(22px,3vw,34px) 'Rubik',sans-serif;text-transform:uppercase;white-space:nowrap;padding:0 22px;display:flex;align-items:center;gap:44px}
+.marquee span::after{content:"";width:16px;height:16px;border-radius:50%;background:var(--coral);display:inline-block}
+.marquee span:nth-child(3n+2)::after{background:var(--sun)}.marquee span:nth-child(3n)::after{background:var(--teal)}
+@keyframes ticker{to{transform:translateX(-50%)}}
+
+/* ---------- What's in store ---------- */
+section{padding:100px 20px}
+.wrap{max-width:1180px;margin:0 auto}
+.eyebrow{font:800 14px 'Rubik',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin:0 0 12px}
+.title{font-size:clamp(38px,6vw,76px);margin-bottom:18px}
+.intro{max-width:650px;font-size:19px;margin:0 0 46px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{position:relative;border-radius:28px;padding:30px 26px 28px;min-height:330px;overflow:hidden;color:var(--navy);transform:rotate(var(--r,0deg));transition:transform .35s cubic-bezier(.2,1.4,.4,1);background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'%3E%3Cpath d='M0 30 Q20 10 40 30 T80 30' fill='none' stroke='white' stroke-opacity='.22' stroke-width='4'/%3E%3C/svg%3E")}
+.card:hover{transform:rotate(0) translateY(-8px) scale(1.02)}
+.card h3{font-size:clamp(30px,3vw,38px);margin:18px 0 12px}
+.card p{margin:0;font-weight:500}
+.card .icon{width:78px;height:78px}
+.card.c-coral{--bg:var(--coral);--r:-1.5deg}.card.c-coral h3{color:var(--white)}
+.card.c-teal{--bg:var(--teal);--r:1.2deg}
+.card.c-sun{--bg:var(--sun);--r:-1deg}
+.card.c-navy{--bg:var(--navy);--r:1.5deg;color:var(--cream)}.card.c-navy h3{color:var(--coral)}
+.card .tag{position:absolute;top:22px;right:22px;background:var(--cream);color:var(--navy);font:800 12px 'Rubik',sans-serif;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px;border-radius:999px}
+.reveal{opacity:0;transform:translateY(40px) rotate(var(--r,0deg));transition:opacity .7s,transform .7s cubic-bezier(.2,1.2,.4,1)}
+.reveal.in{opacity:1;transform:rotate(var(--r,0deg))}
+
+/* ---------- Register ---------- */
+.register{background:var(--navy);color:var(--cream);position:relative;overflow:hidden;padding:120px 20px 110px}
+.register::before,.register::after{content:"";position:absolute;left:0;right:0;height:34px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='34'%3E%3Cpath d='M0 34 V17 Q15 0 30 17 T60 17 V34Z' fill='%23fef2e8'/%3E%3C/svg%3E") repeat-x;background-size:60px 34px}
+.register::before{top:-1px;transform:scaleY(-1)}
+.register::after{bottom:-1px}
+.reg-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
+.register .title{color:var(--cream)}.register .title span{color:var(--coral)}
+.perks{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:14px}
+.perks li{display:flex;gap:14px;align-items:center;font-size:18px}
+.perks li::before{content:"";flex:0 0 34px;height:34px;border-radius:50%;background:var(--coral) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%2305264f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+.big-gull{width:min(260px,60%);margin-top:40px;animation:bob 3.5s ease-in-out infinite}
+form.card-form{background:var(--cream);color:var(--navy);border-radius:30px;padding:34px 30px 30px;box-shadow:12px 12px 0 var(--coral);position:relative}
+.field{display:block;margin:0 0 16px}
+.field span{display:block;font-weight:700;font-size:14px;margin:0 0 6px}
+.field span em{font-style:normal;color:var(--coral)}
+.field input,.field textarea{width:100%;font:500 17px 'Space Grotesk',sans-serif;color:var(--navy);background:#fff;border:3px solid var(--navy);border-radius:16px;padding:13px 16px;transition:box-shadow .2s,transform .2s}
+.field input:focus,.field textarea:focus{outline:none;box-shadow:5px 5px 0 var(--teal);transform:translate(-2px,-2px)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+fieldset{border:0;margin:6px 0 16px;padding:0}
+legend{font-weight:700;font-size:14px;margin-bottom:10px;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:9px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-flex;align-items:center;gap:7px;border:3px solid var(--navy);border-radius:999px;padding:8px 15px;font:700 14.5px 'Space Grotesk',sans-serif;background:#fff;transition:background .15s,color .15s,transform .2s}
+.chips span::before{content:"+";font:900 16px 'Rubik',sans-serif;color:var(--coral)}
+.chips label:hover span{transform:translateY(-2px)}
+.chips input:checked+span{background:var(--navy);color:var(--cream)}
+.chips input:checked+span::before{content:"✓";color:var(--sun)}
+.chips input:focus-visible+span{outline:3px solid var(--coral);outline-offset:3px}
+.extra{display:none}
+.extra.show{display:block;animation:rise .4s both}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;margin:4px 0 20px;cursor:pointer}
+.consent input{width:24px;height:24px;flex:0 0 24px;accent-color:var(--coral);margin-top:1px}
+.hp{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden}
+.err{color:#c42b1c;font-weight:700;min-height:1.6em;margin:0 0 10px}
+.fine{font-size:13px;color:#4a5b75;margin:14px 0 0}
+.thanks{display:none;text-align:center;padding:30px 10px}
+.thanks.show{display:block;animation:pop .7s cubic-bezier(.2,1.4,.4,1) both}
+.thanks h3{font-size:clamp(40px,6vw,64px);color:var(--coral);margin:10px 0}
+.thanks img{width:130px;margin:0 auto;animation:bob 2s ease-in-out infinite}
+
+/* ---------- Get involved ---------- */
+.involve .cards{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.involve .card{min-height:0;padding:26px 24px;cursor:pointer;border:0;text-align:left;font:inherit}
+.involve .card h3{font-size:28px;margin:0 0 10px}
+.involve .card .go{display:inline-block;margin-top:16px;font:800 14px 'Rubik',sans-serif;text-transform:uppercase;border-bottom:3px solid currentColor}
+footer{background:var(--sand);padding:46px 20px 60px;text-align:center;font-size:15px}
+footer img{width:220px;margin:0 auto 16px}
+footer p{margin:6px 0}
+
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+
+@media (max-width:860px){
+  .reg-grid{grid-template-columns:1fr;gap:36px}
+  .big-gull{display:none}
+  .hero{padding-bottom:210px}
+  .island{bottom:110px;opacity:.95}
+  .sun{top:60px}
+  .note.n1,.note.n4{display:none}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .row2{grid-template-columns:1fr}
+  form.card-form{padding:26px 20px;box-shadow:8px 8px 0 var(--coral)}
+  .btn{padding:15px 24px;font-size:16px}
+  .top .pill{padding:8px 14px}
+  .top>span{display:none}.top{justify-content:flex-end}
+  .kicker{font-size:12px;padding:8px 14px;letter-spacing:.05em}
+  .hero{padding-top:84px}
+  .note.n2,.note.n3{display:none}
+  .cloud.c2{top:auto;bottom:250px;right:auto;left:6%}
+  section{padding:76px 18px}
+  .island{width:150px;right:4px}
+  .cloud.c3{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#register">Skip to the sign-up form</a>
+
+<header class="hero" id="top">
+  <div class="top"><span>Aberavon seafront · Port Talbot</span><a class="pill" href="#register">Register interest</a></div>
+  <div class="scene" aria-hidden="true">
+    <svg class="sun" viewBox="0 0 200 200"><g class="rays" stroke="#fb7a72" stroke-width="7" stroke-linecap="round">
+      <line x1="100" y1="6" x2="100" y2="38"/><line x1="100" y1="162" x2="100" y2="194"/><line x1="6" y1="100" x2="38" y2="100"/><line x1="162" y1="100" x2="194" y2="100"/>
+      <line x1="33" y1="33" x2="56" y2="56"/><line x1="144" y1="144" x2="167" y2="167"/><line x1="33" y1="167" x2="56" y2="144"/><line x1="144" y1="56" x2="167" y2="33"/>
+      <line x1="63" y1="14" x2="73" y2="42"/><line x1="127" y1="186" x2="137" y2="158"/><line x1="14" y1="137" x2="42" y2="127"/><line x1="186" y1="63" x2="158" y2="73"/></g>
+      <circle class="core" cx="100" cy="100" r="44" fill="#fb7a72"/></svg>
+    <svg class="cloud c1" viewBox="0 0 200 90"><path d="M20 80 Q8 80 8 66 Q8 50 28 50 Q30 22 62 22 Q80 4 108 16 Q124 4 146 18 Q176 18 178 48 Q194 52 192 66 Q190 80 176 80 Z" fill="none" stroke="#fb7a72" stroke-width="6" stroke-linejoin="round"/></svg>
+    <svg class="cloud c2" viewBox="0 0 200 90"><path d="M20 80 Q8 80 8 66 Q8 50 28 50 Q30 22 62 22 Q80 4 108 16 Q124 4 146 18 Q176 18 178 48 Q194 52 192 66 Q190 80 176 80 Z" fill="none" stroke="#05264f" stroke-width="6" stroke-linejoin="round"/></svg>
+    <svg class="cloud c3" viewBox="0 0 200 90"><path d="M20 80 Q8 80 8 66 Q8 50 28 50 Q30 22 62 22 Q80 4 108 16 Q124 4 146 18 Q176 18 178 48 Q194 52 192 66 Q190 80 176 80 Z" fill="none" stroke="#05264f" stroke-width="6" stroke-linejoin="round"/></svg>
+    <svg class="note n1" viewBox="0 0 30 40"><path d="M10 32 a6 6 0 1 1 -1 -12 V4 l16 -3 v26 a6 6 0 1 1 -1 -12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+    <svg class="note n2" viewBox="0 0 30 40"><path d="M10 32 a6 6 0 1 1 -1 -12 V4 l16 -3 v26 a6 6 0 1 1 -1 -12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+    <svg class="note n3" viewBox="0 0 30 40"><circle cx="9" cy="32" r="6" fill="currentColor"/><path d="M15 32 V4 q6 8 12 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+    <svg class="note n4" viewBox="0 0 30 40"><circle cx="9" cy="32" r="6" fill="currentColor"/><path d="M15 32 V4 q6 8 12 9" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+    <svg class="island" viewBox="0 0 330 240">
+      <path d="M40 240 Q60 190 120 186 Q170 150 230 180 Q300 176 330 240 Z" fill="#fb7a72"/>
+      <g class="palm" fill="none" stroke="#05264f" stroke-width="6" stroke-linecap="round">
+        <path d="M250 205 Q246 120 262 60"/>
+        <path d="M262 60 Q230 40 206 56 M262 60 Q236 70 222 96 M262 60 Q292 38 318 52 M262 60 Q290 72 300 98 M262 60 Q262 34 246 20"/>
+        <path d="M296 205 Q292 150 300 112"/><path d="M300 112 Q284 102 272 110 M300 112 Q316 100 328 108 M300 112 Q306 98 298 88"/></g>
+      <g transform="translate(112 76)"><g class="gull"><path d="M14 92 V112 M26 92 V112" stroke="#05264f" stroke-width="5"/>
+        <path d="M30 14 Q30 0 42 0 Q54 0 54 14 V26 Q72 38 66 60 Q60 88 30 92 H0 Q20 80 22 60 Z" fill="#fef2e8" stroke="#05264f" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M2 88 L32 62 V80 Q30 88 20 88 Z" fill="#fb7a72"/><circle cx="44" cy="12" r="3" fill="#05264f"/><path d="M54 14 H68" stroke="#05264f" stroke-width="5" stroke-linecap="round"/></g></g>
+    </svg>
+  </div>
+
+  <span class="kicker">Coming back to Aberavon seafront</span>
+  <img class="logo" src="/assets/logo.png" alt="Aberavon Beach Fest" width="1500" height="404">
+  <h1>Music, sun and sea <span>on our own beach.</span></h1>
+  <p class="lead">Live music, a magical Kids Fest, the Steel Town Market, beach games and holistic mornings by the sea. Register your interest and you’ll be first to hear the dates, the line-up and early-bird tickets.</p>
+  <div class="cta"><a class="btn btn-coral" href="#register">Register your interest <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#store">What’s in store</a></div>
+
+  <div class="waves" aria-hidden="true">
+    <svg class="w1" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 30 Q30 4 60 30 T120 30 T180 30 T240 30 T300 30 T360 30 T420 30 T480 30 T540 30 T600 30 T660 30 T720 30 T780 30 T840 30 T900 30 T960 30 T1020 30 T1080 30 T1140 30 T1200 30" fill="none" stroke="#05264f" stroke-width="6" stroke-linecap="round"/></svg>
+    <svg class="w2" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 30 Q30 4 60 30 T120 30 T180 30 T240 30 T300 30 T360 30 T420 30 T480 30 T540 30 T600 30 T660 30 T720 30 T780 30 T840 30 T900 30 T960 30 T1020 30 T1080 30 T1140 30 T1200 30" fill="none" stroke="#05264f" stroke-width="6" stroke-linecap="round"/></svg>
+    <svg class="w3" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 30 Q30 4 60 30 T120 30 T180 30 T240 30 T300 30 T360 30 T420 30 T480 30 T540 30 T600 30 T660 30 T720 30 T780 30 T840 30 T900 30 T960 30 T1020 30 T1080 30 T1140 30 T1200 30" fill="none" stroke="#05264f" stroke-width="6" stroke-linecap="round"/></svg>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="ticker"><span>Live music</span><span>Kids Fest</span><span>Steel Town Market</span><span>Beach games</span><span>Holistic mornings</span><span>Street food</span><span>Sun, sea &amp; good vibes</span></div></div>
+
+<main>
+<section id="store">
+  <div class="wrap">
+    <p class="eyebrow">What’s in store</p>
+    <h2 class="title">A weekend on the beach.</h2>
+    <p class="intro">Aberavon Beach Fest brings live music, culture and entertainment to the Welsh coast, with something for every age.</p>
+    <div class="cards">
+      <article class="card c-coral reveal"><svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#fef2e8"/><path d="M30 56 a7 7 0 1 1 -1 -14 V22 l22 -5 v32 a7 7 0 1 1 -1 -14" fill="none" stroke="#05264f" stroke-width="5" stroke-linecap="round"/></svg><h3>Live music</h3><p>Bands and artists on the seafront, from local favourites to big-name tributes. Bring your voice.</p></article>
+      <article class="card c-teal reveal"><span class="tag">Little ones</span><svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#fef2e8"/><path d="M40 16 l6 14 15 1 -12 9 4 15 -13 -8 -13 8 4 -15 -12 -9 15 -1z" fill="#ffc04a" stroke="#05264f" stroke-width="4" stroke-linejoin="round"/></svg><h3>Kids Fest</h3><p>A mini festival for the little ones: performers, meet-and-greets, face painting, glitter and games.</p></article>
+      <article class="card c-sun reveal"><svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#fef2e8"/><path d="M18 34 h44 l-4 26 h-36z M24 34 l6 -14 h20 l6 14" fill="#fb7a72" stroke="#05264f" stroke-width="4" stroke-linejoin="round"/><path d="M18 34 q5.5 8 11 0 q5.5 8 11 0 q5.5 8 11 0 q5.5 8 11 0" fill="none" stroke="#05264f" stroke-width="4"/></svg><h3>Steel Town Market</h3><p>Local crafts, small businesses and delicious street food from across the town.</p></article>
+      <article class="card c-navy reveal"><svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#fef2e8"/><path d="M40 20 c8 10 8 18 0 26 c-8 -8 -8 -16 0 -26z M40 46 c10 -8 20 -6 22 2 c-8 6 -16 6 -22 -2z M40 46 c-10 -8 -20 -6 -22 2 c8 6 16 6 22 -2z" fill="#86c3bf" stroke="#05264f" stroke-width="3.5" stroke-linejoin="round"/><path d="M22 60 h36" stroke="#05264f" stroke-width="4" stroke-linecap="round"/></svg><h3>Holistic mornings</h3><p>Start the day with beach yoga, sound healing, a cold plunge and a sauna by the sea.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="register" id="register">
+  <div class="wrap reg-grid">
+    <div>
+      <p class="eyebrow">Be first in the queue</p>
+      <h2 class="title">Register your <span>interest.</span></h2>
+      <p>Leave your details and we’ll let you know as soon as the dates, line-up and tickets are announced.</p>
+      <ul class="perks"><li>First to hear the dates and line-up</li><li>Early-bird ticket offers</li><li>Trader, performer and volunteer call-outs</li></ul>
+      <svg class="big-gull" viewBox="0 0 120 130" aria-hidden="true"><path d="M44 106 V128 M58 106 V128" stroke="#fef2e8" stroke-width="5"/><path d="M60 18 Q60 2 74 2 Q88 2 88 18 V32 Q108 46 100 72 Q92 104 58 106 H8 Q40 92 44 70 Z" fill="#fef2e8" stroke="#fef2e8" stroke-width="5" stroke-linejoin="round"/><path d="M10 102 L56 68 V90 Q52 102 38 102 Z" fill="#fb7a72"/><circle cx="76" cy="16" r="3.5" fill="#05264f"/><path d="M88 18 H104" stroke="#fef2e8" stroke-width="5" stroke-linecap="round"/></svg>
+    </div>
+
+    <div>
+      <form class="card-form" id="signup" novalidate>
+        <div id="formBody">
+          <div class="row2">
+            <label class="field"><span>Your name <em>*</em></span><input name="name" autocomplete="name" required maxlength="80"></label>
+            <label class="field"><span>Email <em>*</em></span><input name="email" type="email" autocomplete="email" required maxlength="254"></label>
+          </div>
+          <div class="row2">
+            <label class="field"><span>Town</span><input name="town" autocomplete="address-level2" maxlength="80" placeholder="e.g. Port Talbot"></label>
+            <label class="field"><span>Phone (optional)</span><input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
+          </div>
+          <fieldset><legend>I’m interested in…</legend>
+            <div class="chips">
+              <label><input type="checkbox" name="interests" value="music"><span>Live music</span></label>
+              <label><input type="checkbox" name="interests" value="kids"><span>Kids Fest</span></label>
+              <label><input type="checkbox" name="interests" value="market"><span>Steel Town Market</span></label>
+              <label><input type="checkbox" name="interests" value="holistic"><span>Holistic mornings</span></label>
+              <label><input type="checkbox" name="interests" value="trader"><span>Having a stall</span></label>
+              <label><input type="checkbox" name="interests" value="perform"><span>Performing</span></label>
+              <label><input type="checkbox" name="interests" value="volunteer"><span>Volunteering</span></label>
+              <label><input type="checkbox" name="interests" value="sponsor"><span>Sponsorship</span></label>
+            </div>
+          </fieldset>
+          <div class="extra" id="extra">
+            <label class="field"><span>Business, act or organisation name</span><input name="business" maxlength="120"></label>
+            <label class="field"><span>Tell us a little about it</span><textarea name="message" rows="3" maxlength="1000" placeholder="What you sell or perform, links to your socials…"></textarea></label>
+          </div>
+          <label class="hp" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
+          <label class="consent"><input type="checkbox" name="consent" required><span id="consentText">Yes, email me news about Aberavon Beach Fest, including dates, line-up and tickets. I can unsubscribe at any time.</span></label>
+          <p class="err" id="err" role="alert"></p>
+          <button class="btn btn-coral" type="submit" id="go">Count me in <span aria-hidden="true">→</span></button>
+          <p class="fine">We only use your details to tell you about Aberavon Beach Fest. We never sell or share them. To come off the list, email <a href="mailto:hello@hd-events.co.uk">hello@hd-events.co.uk</a>. Organised by HD Events, Neath.</p>
+        </div>
+        <div class="thanks" id="thanks" role="status">
+          <svg viewBox="0 0 120 130" width="130" aria-hidden="true" style="margin:0 auto;display:block"><path d="M44 106 V128 M58 106 V128" stroke="#05264f" stroke-width="5"/><path d="M60 18 Q60 2 74 2 Q88 2 88 18 V32 Q108 46 100 72 Q92 104 58 106 H8 Q40 92 44 70 Z" fill="#fff" stroke="#05264f" stroke-width="5" stroke-linejoin="round"/><path d="M10 102 L56 68 V90 Q52 102 38 102 Z" fill="#fb7a72"/><circle cx="76" cy="16" r="3.5" fill="#05264f"/><path d="M88 18 H104" stroke="#05264f" stroke-width="5" stroke-linecap="round"/></svg>
+          <h3>Diolch!</h3>
+          <p><b>You’re on the list.</b> We’ll be in touch as soon as there’s news. See you on the beach.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="involve">
+  <div class="wrap">
+    <p class="eyebrow">Get involved</p>
+    <h2 class="title">Be part of it.</h2>
+    <p class="intro">We’re looking for traders, performers, volunteers and local sponsors to help make it happen.</p>
+    <div class="cards">
+      <button class="card c-sun reveal" data-pick="trader"><h3>Traders</h3><p>Food, drink, crafts and local businesses for the Steel Town Market.</p><span class="go">Register as a trader</span></button>
+      <button class="card c-coral reveal" data-pick="perform"><h3>Performers</h3><p>Bands, artists, entertainers and kids’ acts.</p><span class="go">Register as a performer</span></button>
+      <button class="card c-teal reveal" data-pick="volunteer"><h3>Volunteers</h3><p>Help on the day and be part of the crew.</p><span class="go">Register to volunteer</span></button>
+      <button class="card c-navy reveal" data-pick="sponsor"><h3>Sponsors</h3><p>Put your business in front of the whole town.</p><span class="go">Talk sponsorship</span></button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <img src="/assets/logo.png" alt="Aberavon Beach Fest" width="1500" height="404" loading="lazy">
+  <p>Aberavon seafront, Port Talbot, South Wales</p>
+  <p>Organised by <a href="https://www.hd-events.co.uk" target="_blank" rel="noopener">HD Events</a> · <a href="mailto:hello@hd-events.co.uk">hello@hd-events.co.uk</a></p>
+</footer>
+<canvas id="confetti" aria-hidden="true"></canvas>
+
+<script>
+(() => {
+  const HQ = 'https://hq.hd-events.co.uk/q/signup';
+  const form = document.getElementById('signup'), err = document.getElementById('err'), go = document.getElementById('go');
+  const extra = document.getElementById('extra');
+  // Marquee: repeat the words so the loop is seamless.
+  const t = document.getElementById('ticker'); t.innerHTML += t.innerHTML;
+  // Show the business / act fields for traders, performers and sponsors.
+  const needsExtra = () => [...form.querySelectorAll('input[name=interests]:checked')].some(i => ['trader', 'perform', 'sponsor'].includes(i.value));
+  form.addEventListener('change', () => extra.classList.toggle('show', needsExtra()));
+  // "Get involved" cards tick the matching box and jump to the form.
+  document.querySelectorAll('[data-pick]').forEach(b => b.addEventListener('click', () => {
+    const box = form.querySelector(`input[value="${b.dataset.pick}"]`); box.checked = true;
+    extra.classList.toggle('show', needsExtra());
+    document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => form.elements.name.focus({ preventScroll: true }), 600);
+  }));
+  // Scroll reveals.
+  const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' }) : null;
+  document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 90 + 'ms'; io ? io.observe(el) : el.classList.add('in'); });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    err.textContent = '';
+    const f = form.elements;
+    if (!f.name.value.trim()) { err.textContent = 'Please tell us your name.'; return f.name.focus(); }
+    if (!/^\S+@\S+\.\S+$/.test(f.email.value.trim())) { err.textContent = 'Please check your email address.'; return f.email.focus(); }
+    if (!f.consent.checked) { err.textContent = 'Please tick the box so we can email you the news.'; return f.consent.focus(); }
+    go.disabled = true; go.firstChild.textContent = 'Signing you up… ';
+    const body = { list: 'beachfest', name: f.name.value, email: f.email.value, town: f.town.value, phone: f.phone.value, business: f.business.value, message: f.message.value, website: f.website.value,
+      interests: [...form.querySelectorAll('input[name=interests]:checked')].map(i => i.value), consent: true, consentText: document.getElementById('consentText').textContent };
+    try {
+      const r = await fetch(HQ, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw Error(d.error || 'Something went wrong. Please try again.');
+      document.getElementById('formBody').hidden = true;
+      document.getElementById('thanks').classList.add('show');
+      confetti();
+    } catch (x) {
+      err.textContent = x.message === 'Failed to fetch' ? 'We couldn’t reach our server. Please check your connection and try again.' : x.message;
+      go.disabled = false; go.firstChild.textContent = 'Count me in ';
+    }
+  });
+
+  // A little celebration in the festival colours.
+  function confetti() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const c = document.getElementById('confetti'), x = c.getContext('2d');
+    const W = c.width = innerWidth, H = c.height = innerHeight, cols = ['#fb7a72', '#05264f', '#86c3bf', '#ffc04a', '#fffaf5'];
+    const bits = Array.from({ length: 160 }, () => ({ x: W / 2 + (Math.random() - .5) * 200, y: H * .55, vx: (Math.random() - .5) * 16, vy: -Math.random() * 18 - 6, r: Math.random() * 6 + 4, a: Math.random() * 6, s: (Math.random() - .5) * .3, c: cols[Math.random() * cols.length | 0] }));
+    let n = 0;
+    (function tick() {
+      x.clearRect(0, 0, W, H);
+      bits.forEach(b => { b.vy += .45; b.vx *= .99; b.x += b.vx; b.y += b.vy; b.a += b.s; x.save(); x.translate(b.x, b.y); x.rotate(b.a); x.fillStyle = b.c; x.fillRect(-b.r, -b.r / 2, b.r * 2, b.r); x.restore(); });
+      if (++n < 180) requestAnimationFrame(tick); else x.clearRect(0, 0, W, H);
+    })();
+  }
+})();
+</script>
+</body>
+</html>
