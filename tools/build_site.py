@@ -55,7 +55,7 @@ def header(active=None):
   <a class="brand" href="/" aria-label="HD Events home"><img src="/assets/logo.png" alt="HD Events" width="164" height="77"></a>
   <nav class="main-nav" id="mainNav" aria-label="Main navigation"><ul>{"".join(items)}</ul>
     <a class="button solid nav-cta" href="{QUOTE}" data-enquiry>Request a quote <span>↗</span></a></nav>
-  <a class="button small header-cta" href="{QUOTE}" data-enquiry>Request a quote <span>↗</span></a>
+  <a class="header-driver" href="/av-delivery-collection#book"><small>Need transport?</small><b>Book a driver <i aria-hidden="true">→</i></b></a>
   <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mainNav"><span class="bars" aria-hidden="true"></span><span class="label">Menu</span></button>
 </header>'''
 

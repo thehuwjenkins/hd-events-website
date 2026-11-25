@@ -278,3 +278,15 @@
 .book-driver:hover .bd-main i { transform: translateX(5px); }
 .bd-sub { font-size: 13.5px; font-weight: 500; opacity: .8; }
 @media (max-width: 600px) { .book-driver { display: flex; width: 100%; padding: 18px 26px; border-radius: 40px; } .bd-sub { font-size: 12.5px; } }
+
+/* Header: Book a driver (top right on every page) */
+.header-driver { flex-shrink: 0; display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1px; padding: 8px 26px 9px 22px; border-radius: 999px; color: #050609; text-decoration: none; line-height: 1.15; background: linear-gradient(100deg, #00eeed 0%, #7fd6f5 45%, #b18cff 100%); box-shadow: 0 6px 24px #00eeed33, 0 4px 18px #9145ff40; transition: transform .25s, box-shadow .25s; }
+.header-driver:hover { transform: translateY(-2px); box-shadow: 0 10px 30px #00eeed55, 0 6px 24px #9145ff66; }
+.header-driver:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.header-driver small { font-size: 11px; font-weight: 500; opacity: .75; letter-spacing: .02em; }
+.header-driver b { font-size: 16px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.header-driver i { font-style: normal; display: inline-block; margin-left: 4px; transition: transform .25s; }
+.header-driver:hover i { transform: translateX(3px); }
+@media (max-width: 1180px) { .site-header .header-driver { margin-left: auto; } }
+@media (max-width: 600px) { .header-driver { padding: 6px 15px 7px 14px; } .header-driver small { font-size: 9.5px; } .header-driver b { font-size: 13.5px; } .header-driver i { display: none; } }
+@media (max-width: 360px) { .header-driver small { display: none; } }
