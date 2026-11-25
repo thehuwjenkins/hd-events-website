@@ -210,6 +210,9 @@ def hero_actions(p):
     out = []
     for i, (label, href, arrow) in enumerate(acts):
         ext = href == "WHATSAPP"
+        if href == "QUOTE":
+            out.append(f'<a class="button{" solid" if i == 0 else ""}" href="{QUOTE}" data-enquiry>{label} <span>{arrow}</span></a>')
+            continue
         out.append(f'<a class="button{" solid" if i == 0 else ""}" href="{WHATSAPP if ext else href}"{" target=\"_blank\" rel=\"noopener\"" if ext else ""}>{label} <span>{arrow}</span></a>')
     return "".join(out)
 
@@ -242,7 +245,7 @@ def service_page(slug, p):
          "isPartOf": {"@id": SITE + "/#website"}, "about": {"@id": page_url + "#service"}, "primaryImageOfPage": SITE + "/assets/" + p["hero"],
          "dateModified": TODAY, "inLanguage": "en-GB"},
         {"@type": "Service", "@id": page_url + "#service", "name": crumb_name, "serviceType": p["service_type"], "description": p["description"],
-         "provider": {"@id": ORG_ID}, "areaServed": ORG["areaServed"], "url": page_url,
+         "provider": {"@id": ORG_ID}, "areaServed": {"@type": "City", "name": p["area"]} if p.get("area") else ORG["areaServed"], "url": page_url,
          "hasOfferCatalog": {"@type": "OfferCatalog", "name": p["services_title"],
                              "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": t, "description": d}} for t, d in p["services"]]},
          **({"offers": offers} if offers else {})},
@@ -252,6 +255,11 @@ def service_page(slug, p):
         {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in p["faqs"]]},
         ORG,
     ]
+    if p.get("article"):
+        graph.append({"@type": "Article", "@id": page_url + "#article", "headline": p["title"].split(" | ")[0], "description": p["description"],
+                      "image": [SITE + "/assets/" + p["hero"]] + [SITE + "/assets/" + g for g, _ in p["gallery"]],
+                      "author": {"@id": ORG_ID}, "publisher": {"@id": ORG_ID}, "dateModified": TODAY, "inLanguage": "en-GB",
+                      "mainEntityOfPage": {"@id": page_url + "#webpage"}, "about": "Digital lecterns"})
     if p.get("lectern"):
         graph.append({"@type": "Product", "name": "HD Events custom digital lectern", "brand": {"@type": "Brand", "name": "HD Events"},
                       "manufacturer": {"@id": ORG_ID}, "image": [SITE + "/assets/digital-lecterns.jpg", SITE + "/assets/digital-lecterns-portrait.jpg"],
