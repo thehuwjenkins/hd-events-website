@@ -53,6 +53,7 @@ def header(active=None):
             items.append(f'<li><a href="/{target}"{cur}>{e(label)}</a></li>')
     return f'''<header class="site-header">
   <a class="brand" href="/" aria-label="HD Events home"><img src="/assets/logo.png" alt="HD Events" width="164" height="77"></a>
+  <a class="header-login" href="https://hq.hd-events.co.uk/" aria-label="Staff and crew login"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><span>Login</span></a>
   <nav class="main-nav" id="mainNav" aria-label="Main navigation"><ul>{"".join(items)}</ul>
     <a class="button solid nav-cta" href="{QUOTE}" data-enquiry>Request a quote <span>↗</span></a></nav>
   <a class="header-driver" href="/av-delivery-collection#book"><small>Need transport?</small><b>Book a driver <i aria-hidden="true">→</i></b></a>
