@@ -441,7 +441,7 @@ PAGES["av-delivery-collection"] = dict(
     ],
     related=["dry-hire", "corporate-av-hire", "festivals-outdoor-events"],
     service_type="AV equipment delivery, collection and technical crew",
-    hero_actions=[("Price my delivery", "#price-delivery", "↓"), ("WhatsApp us", "WHATSAPP", "↗")],
+    hero_actions=[("Book a driver", "#book", "↓"), ("WhatsApp us", "WHATSAPP", "↗")],
     facts=[("From £85", "each way"), ("Technician driver", "not just a courier"), ("Same-night collection", "no second trip"), ("Multi-drop runs", "several stops, one trip")],
     delivery_quote=True,
 )

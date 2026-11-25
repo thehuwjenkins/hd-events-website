@@ -285,7 +285,7 @@
       <p class="eyebrow"><i></i> AV DELIVERY &amp; COLLECTION · LONDON &amp; NATIONWIDE</p>
       <h1 id="page-title">Delivered by technicians,<br><span>not just drivers.</span></h1>
       <p class="hero-sub">Event equipment delivered and collected by experienced AV technicians. They can set up and test on arrival, stay on as crew, then pack down and take everything away the same night. One booking, no second trip.</p>
-      <div class="hero-actions"><a class="button solid" href="#price-delivery">Price my delivery <span>↓</span></a><a class="button" href="https://wa.me/447930547024" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a></div>
+      <div class="hero-actions"><a class="button solid" href="#book">Book a driver <span>↓</span></a><a class="button" href="https://wa.me/447930547024" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a></div>
       <p class="hero-price">Delivery from <b>£85</b> each way · London &amp; nationwide</p>
     </div>
   </section>
@@ -310,23 +310,32 @@
 
   
   
-  <section class="dq" id="price-delivery" aria-labelledby="dq-title">
-    <div class="section-intro"><p class="eyebrow"><i></i> PRICE YOUR DELIVERY</p><h2 id="dq-title">Tell us the run.<br><span>We’ll send a price.</span></h2>
-    <p>Fill in what you know and send it to us on WhatsApp or email. Delivery starts from £85 each way. The price depends on the distance, the size of the load, any extra stops and how long you need a technician on site.</p></div>
-    <form class="dq-form" id="dqForm" aria-label="Delivery details">
-      <label>Collect from<input name="from" placeholder="Address or postcode" autocomplete="off"></label>
-      <label>Deliver to<input name="to" placeholder="Venue and postcode" autocomplete="off"></label>
-      <label>Event date<input name="date" type="date"></label>
-      <label>Delivery time<input name="time" placeholder="e.g. by 2pm"></label>
+  <section class="dq" id="book" aria-labelledby="dq-title">
+    <div class="section-intro"><p class="eyebrow"><i></i> BOOK A DRIVER</p><h2 id="dq-title">Tell us the run.<br><span>We’ll confirm a price.</span></h2>
+    <p>Fill in the details below and send them to us on WhatsApp or by email. Delivery starts from £85 each way. The price depends on the distance, the size of the load, any extra stops and how long you need a technician on site.</p></div>
+    <form class="dq-form" id="dqForm" aria-label="Book a driver" novalidate>
+      <h3 class="wide">Your company</h3>
+      <label>Company name *<input name="company" required autocomplete="organization"></label>
+      <label>Contact name *<input name="name" required autocomplete="name"></label>
+      <label>Phone *<input name="phone" type="tel" required autocomplete="tel"></label>
+      <label>Email *<input name="email" type="email" required autocomplete="email"></label>
+      <h3 class="wide">The run</h3>
+      <label class="half">Collection address *<textarea name="from" rows="2" required placeholder="Where we pick up from, with postcode"></textarea></label>
+      <label class="half">Drop-off address *<textarea name="to" rows="2" required placeholder="Venue or address, with postcode"></textarea></label>
+      <label>Date *<input name="date" type="date" required></label>
+      <label>Delivery time<input name="time" placeholder="e.g. on site by 2pm"></label>
       <label>Collection<select name="collect"><option>Same night, after the event</option><option>Next day</option><option>Another date</option><option>Delivery only, no collection</option></select></label>
       <label>Extra pick-ups or drop-offs<select name="stops"><option value="0">None</option><option value="1">1 extra stop</option><option value="2">2 extra stops</option><option value="3">3 or more</option></select></label>
-      <label class="wide">What is being moved?<textarea name="load" rows="3" placeholder="e.g. 2 speakers, 2 subs, a mixing desk in a case, 6 cable cases. Or the hire company's pick list."></textarea></label>
-      <fieldset class="wide dq-checks"><legend>Do you need the technician to</legend>
+      <h3 class="wide">Equipment and requirements</h3>
+      <label class="wide">What equipment is being transported? *<textarea name="load" rows="3" required placeholder="e.g. 2 speakers, 2 subs, a mixing desk in a case, 6 cable cases. Or paste the hire company's pick list."></textarea></label>
+      <fieldset class="wide dq-checks"><legend>What do you need from us?</legend>
         <label><input type="checkbox" name="setup"> Set up and test on arrival</label>
         <label><input type="checkbox" name="crew"> Stay on as crew during the event</label>
-        <label><input type="checkbox" name="other"> Collect from or return to another hire company</label></fieldset>
+        <label><input type="checkbox" name="other"> Collect from or return to another hire company</label>
+        <label><input type="checkbox" name="handball"> Extra hands to load in or out</label></fieldset>
+      <label class="wide">Any other requirements<textarea name="needs" rows="3" placeholder="Access and parking, loading bay times, stairs or lifts, site contact on the day, insurance or paperwork"></textarea></label>
       <div class="wide dq-send"><a class="button solid" id="dqWhatsApp" href="https://wa.me/447930547024" target="_blank" rel="noopener">Send on WhatsApp <span>↗</span></a><a class="button" id="dqEmail" href="mailto:hello@hd-events.co.uk">Send by email <span>↗</span></a>
-        <p class="hint">Nothing is booked until we confirm the price with you.</p></div>
+        <p class="hint" id="dqHint">* Required. Nothing is booked until we confirm the price with you.</p></div>
     </form>
   </section>
 
