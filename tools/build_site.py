@@ -388,7 +388,7 @@ def event_card(ev):
     else:
         cta = '<span class="button ev-off" aria-disabled="true">Tickets coming soon</span>'
     price = f'<span class="ev-price">{e(ev["price"])}</span>' if ev.get("price") else ""
-    return f'''<article class="ev-card" data-end="{end.isoformat()}">
+    return f'''<article class="ev-card" data-start="{start.isoformat()}" data-end="{end.isoformat()}">
       <figure class="ev-poster">{poster}{tag}</figure>
       <div class="ev-body">
         <p class="ev-date"><time datetime="{start.isoformat()}">{_nice_dates(start, end)}</time></p>
