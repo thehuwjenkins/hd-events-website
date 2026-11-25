@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aberavon Beach Fest | Register your interest</title>
-<meta name="description" content="Aberavon Beach Fest is coming back to the seafront: live music, Kids Fest, the Steel Town Market, beach games and holistic mornings. Register your interest to hear first about dates, line-up and early-bird tickets.">
+<title>Aberavon Beach Fest 2027 | Shall we bring it back?</title>
+<meta name="description" content="Do you want Aberavon Beach Fest back for June 2027? A family fun weekend of live music, Kids Fest, the Steel Town Market and beach games on Aberavon seafront. Say yes and help us bring it home.">
 <meta name="theme-color" content="#fef2e8">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Aberavon Beach Fest is coming back">
-<meta property="og:description" content="Live music, Kids Fest, the Steel Town Market and more on Aberavon seafront. Register your interest to hear first.">
-<meta property="og:image" content="/assets/share.jpg">
+<meta property="og:title" content="Aberavon Beach Fest 2027: shall we try again?">
+<meta property="og:description" content="A family fun weekend on the greatest beach in the world, June 2027. Say yes and help us bring it back.">
+<meta property="og:image" content="https://beachfest.hd-events.co.uk/assets/share.jpg">
+<meta property="og:url" content="https://beachfest.hd-events.co.uk/">
+<link rel="canonical" href="https://beachfest.hd-events.co.uk/">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/logo-sm.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -152,6 +154,27 @@ footer img{width:220px;margin:0 auto 16px}
 footer p{margin:6px 0}
 
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:50}
+.counter{position:relative;z-index:3;margin:22px 0 0;display:inline-flex;align-items:center;gap:10px;background:var(--white);border:3px solid var(--navy);border-radius:999px;padding:8px 18px 8px 10px;font:800 16px 'Rubik',sans-serif;animation:rise .9s .6s both}
+.counter b{color:var(--coral);font-size:20px}
+.heart{width:26px;height:26px;background:var(--coral);clip-path:path('M13 24 C4 17 0 12 0 7 C0 3 3 0 7 0 C10 0 12 2 13 4 C14 2 16 0 19 0 C23 0 26 3 26 7 C26 12 22 17 13 24 Z');animation:beat 1.4s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.22)}30%{transform:scale(1)}45%{transform:scale(1.12)}}
+.story{background:var(--white)}
+.story .title span{color:var(--coral)}
+.story-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center}
+.story .intro{margin:0 0 18px}
+.steps{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;gap:16px}
+.steps li{counter-increment:s;position:relative;background:var(--cream);border:3px solid var(--navy);border-radius:24px;padding:20px 22px 20px 84px;box-shadow:6px 6px 0 var(--teal)}
+.steps li:nth-child(2){box-shadow:6px 6px 0 var(--sun)}.steps li:nth-child(3){box-shadow:6px 6px 0 var(--coral)}
+.steps li::before{content:counter(s);position:absolute;left:20px;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:var(--navy);color:var(--cream);font:900 24px/46px 'Rubik',sans-serif;text-align:center}
+.steps b{display:block;font:900 22px 'Rubik',sans-serif;text-transform:uppercase}
+.spread{text-align:center;background:var(--coral);color:var(--navy)}
+.spread .title span{color:var(--white)}
+.spread .intro{margin:0 auto 30px}
+.share{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:18px}
+.share a,.share button{display:inline-flex;align-items:center;gap:10px;border:3px solid var(--navy);border-radius:999px;padding:12px 20px;font:800 15px 'Rubik',sans-serif;text-transform:uppercase;text-decoration:none;color:var(--navy);background:var(--white);cursor:pointer;transition:transform .2s,box-shadow .2s}
+.share a:hover,.share button:hover{transform:translateY(-3px);box-shadow:0 5px 0 var(--navy)}
+.share svg{width:20px;height:20px}
+@media (max-width:860px){.story-grid{grid-template-columns:1fr;gap:30px}}
 
 @media (max-width:860px){
   .reg-grid{grid-template-columns:1fr;gap:36px}
@@ -183,7 +206,7 @@ footer p{margin:6px 0}
 <a class="skip" href="#register">Skip to the sign-up form</a>
 
 <header class="hero" id="top">
-  <div class="top"><span>Aberavon seafront · Port Talbot</span><a class="pill" href="#register">Register interest</a></div>
+  <div class="top"><span>Aberavon seafront · Port Talbot</span><a class="pill" href="#register">Say yes to 2027</a></div>
   <div class="scene" aria-hidden="true">
     <svg class="sun" viewBox="0 0 200 200"><g class="rays" stroke="#fb7a72" stroke-width="7" stroke-linecap="round">
       <line x1="100" y1="6" x2="100" y2="38"/><line x1="100" y1="162" x2="100" y2="194"/><line x1="6" y1="100" x2="38" y2="100"/><line x1="162" y1="100" x2="194" y2="100"/>
@@ -209,11 +232,12 @@ footer p{margin:6px 0}
     </svg>
   </div>
 
-  <span class="kicker">Coming back to Aberavon seafront</span>
+  <span class="kicker">June 2027 · Aberavon seafront</span>
   <img class="logo" src="/assets/logo.png" alt="Aberavon Beach Fest" width="1500" height="404">
-  <h1>Music, sun and sea <span>on our own beach.</span></h1>
-  <p class="lead">Live music, a magical Kids Fest, the Steel Town Market, beach games and holistic mornings by the sea. Register your interest and you’ll be first to hear the dates, the line-up and early-bird tickets.</p>
-  <div class="cta"><a class="btn btn-coral" href="#register">Register your interest <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#store">What’s in store</a></div>
+  <h1>Do you want it back? <span>Shall we try again?</span></h1>
+  <p class="lead">A family fun weekend of live music, Kids Fest, the Steel Town Market and beach games, with happy, healthy families enjoying the greatest beach in the world. Say yes, and help us bring it home for 2027.</p>
+  <div class="cta"><a class="btn btn-coral" href="#register">Yes! Bring it back <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#story">Our story</a></div>
+  <p class="counter" id="counter" aria-live="polite"><span class="heart" aria-hidden="true"></span><span id="counterText">Be one of the first to say yes</span></p>
 
   <div class="waves" aria-hidden="true">
     <svg class="w1" viewBox="0 0 1200 40" preserveAspectRatio="none"><path d="M0 30 Q30 4 60 30 T120 30 T180 30 T240 30 T300 30 T360 30 T420 30 T480 30 T540 30 T600 30 T660 30 T720 30 T780 30 T840 30 T900 30 T960 30 T1020 30 T1080 30 T1140 30 T1200 30" fill="none" stroke="#05264f" stroke-width="6" stroke-linecap="round"/></svg>
@@ -222,14 +246,30 @@ footer p{margin:6px 0}
   </div>
 </header>
 
-<div class="marquee" aria-hidden="true"><div class="track" id="ticker"><span>Live music</span><span>Kids Fest</span><span>Steel Town Market</span><span>Beach games</span><span>Holistic mornings</span><span>Street food</span><span>Sun, sea &amp; good vibes</span></div></div>
+<div class="marquee" aria-hidden="true"><div class="track" id="ticker"><span>Bring it back</span><span>June 2027</span><span>Live music</span><span>Kids Fest</span><span>Steel Town Market</span><span>Beach games</span><span>Holistic mornings</span><span>Street food</span><span>Happy, healthy families</span></div></div>
 
 <main>
+<section class="story" id="story">
+  <div class="wrap story-grid">
+    <div>
+      <p class="eyebrow">Our story</p>
+      <h2 class="title">2025 didn’t go <span>to plan.</span></h2>
+      <p class="intro">Aberavon Beach Fest 2025 was called off at the last minute over safety arrangements. So many of you had made plans, and we were as gutted as you were.</p>
+      <p class="intro">We haven’t given up on it. For 2027 we’re starting early, working with everyone involved from day one, and building it together with the community, so the whole town gets the weekend it deserves.</p>
+    </div>
+    <ol class="steps">
+      <li class="reveal"><b>You say yes</b>Every name on the list shows there’s real demand for a festival on our beach.</li>
+      <li class="reveal"><b>We plan it properly</b>Permissions, safety and partners, sorted early and done right.</li>
+      <li class="reveal"><b>June 2027</b>A family fun weekend on the greatest beach in the world.</li>
+    </ol>
+  </div>
+</section>
+
 <section id="store">
   <div class="wrap">
     <p class="eyebrow">What’s in store</p>
-    <h2 class="title">A weekend on the beach.</h2>
-    <p class="intro">Aberavon Beach Fest brings live music, culture and entertainment to the Welsh coast, with something for every age.</p>
+    <h2 class="title">A family weekend on the beach.</h2>
+    <p class="intro">Here’s what we’d love to bring back to the seafront, with something for every age. Tell us what you’d come for when you sign up.</p>
     <div class="cards">
       <article class="card c-coral reveal"><svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#fef2e8"/><path d="M30 56 a7 7 0 1 1 -1 -14 V22 l22 -5 v32 a7 7 0 1 1 -1 -14" fill="none" stroke="#05264f" stroke-width="5" stroke-linecap="round"/></svg><h3>Live music</h3><p>Bands and artists on the seafront, from local favourites to big-name tributes. Bring your voice.</p></article>
       <article class="card c-teal reveal"><span class="tag">Little ones</span><svg class="icon" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="38" fill="#fef2e8"/><path d="M40 16 l6 14 15 1 -12 9 4 15 -13 -8 -13 8 4 -15 -12 -9 15 -1z" fill="#ffc04a" stroke="#05264f" stroke-width="4" stroke-linejoin="round"/></svg><h3>Kids Fest</h3><p>A mini festival for the little ones: performers, meet-and-greets, face painting, glitter and games.</p></article>
@@ -242,10 +282,10 @@ footer p{margin:6px 0}
 <section class="register" id="register">
   <div class="wrap reg-grid">
     <div>
-      <p class="eyebrow">Be first in the queue</p>
-      <h2 class="title">Register your <span>interest.</span></h2>
-      <p>Leave your details and we’ll let you know as soon as the dates, line-up and tickets are announced.</p>
-      <ul class="perks"><li>First to hear the dates and line-up</li><li>Early-bird ticket offers</li><li>Trader, performer and volunteer call-outs</li></ul>
+      <p class="eyebrow">Shall we try again?</p>
+      <h2 class="title">Say yes to <span>2027.</span></h2>
+      <p>Add your name to show Aberavon wants its beach festival back. You’ll be first to hear the dates, the line-up and early-bird tickets.</p>
+      <ul class="perks"><li>Show the town wants it back</li><li>First to hear the dates and line-up</li><li>Early-bird ticket offers</li><li>Trader, performer and volunteer call-outs</li></ul>
       <svg class="big-gull" viewBox="0 0 120 130" aria-hidden="true"><path d="M44 106 V128 M58 106 V128" stroke="#fef2e8" stroke-width="5"/><path d="M60 18 Q60 2 74 2 Q88 2 88 18 V32 Q108 46 100 72 Q92 104 58 106 H8 Q40 92 44 70 Z" fill="#fef2e8" stroke="#fef2e8" stroke-width="5" stroke-linejoin="round"/><path d="M10 102 L56 68 V90 Q52 102 38 102 Z" fill="#fb7a72"/><circle cx="76" cy="16" r="3.5" fill="#05264f"/><path d="M88 18 H104" stroke="#fef2e8" stroke-width="5" stroke-linecap="round"/></svg>
     </div>
 
@@ -279,13 +319,14 @@ footer p{margin:6px 0}
           <label class="hp" aria-hidden="true">Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label>
           <label class="consent"><input type="checkbox" name="consent" required><span id="consentText">Yes, email me news about Aberavon Beach Fest, including dates, line-up and tickets. I can unsubscribe at any time.</span></label>
           <p class="err" id="err" role="alert"></p>
-          <button class="btn btn-coral" type="submit" id="go">Count me in <span aria-hidden="true">→</span></button>
+          <button class="btn btn-coral" type="submit" id="go">Yes, bring it back! <span aria-hidden="true">→</span></button>
           <p class="fine">We only use your details to tell you about Aberavon Beach Fest. We never sell or share them. To come off the list, email <a href="mailto:hello@hd-events.co.uk">hello@hd-events.co.uk</a>. Organised by HD Events, Neath.</p>
         </div>
         <div class="thanks" id="thanks" role="status">
           <svg viewBox="0 0 120 130" width="130" aria-hidden="true" style="margin:0 auto;display:block"><path d="M44 106 V128 M58 106 V128" stroke="#05264f" stroke-width="5"/><path d="M60 18 Q60 2 74 2 Q88 2 88 18 V32 Q108 46 100 72 Q92 104 58 106 H8 Q40 92 44 70 Z" fill="#fff" stroke="#05264f" stroke-width="5" stroke-linejoin="round"/><path d="M10 102 L56 68 V90 Q52 102 38 102 Z" fill="#fb7a72"/><circle cx="76" cy="16" r="3.5" fill="#05264f"/><path d="M88 18 H104" stroke="#05264f" stroke-width="5" stroke-linecap="round"/></svg>
           <h3>Diolch!</h3>
-          <p><b>You’re on the list.</b> We’ll be in touch as soon as there’s news. See you on the beach.</p>
+          <p><b>You’ve said yes to 2027.</b> We’ll be in touch as soon as there’s news. Now help us get the whole town behind it:</p>
+          <div class="share" data-share></div>
         </div>
       </form>
     </div>
@@ -303,6 +344,13 @@ footer p{margin:6px 0}
       <button class="card c-teal reveal" data-pick="volunteer"><h3>Volunteers</h3><p>Help on the day and be part of the crew.</p><span class="go">Register to volunteer</span></button>
       <button class="card c-navy reveal" data-pick="sponsor"><h3>Sponsors</h3><p>Put your business in front of the whole town.</p><span class="go">Talk sponsorship</span></button>
     </div>
+  </div>
+</section>
+<section class="spread">
+  <div class="wrap">
+    <h2 class="title">Spread the <span>word.</span></h2>
+    <p class="intro">The more people who say yes, the stronger the case for bringing it back. Send this page to your family, friends and the group chat.</p>
+    <div class="share" data-share></div>
   </div>
 </section>
 </main>
@@ -331,6 +379,23 @@ footer p{margin:6px 0}
     document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
     setTimeout(() => form.elements.name.focus({ preventScroll: true }), 600);
   }));
+  // Live count of people who've said yes (shown once it's worth showing).
+  let count = 0;
+  const showCount = () => { if (count >= 10) document.getElementById('counterText').innerHTML = '<b>' + count.toLocaleString('en-GB') + '</b> people want it back'; };
+  fetch('https://hq.hd-events.co.uk/q/signup-count?list=beachfest').then(r => r.ok ? r.json() : null).then(d => { if (d) { count = d.count; showCount(); } }).catch(() => {});
+  // Share buttons.
+  const page = location.origin + '/', msg = 'Do you want Aberavon Beach Fest back for 2027? Say yes here:';
+  const wa = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.7-1.2 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.5-.3z"/></svg>';
+  const fb = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M14 8V6.3c0-.8.2-1.3 1.4-1.3H17V2h-2.6C11.6 2 10.6 3.4 10.6 5.9V8H8v3h2.6v11H14V11h2.7l.4-3z"/></svg>';
+  document.querySelectorAll('[data-share]').forEach(el => {
+    el.innerHTML = `<a href="https://wa.me/?text=${encodeURIComponent(msg + ' ' + page)}" target="_blank" rel="noopener">${wa} WhatsApp</a><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(page)}" target="_blank" rel="noopener">${fb} Facebook</a><button type="button" data-copy>${navigator.share ? 'More ways to share' : 'Copy link'}</button>`;
+  });
+  document.addEventListener('click', async e => {
+    const b = e.target.closest('[data-copy]'); if (!b) return;
+    if (navigator.share) { try { await navigator.share({ title: 'Aberavon Beach Fest 2027', text: msg, url: page }); return; } catch (x) { if (x.name === 'AbortError') return; } }
+    try { await navigator.clipboard.writeText(page); b.textContent = 'Link copied!'; } catch { prompt('Copy this link:', page); }
+    setTimeout(() => (b.textContent = navigator.share ? 'More ways to share' : 'Copy link'), 2500);
+  });
   // Scroll reveals.
   const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' }) : null;
   document.querySelectorAll('.reveal').forEach((el, i) => { el.style.transitionDelay = (i % 4) * 90 + 'ms'; io ? io.observe(el) : el.classList.add('in'); });
@@ -351,10 +416,11 @@ footer p{margin:6px 0}
       if (!r.ok) throw Error(d.error || 'Something went wrong. Please try again.');
       document.getElementById('formBody').hidden = true;
       document.getElementById('thanks').classList.add('show');
+      count++; showCount();
       confetti();
     } catch (x) {
       err.textContent = x.message === 'Failed to fetch' ? 'We couldn’t reach our server. Please check your connection and try again.' : x.message;
-      go.disabled = false; go.firstChild.textContent = 'Count me in ';
+      go.disabled = false; go.firstChild.textContent = 'Yes, bring it back! ';
     }
   });
 

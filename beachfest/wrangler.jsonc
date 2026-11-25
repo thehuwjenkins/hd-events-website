@@ -1,5 +1,6 @@
-// Aberavon Beach Fest "register interest" page. Deployed separately from the HD Events website:
-//   cd beachfest && node build.mjs && wrangler deploy
+// Aberavon Beach Fest 2027 campaign page, live at https://beachfest.hd-events.co.uk
+// Deployed separately from the HD Events website:  cd beachfest && node build.mjs && wrangler deploy
 // The page files are bundled into the worker (src/files.gen.js). Sign-ups are posted to
 // HD Events HQ (https://hq.hd-events.co.uk/q/signup) and appear in HQ under Sign-ups.
-{"name":"aberavon-beach-fest","main":"src/worker.js","compatibility_date":"2026-11-23","workers_dev":true}
+{"name":"aberavon-beach-fest","main":"src/worker.js","compatibility_date":"2026-11-23","workers_dev":true,
+ "routes":[{"pattern":"beachfest.hd-events.co.uk","custom_domain":true}]}
