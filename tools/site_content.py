@@ -29,6 +29,7 @@ MENU = [
         ("Event planning & licensing", "event-planning", "Planning, licensing, risk and compliance"),
         ("PA repairs", "pa-repairs", "Fault-finding and repairs for PA equipment"),
         ("Our work", "/#work", "Recent events and venues"),
+        ("Staff & crew login", "https://hq.hd-events.co.uk/", "Sign in to HD Events HQ"),
     ]),
 ]
 

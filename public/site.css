@@ -345,3 +345,5 @@
   .header-driver b { font-size: 14.5px; }
   .site-header .brand img { width: 118px; height: 56px; }
 }
+.footer-links { display: flex; gap: 22px; }
+.main-nav .sub a[href^="https://hq."] { border-top: 1px solid #ffffff14; border-radius: 0 0 9px 9px; margin-top: 4px; }

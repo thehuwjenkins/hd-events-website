@@ -45,7 +45,7 @@ def header(active=None):
     for label, target in MENU:
         if isinstance(target, list):
             sub = "".join(
-                f'<li><a href="{"/" + s if not s.startswith("/") else s}"><b>{e(l)}</b><span>{e(d)}</span></a></li>' for l, s, d in target)
+                f'<li><a href="{s if s.startswith(("/", "http")) else "/" + s}"><b>{e(l)}</b><span>{e(d)}</span></a></li>' for l, s, d in target)
             cur = ' class="current"' if active == label else ""
             items.append(f'<li class="has-sub"><button type="button" aria-expanded="false"{cur}>{e(label)} <span aria-hidden="true">▾</span></button><ul class="sub">{sub}</ul></li>')
         else:
@@ -61,8 +61,8 @@ def header(active=None):
 
 
 def footer():
-    links = [(l, t) for l, t in MENU if not isinstance(t, list) and t != "events"] + [(l, s) for l, s, _ in MENU[-1][1]]
-    svc = "".join(f'<li><a href="{"/" + s if not s.startswith("/") else s}">{e(l)}</a></li>' for l, s in links)
+    links = [(l, t) for l, t in MENU if not isinstance(t, list) and t != "events"] + [(l, s) for l, s, _ in MENU[-1][1] if not s.startswith("http")]
+    svc = "".join(f'<li><a href="{s if s.startswith(("/", "http")) else "/" + s}">{e(l)}</a></li>' for l, s in links)
     return f'''<footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand"><a class="brand" href="/"><img src="/assets/logo.png" alt="HD Events" width="130" height="65"></a>
@@ -71,7 +71,7 @@ def footer():
     <div><h2>Contact</h2><ul><li><a href="tel:{PHONE_LINK}">{PHONE}</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us ↗</a></li><li><a href="{QUOTE}" data-enquiry>Request a quote ↗</a></li></ul></div>
     <div><h2>Follow</h2><ul><li><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="/events">Upcoming events</a></li></ul></div>
   </div>
-  <div class="footer-base"><span>© {datetime.date.today().year} HD Events · Corporate audio visual hire · London &amp; nationwide</span><a href="#">Back to top ↑</a></div>
+  <div class="footer-base"><span>© {datetime.date.today().year} HD Events · Corporate audio visual hire · London &amp; nationwide</span><span class="footer-links"><a href="https://hq.hd-events.co.uk/">Staff &amp; crew login</a><a href="#">Back to top ↑</a></span></div>
 </footer>'''
 
 
