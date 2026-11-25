@@ -209,25 +209,6 @@
 .lx-mini .button { gap: 12px; }
 .lectern-page .wa-fixed, body:has(.lx-mini:not([hidden])) .wa-fixed { display: none; }
 
-/* ---------- Delivery price form ---------- */
-.dq { padding: 100px 6% 40px; }
-.dq h2 span { background: linear-gradient(100deg, #e5fff8 5%, #a2d9e8 42%, #ad83f9 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.dq .section-intro > p:last-child { color: #b9b9c6; line-height: 1.7; max-width: 720px; }
-.dq-form { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 18px; border: 1px solid #ffffff1c; border-radius: 22px; padding: 30px; background: linear-gradient(160deg, #10112a, #0a0b12); }
-.dq-form .wide { grid-column: 1 / -1; }
-.dq-form label { display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; color: #c9c9d4; }
-.dq-form input:not([type=checkbox]), .dq-form select, .dq-form textarea { font: 15px 'DM Sans', Arial, sans-serif; color: #fff; background: #050609; border: 1px solid #ffffff2e; border-radius: 10px; padding: 12px 14px; width: 100%; }
-.dq-form input:focus, .dq-form select:focus, .dq-form textarea:focus { outline: 2px solid var(--cyan); outline-offset: 1px; border-color: transparent; }
-.dq-form input[type=date] { color-scheme: dark; }
-.dq-checks { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px 26px; }
-.dq-checks legend { font-size: 13.5px; color: #c9c9d4; margin-bottom: 10px; padding: 0; }
-.dq-checks label { flex-direction: row; align-items: center; gap: 10px; font-size: 15px; color: #e4e4ec; cursor: pointer; }
-.dq-checks input { width: 20px; height: 20px; accent-color: var(--cyan); }
-.dq-send { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 6px; }
-.dq-send .hint { color: #9c9cab; font-size: 13.5px; margin: 0; }
-@media (max-width: 900px) { .dq-form { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .dq { padding: 70px 22px 30px; } .dq-form { grid-template-columns: 1fr; padding: 20px; } .dq-send .button { width: 100%; } }
-
 /* ---------- Events page ---------- */
 .page-hero.short { min-height: 60svh; }
 .events { padding: 90px 6% 40px; }
@@ -259,26 +240,6 @@
 @media (max-width: 1100px) { .ev-grid, .events.past .ev-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 640px) { .events { padding: 60px 22px 30px; } .ev-grid, .events.past .ev-grid { grid-template-columns: 1fr; } .ev-tickets { width: 100%; } .page-hero.short { min-height: 0; } }
 
-/* Book a driver: form sections and checks */
-.dq-form h3 { margin: 10px 0 -4px; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); font-weight: 500; }
-.dq-form h3:first-child { margin-top: 0; }
-.dq-form { grid-template-columns: repeat(4, 1fr); }
-.dq-form .half { grid-column: span 2; }
-.dq-form.checked :is(input, textarea):invalid { border-color: #ff6b81; box-shadow: 0 0 0 1px #ff6b81; }
-.dq-send .hint.warn { color: #ff9aa9; }
-@media (max-width: 900px) { .dq-form .half { grid-column: 1 / -1; } }
-@media (max-width: 600px) { .dq-form .half { grid-column: auto; } }
-
-/* Home page: Book a driver */
-.book-driver { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 4px; margin-top: 26px; padding: 20px 40px 20px 34px; border-radius: 999px; color: #050609; text-decoration: none; background: linear-gradient(100deg, #00eeed 0%, #7fd6f5 45%, #b18cff 100%); box-shadow: 0 12px 40px #00eeed33, 0 6px 30px #9145ff44; transition: transform .25s, box-shadow .25s; }
-.book-driver:hover { transform: translateY(-3px); box-shadow: 0 16px 50px #00eeed55, 0 8px 36px #9145ff66; }
-.book-driver:focus-visible { outline: 2px solid #fff; outline-offset: 5px; }
-.bd-main { font-size: clamp(24px, 2.4vw, 32px); font-weight: 600; letter-spacing: -.02em; line-height: 1.1; }
-.bd-main i { font-style: normal; display: inline-block; margin-left: 10px; transition: transform .25s; }
-.book-driver:hover .bd-main i { transform: translateX(5px); }
-.bd-sub { font-size: 13.5px; font-weight: 500; opacity: .8; }
-@media (max-width: 600px) { .book-driver { display: flex; width: 100%; padding: 18px 26px; border-radius: 40px; } .bd-sub { font-size: 12.5px; } }
-
 /* Header: Book a driver (top right on every page) */
 .header-driver { flex-shrink: 0; display: inline-flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 1px; padding: 8px 26px 9px 22px; border-radius: 999px; color: #050609; text-decoration: none; line-height: 1.15; background: linear-gradient(100deg, #00eeed 0%, #7fd6f5 45%, #b18cff 100%); box-shadow: 0 6px 24px #00eeed33, 0 4px 18px #9145ff40; transition: transform .25s, box-shadow .25s; }
 .header-driver:hover { transform: translateY(-2px); box-shadow: 0 10px 30px #00eeed55, 0 6px 24px #9145ff66; }
@@ -290,3 +251,52 @@
 @media (max-width: 1180px) { .site-header .header-driver { margin-left: auto; } }
 @media (max-width: 600px) { .header-driver { padding: 6px 15px 7px 14px; } .header-driver small { font-size: 9.5px; } .header-driver b { font-size: 13.5px; } .header-driver i { display: none; } }
 @media (max-width: 360px) { .header-driver small { display: none; } }
+
+/* ---------- Book a driver form ---------- */
+.dq { padding: 100px 6% 60px; }
+.dq-wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px; align-items: start; max-width: 1240px; }
+.dq-side { position: sticky; top: 110px; }
+.dq-side h2 { font-size: clamp(36px, 4vw, 58px); font-weight: 300; letter-spacing: -.045em; line-height: 1.02; margin: 18px 0 18px; }
+.dq-side h2 span { background: linear-gradient(100deg, #e5fff8 5%, #a2d9e8 42%, #ad83f9 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.dq-side > p { color: #b9b9c6; line-height: 1.7; font-size: 16px; margin: 0 0 22px; }
+.dq-points { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 10px; }
+.dq-points li { display: flex; gap: 12px; align-items: baseline; color: #d8d8e0; font-size: 15px; }
+.dq-points li::before { content: "✓"; color: var(--cyan); }
+.dq-alt { font-size: 14px; color: #9c9cab; margin: 0; }
+.dq-alt a { color: #e4e4ec; border-bottom: 1px solid #00eeed66; }
+.dq-alt a:hover { color: var(--cyan); }
+.dq-form { position: relative; border-radius: 24px; padding: 30px 30px 26px; background: linear-gradient(160deg, #11122b, #0b0c14); border: 1px solid #ffffff14; box-shadow: 0 30px 80px #0008; }
+.dq-form::before { content: ""; position: absolute; inset: -1px; border-radius: 25px; padding: 1px; background: linear-gradient(120deg, #00eeed88, transparent 35%, transparent 65%, #9145ff99); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+.dq-step { border: 0; margin: 0 0 22px; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.dq-step legend { display: flex; align-items: center; gap: 10px; padding: 0; margin-bottom: 12px; font-size: 15px; font-weight: 500; color: #fff; }
+.dq-step legend b { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; font-size: 12px; font-weight: 600; color: #050609; background: linear-gradient(120deg, #00eeed, #b18cff); }
+.dq-step .wide { grid-column: 1 / -1; }
+.dq-f { display: block; position: relative; }
+.dq-f span { display: block; font-size: 12.5px; color: #a3a3b2; margin: 0 0 6px 2px; }
+.dq-f span em { font-style: normal; color: var(--cyan); }
+.dq-form input:not([type=checkbox]), .dq-form select, .dq-form textarea { display: block; width: 100%; font: 15px/1.4 'DM Sans', Arial, sans-serif; color: #fff; background: #ffffff08; border: 1px solid #ffffff1c; border-radius: 12px; padding: 11px 14px; transition: border-color .2s, background .2s; }
+.dq-form textarea { resize: vertical; min-height: 48px; }
+.dq-form select { appearance: none; -webkit-appearance: none; background-image: linear-gradient(45deg, transparent 50%, #9c9cab 50%), linear-gradient(135deg, #9c9cab 50%, transparent 50%); background-position: calc(100% - 19px) 50%, calc(100% - 14px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 36px; }
+.dq-form select option { background: #11122b; }
+.dq-form input::placeholder, .dq-form textarea::placeholder { color: #6f7082; }
+.dq-form :is(input, select, textarea):hover { border-color: #ffffff33; }
+.dq-form :is(input, select, textarea):focus { outline: none; border-color: var(--cyan); background: #00eeed0a; box-shadow: 0 0 0 3px #00eeed22; }
+.dq-form input[type=date] { color-scheme: dark; }
+.dq-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.dq-chips label { position: relative; cursor: pointer; }
+.dq-chips input { position: absolute; opacity: 0; pointer-events: none; }
+.dq-chips span { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; border: 1px solid #ffffff24; color: #d8d8e0; font-size: 14px; transition: background .2s, border-color .2s, color .2s; }
+.dq-chips span::before { content: "+"; color: var(--cyan); font-weight: 600; }
+.dq-chips label:hover span { border-color: #ffffff4d; }
+.dq-chips input:checked + span { background: linear-gradient(100deg, #00eeed26, #9145ff33); border-color: #00eeed99; color: #fff; }
+.dq-chips input:checked + span::before { content: "✓"; }
+.dq-chips input:focus-visible + span { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.dq-form.checked :is(input, textarea):invalid { border-color: #ff6b81; box-shadow: 0 0 0 3px #ff6b8122; }
+.dq-send { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 20px; border-top: 1px solid #ffffff12; }
+.dq-send .button { padding: 14px 22px; gap: 18px; }
+.dq-send .wa { background: linear-gradient(100deg, #00eeed 0%, #7fd6f5 45%, #b18cff 100%); color: #050609; border: 0; font-weight: 600; }
+.dq-send .wa:hover { color: #050609; filter: brightness(1.08); }
+.dq-send .hint { flex-basis: 100%; color: #8d8d9c; font-size: 13px; margin: 4px 0 0; }
+.dq-send .hint.warn { color: #ff9aa9; }
+@media (max-width: 1000px) { .dq-wrap { grid-template-columns: 1fr; gap: 30px; } .dq-side { position: static; } }
+@media (max-width: 600px) { .dq { padding: 70px 22px 40px; } .dq-form { padding: 22px 18px 20px; border-radius: 20px; } .dq-step { grid-template-columns: 1fr; } .dq-send .button { flex: 1 1 100%; justify-content: center; } }

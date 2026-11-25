@@ -172,32 +172,26 @@ def facts_strip(facts):
 
 def delivery_quote():
     return f'''<section class="dq" id="book" aria-labelledby="dq-title">
-    <div class="section-intro"><p class="eyebrow"><i></i> BOOK A DRIVER</p><h2 id="dq-title">Tell us the run.<br><span>We’ll confirm a price.</span></h2>
-    <p>Fill in the details below and send them to us on WhatsApp or by email. Delivery starts from £85 each way. The price depends on the distance, the size of the load, any extra stops and how long you need a technician on site.</p></div>
-    <form class="dq-form" id="dqForm" aria-label="Book a driver" novalidate>
-      <h3 class="wide">Your company</h3>
-      <label>Company name *<input name="company" required autocomplete="organization"></label>
-      <label>Contact name *<input name="name" required autocomplete="name"></label>
-      <label>Phone *<input name="phone" type="tel" required autocomplete="tel"></label>
-      <label>Email *<input name="email" type="email" required autocomplete="email"></label>
-      <h3 class="wide">The run</h3>
-      <label class="half">Collection address *<textarea name="from" rows="2" required placeholder="Where we pick up from, with postcode"></textarea></label>
-      <label class="half">Drop-off address *<textarea name="to" rows="2" required placeholder="Venue or address, with postcode"></textarea></label>
-      <label>Date *<input name="date" type="date" required></label>
-      <label>Delivery time<input name="time" placeholder="e.g. on site by 2pm"></label>
-      <label>Collection<select name="collect"><option>Same night, after the event</option><option>Next day</option><option>Another date</option><option>Delivery only, no collection</option></select></label>
-      <label>Extra pick-ups or drop-offs<select name="stops"><option value="0">None</option><option value="1">1 extra stop</option><option value="2">2 extra stops</option><option value="3">3 or more</option></select></label>
-      <h3 class="wide">Equipment and requirements</h3>
-      <label class="wide">What equipment is being transported? *<textarea name="load" rows="3" required placeholder="e.g. 2 speakers, 2 subs, a mixing desk in a case, 6 cable cases. Or paste the hire company's pick list."></textarea></label>
-      <fieldset class="wide dq-checks"><legend>What do you need from us?</legend>
-        <label><input type="checkbox" name="setup"> Set up and test on arrival</label>
-        <label><input type="checkbox" name="crew"> Stay on as crew during the event</label>
-        <label><input type="checkbox" name="other"> Collect from or return to another hire company</label>
-        <label><input type="checkbox" name="handball"> Extra hands to load in or out</label></fieldset>
-      <label class="wide">Any other requirements<textarea name="needs" rows="3" placeholder="Access and parking, loading bay times, stairs or lifts, site contact on the day, insurance or paperwork"></textarea></label>
-      <div class="wide dq-send"><a class="button solid" id="dqWhatsApp" href="{WHATSAPP}" target="_blank" rel="noopener">Send on WhatsApp <span>↗</span></a><a class="button" id="dqEmail" href="mailto:{EMAIL}">Send by email <span>↗</span></a>
-        <p class="hint" id="dqHint">* Required. Nothing is booked until we confirm the price with you.</p></div>
-    </form>
+    <div class="dq-wrap">
+      <div class="dq-side"><p class="eyebrow"><i></i> BOOK A DRIVER</p><h2 id="dq-title">Tell us the run.<br><span>We’ll confirm a price.</span></h2>
+        <p>Send us the details and we’ll come back with a fixed price, usually the same day. Delivery starts from £85 each way.</p>
+        <ul class="dq-points"><li>An AV technician, not just a driver</li><li>Set up, crew and same-night collection if you need it</li><li>Nothing is booked until you agree the price</li></ul>
+        <p class="dq-alt">Prefer to talk? <a href="tel:{PHONE_LINK}">Call {PHONE}</a></p></div>
+      <form class="dq-form" id="dqForm" aria-label="Book a driver" novalidate>
+        <fieldset class="dq-step"><legend><b>1</b> Your details</legend>
+          <label class="dq-f"><span>Company <em>*</em></span><input name="company" required autocomplete="organization"></label><label class="dq-f"><span>Your name <em>*</em></span><input name="name" required autocomplete="name"></label><label class="dq-f"><span>Phone <em>*</em></span><input name="phone" required type="tel" autocomplete="tel"></label><label class="dq-f"><span>Email <em>*</em></span><input name="email" required type="email" autocomplete="email"></label></fieldset>
+        <fieldset class="dq-step"><legend><b>2</b> The run</legend>
+          <label class="dq-f"><span>Collection address <em>*</em></span><textarea name="from" rows="2" required placeholder="Address and postcode"></textarea></label><label class="dq-f"><span>Drop-off address <em>*</em></span><textarea name="to" rows="2" required placeholder="Venue and postcode"></textarea></label><label class="dq-f"><span>Date <em>*</em></span><input name="date" required type="date"></label><label class="dq-f"><span>Delivery time</span><input name="time" placeholder="e.g. on site by 2pm"></label>
+          <label class="dq-f"><span>Collect back</span><select name="collect"><option>Same night, after the event</option><option>Next day</option><option>Another date</option><option>Delivery only</option></select></label>
+          <label class="dq-f"><span>Extra stops</span><select name="stops"><option value="0">None</option><option value="1">1 extra stop</option><option value="2">2 extra stops</option><option value="3">3 or more</option></select></label></fieldset>
+        <fieldset class="dq-step"><legend><b>3</b> Equipment and requirements</legend>
+          <label class="dq-f wide"><span>What equipment is being moved? <em>*</em></span><textarea name="load" rows="2" required placeholder="e.g. 2 speakers, 2 subs, a desk in a case, 6 cable cases"></textarea></label>
+          <div class="dq-chips wide" role="group" aria-label="What do you need from us?"><label><input type="checkbox" name="setup"><span>Set up &amp; test</span></label><label><input type="checkbox" name="crew"><span>Stay on as crew</span></label><label><input type="checkbox" name="other"><span>Another hire company</span></label><label><input type="checkbox" name="handball"><span>Extra hands to load</span></label></div>
+          <label class="dq-f wide"><span>Anything else?</span><textarea name="needs" rows="2" placeholder="Access, parking, loading times, stairs or lifts, site contact"></textarea></label></fieldset>
+        <div class="dq-send"><a class="button wa" id="dqWhatsApp" href="{WHATSAPP}" target="_blank" rel="noopener">Send on WhatsApp <span>↗</span></a><a class="button" id="dqEmail" href="mailto:{EMAIL}">Send by email <span>↗</span></a>
+          <p class="hint" id="dqHint">Fields marked * are needed for a price.</p></div>
+      </form>
+    </div>
   </section>'''
 
 
@@ -536,6 +530,20 @@ def write(name, text):
     open(os.path.join(ROOT, name), "w", encoding="utf-8").write(text)
 
 
+def stamp_assets():
+    """Add ?v=<content hash> to every CSS/JS link so visitors always get the latest styles."""
+    import hashlib
+    ver = {f: hashlib.sha1(open(os.path.join(ROOT, f), "rb").read()).hexdigest()[:8]
+           for f in os.listdir(ROOT) if f.endswith((".css", ".js"))}
+    for f in os.listdir(ROOT):
+        if f.endswith(".html"):
+            path = os.path.join(ROOT, f)
+            s = open(path, encoding="utf-8").read()
+            s2 = re.sub(r'(href|src)="/([\w-]+\.(?:css|js))(?:\?v=\w+)?"', lambda m: f'{m.group(1)}="/{m.group(2)}?v={ver[m.group(2)]}"' if m.group(2) in ver else m.group(0), s)
+            if s2 != s:
+                open(path, "w", encoding="utf-8").write(s2)
+
+
 def main():
     update_home()
     for slug, p in PAGES.items():
@@ -545,6 +553,7 @@ def main():
     for old in REDIRECTS:
         if old.endswith(".html") and os.path.exists(os.path.join(ROOT, old[1:])):
             os.remove(os.path.join(ROOT, old[1:]))
+    stamp_assets()
     write("_redirects", "".join(f"{a} {b} 301\n" for a, b in REDIRECTS.items()))
     write("_headers", "/assets/*\n  Cache-Control: public, max-age=2592000\n/*.css\n  Cache-Control: public, max-age=86400\n/*.js\n  Cache-Control: public, max-age=86400\n")
     urls = [("", "1.0")] + [(s, "0.9" if PAGES[s]["nav"] != "More" else "0.6") for s in PAGES] + [("events", "0.8")]
