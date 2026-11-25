@@ -29,12 +29,12 @@ ORG_ID = SITE + "/#organization"
 ORG = {
     "@type": "Organization", "@id": ORG_ID, "name": "HD Events", "url": SITE + "/",
     "logo": SITE + "/assets/logo.png", "image": SITE + "/assets/concorde-dinner.jpg",
-    "description": "HD Events provides corporate audio visual hire and technical event production across London and the UK: sound systems, wireless microphones, presentation and relay screens, lighting and custom digital lecterns, supplied and operated by its own technical team.",
+    "description": "HD Events provides audio visual hire, technician-led AV delivery and collection, and custom-built digital lecterns across London and the UK: sound systems, wireless microphones, screens and lighting, supplied and operated by its own technical team.",
     "telephone": PHONE, "email": EMAIL, "sameAs": [INSTAGRAM],
     "areaServed": [{"@type": "City", "name": "London"}, {"@type": "Country", "name": "United Kingdom"}],
     "knowsAbout": ["Corporate audio visual hire", "Conference AV", "Awards ceremony production", "Gala dinner production",
                    "PA hire", "Wireless microphone hire", "Relay screens", "Event lighting", "Digital lecterns",
-                   "Festival sound", "Dry hire", "AV installation"],
+                   "Festival sound", "Dry hire", "AV installation", "AV equipment delivery and collection", "Custom digital lectern builds"],
     "brand": [{"@type": "Brand", "name": b} for b in BRANDS],
 }
 
@@ -66,7 +66,7 @@ def footer():
     return f'''<footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-brand"><a class="brand" href="/"><img src="/assets/logo.png" alt="HD Events" width="130" height="65"></a>
-      <p>Corporate audio visual hire and event production across London and the UK. Sound, screens, lighting and digital lecterns, supplied and operated by our own technical team.</p></div>
+      <p>Event AV hire, AV delivery by technicians, and custom-built digital lecterns. Sound, screens and lighting, supplied and run by our own team across London and the UK.</p></div>
     <div><h2>Services</h2><ul>{svc}</ul></div>
     <div><h2>Contact</h2><ul><li><a href="tel:{PHONE_LINK}">{PHONE}</a></li><li><a href="mailto:{EMAIL}">{EMAIL}</a></li><li><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us ↗</a></li><li><a href="{QUOTE}" data-enquiry>Request a quote ↗</a></li></ul></div>
     <div><h2>Follow</h2><ul><li><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram ↗</a></li><li><a href="/events">Upcoming events</a></li></ul></div>
@@ -511,6 +511,10 @@ def update_home():
         {**ORG, "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Audio visual services",
                                     "itemListElement": [{"@type": "Offer", "itemOffered": {"@type": "Service", "name": PAGES[k]["service_type"], "url": url(k)}} for k in PAGES]}},
     ]}
+    faqs = re.findall(r"<details><summary>(.*?)</summary><p>(.*?)</p></details>", s.split('class="faq home-faq"', 1)[1].split("</section>", 1)[0]) if 'class="faq home-faq"' in s else []
+    if faqs:
+        unesc = lambda t: html.unescape(re.sub("<[^>]+>", "", t))
+        home_graph["@graph"].append({"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": unesc(q), "acceptedAnswer": {"@type": "Answer", "text": unesc(a)}} for q, a in faqs]})
     s = s.replace("</head>", jsonld(home_graph) + "\n</head>", 1)
     for tag in ['<link rel="icon" href="/favicon.ico" sizes="48x48">', '<link rel="icon" href="/favicon.png" type="image/png">', '<link rel="apple-touch-icon" href="/apple-touch-icon.png">', '<meta property="og:site_name" content="HD Events">', '<meta property="og:locale" content="en_GB">', '<meta property="og:url" content="' + SITE + '/">', '<meta name="twitter:card" content="summary_large_image">']:
         if tag not in s:

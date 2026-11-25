@@ -300,3 +300,48 @@
 .dq-send .hint.warn { color: #ff9aa9; }
 @media (max-width: 1000px) { .dq-wrap { grid-template-columns: 1fr; gap: 30px; } .dq-side { position: static; } }
 @media (max-width: 600px) { .dq { padding: 70px 22px 40px; } .dq-form { padding: 22px 18px 20px; border-radius: 20px; } .dq-step { grid-template-columns: 1fr; } .dq-send .button { flex: 1 1 100%; justify-content: center; } }
+
+/* ---------- Home: this month, start here, delivery, how to book ---------- */
+.hire-hero { min-height: 88svh; }
+.month-pill { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; padding: 7px 16px 7px 7px; border-radius: 999px; background: #ffffff10; border: 1px solid #ffffff26; color: #e4e4ec; font-size: 13.5px; text-decoration: none; backdrop-filter: blur(8px); transition: border-color .2s, background .2s; }
+.month-pill b { white-space: nowrap; flex-shrink: 0; padding: 4px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #050609; background: linear-gradient(100deg, #00eeed, #b18cff); }
+.month-pill:hover { border-color: #00eeed88; background: #ffffff18; }
+.button.driver { background: linear-gradient(100deg, #00eeed 0%, #7fd6f5 45%, #b18cff 100%); color: #050609; border: 0; font-weight: 600; }
+.button.driver:hover { color: #050609; filter: brightness(1.08); }
+.start { padding: 50px 6% 30px; }
+.start-title { font-size: clamp(28px, 3vw, 40px); font-weight: 300; letter-spacing: -.04em; margin: 0 0 22px; }
+.start-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.start-card { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 28px 26px 24px; border-radius: 22px; border: 1px solid #ffffff1c; background: linear-gradient(160deg, #10112a, #0a0b12); color: #fff; text-decoration: none; transition: transform .25s, border-color .25s, box-shadow .25s; }
+.start-card:hover { transform: translateY(-4px); border-color: #00eeed77; box-shadow: 0 20px 50px #0008; }
+.start-card.hot { border-color: #9145ff55; background: radial-gradient(circle at 90% 0%, #9145ff2e, transparent 55%), radial-gradient(circle at 0% 100%, #00eeed1c, transparent 55%), linear-gradient(160deg, #11122b, #0a0b12); }
+.start-flag { position: absolute; top: 18px; right: 18px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #050609; background: linear-gradient(100deg, #00eeed, #b18cff); }
+.start-kicker { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); }
+.start-card b { font-size: 27px; font-weight: 500; letter-spacing: -.03em; line-height: 1.1; }
+.start-text { color: #a9a9b8; font-size: 15px; line-height: 1.6; flex: 1; }
+.start-price { color: #c9c9d4; font-size: 14px; } .start-price strong { color: #fff; font-size: 20px; font-weight: 600; }
+.start-go { margin-top: 8px; padding-top: 14px; border-top: 1px solid #ffffff14; font-size: 14.5px; font-weight: 500; color: #e5fff8; }
+.start-card:hover .start-go { color: var(--cyan); }
+.delivery-feature { display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; padding: 100px 6%; background: linear-gradient(240deg, #0c0d1a, #050609 70%); }
+.delivery-copy h2 { font-size: clamp(38px, 4.4vw, 66px); font-weight: 300; letter-spacing: -.05em; line-height: 1.02; margin: 18px 0 20px; }
+.delivery-copy h2 span { background: linear-gradient(100deg, #e5fff8 5%, #a2d9e8 42%, #ad83f9 90%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.delivery-copy > p { color: #b9b9c6; line-height: 1.75; font-size: 16.5px; margin: 0 0 24px; }
+.delivery-facts { list-style: none; padding: 0; margin: 0 0 30px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.delivery-facts li { border-left: 2px solid var(--cyan); padding-left: 12px; color: #9c9cab; font-size: 13px; line-height: 1.4; }
+.delivery-facts b { display: block; color: #fff; font-size: 17px; font-weight: 500; margin-bottom: 2px; }
+.delivery-photo { margin: 0; border-radius: 24px; overflow: hidden; aspect-ratio: 4/3; }
+.delivery-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.book-ways { display: flex; flex-wrap: wrap; gap: 12px; }
+.service-cards a.hot { border-color: #9145ff55; background: linear-gradient(160deg, #11122b, #0a0b12); }
+.service-cards a.hot b::after { content: "This month"; margin-left: 10px; padding: 3px 8px; border-radius: 999px; font-size: 10.5px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: #050609; background: linear-gradient(100deg, #00eeed, #b18cff); vertical-align: 3px; }
+.home-faq { padding-top: 90px; }
+.closing-btns { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 1000px) { .start-grid { grid-template-columns: 1fr; } .delivery-feature { grid-template-columns: 1fr; gap: 30px; } .delivery-facts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) { .hire-hero { min-height: 0; } .start { padding: 36px 22px 20px; } .start-card { padding: 24px 22px 20px; } .start-card b { font-size: 24px; } .delivery-feature { padding: 70px 22px; } .month-pill { font-size: 12.5px; gap: 8px; } .book-ways .button { flex: 1 1 100%; } .closing-btns { margin-top: 20px; } .closing-btns .button { margin-top: 0 !important; } .home-faq { padding-left: 22px; padding-right: 22px; } }
+
+@media (min-width: 1181px) and (max-width: 1340px) {
+  .site-header { gap: 14px; }
+  .main-nav > ul > li > a, .main-nav .has-sub > button { padding: 10px 8px; font-size: 13px; }
+  .header-driver { padding: 7px 18px 8px 16px; }
+  .header-driver b { font-size: 14.5px; }
+  .site-header .brand img { width: 118px; height: 56px; }
+}
