@@ -29,7 +29,7 @@
       return;
     }
     const { date, text } = message();
-    if (how === 'wa') wa.href = 'https://wa.me/447930547024?text=' + encodeURIComponent(text);
+    if (how === 'wa') wa.href = 'https://wa.me/447487650010?text=' + encodeURIComponent(text);
     else mail.href = 'mailto:hello@hd-events.co.uk?subject=' + encodeURIComponent('Book a driver: ' + (form.company.value || '') + (date ? ', ' + date : '')) + '&body=' + encodeURIComponent(text);
   };
   wa.addEventListener('click', e => send(e, 'wa'));

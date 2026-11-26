@@ -6,10 +6,10 @@ Each page becomes public/<slug>.html and is served at https://www.hd-events.co.u
 """
 
 SITE = "https://www.hd-events.co.uk"
-PHONE = "+44 7930 547024"
-PHONE_LINK = "+447930547024"
+PHONE = "+44 7487 650010"
+PHONE_LINK = "+447487650010"
 EMAIL = "hello@hd-events.co.uk"
-WHATSAPP = "https://wa.me/447930547024"
+WHATSAPP = "https://wa.me/447487650010"
 INSTAGRAM = "https://www.instagram.com/hdeventsuk"
 QUOTE = "https://676968.17hats.com/p#/embed/krssknhxgstpsxdddgbvbkxnfgbbfvtz"
 BRANDS = ["Sennheiser", "sE Electronics", "Allen & Heath", "Yamaha", "KV2 Audio", "NEXO"]

@@ -21,7 +21,7 @@
     const spec = document.getElementById('lxSpec');
     if (spec) spec.value = [data.name + ' — ' + fmt(data.base), ...picked.map(i => i.dataset.name + ' — ' + (i.dataset.price ? fmt(Number(i.dataset.price)) : 'price on request')), 'Estimated purchase price from ' + fmt(total) + ' ex VAT, excluding delivery'].join('\n');
     const text = lines.join('\n');
-    document.getElementById('lxWhatsApp').href = 'https://wa.me/447930547024?text=' + encodeURIComponent(text);
+    document.getElementById('lxWhatsApp').href = 'https://wa.me/447487650010?text=' + encodeURIComponent(text);
     document.getElementById('lxEmail').href = 'mailto:hello@hd-events.co.uk?subject=' + encodeURIComponent('Digital lectern quote') + '&body=' + encodeURIComponent(text);
   };
   form.addEventListener('change', event => {
