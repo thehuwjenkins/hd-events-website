@@ -30,7 +30,10 @@ ORG = {
     "@type": "Organization", "@id": ORG_ID, "name": "HD Events", "url": SITE + "/",
     "logo": SITE + "/assets/logo.png", "image": SITE + "/assets/concorde-dinner.jpg",
     "description": "HD Events provides audio visual hire, technician-led AV delivery and collection, and custom-built digital lecterns across London and the UK: sound systems, wireless microphones, screens and lighting, supplied and operated by its own technical team.",
-    "telephone": PHONE, "email": EMAIL, "sameAs": [INSTAGRAM],
+    "telephone": PHONE, "email": EMAIL,
+    # Official profiles, so search engines connect them to this business (Google Business Profile first)
+    "sameAs": ["https://g.page/r/CTJZsE6LD8pXEBM", "https://www.facebook.com/hdeventsuk", INSTAGRAM,
+               "https://www.linkedin.com/company/hdevents", "https://www.youtube.com/channel/UCNt4qVj8R3_70i_v39LEZCw"],
     "areaServed": [{"@type": "City", "name": "London"}, {"@type": "Country", "name": "United Kingdom"}],
     "knowsAbout": ["Corporate audio visual hire", "Conference AV", "Awards ceremony production", "Gala dinner production",
                    "PA hire", "Wireless microphone hire", "Relay screens", "Event lighting", "Digital lecterns",
@@ -79,8 +82,18 @@ def footer():
 WHATSAPP_BUTTON = f'<a class="wa-fixed" href="{WHATSAPP}" aria-label="Message HD Events on WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="none" stroke="white" stroke-width="2" d="M5 22a12 12 0 1 1 5 5l-7 2z"/><path fill="white" d="M11 9c-2 0-3 2-2 5 2 5 5 8 10 9 2 0 4-1 4-4l-4-2-2 2c-2-1-4-3-5-5l1-2-1-3z"/></svg><span>Message us</span></a>'
 DIALOG = f'<dialog id="enquiry"><div class="dialog-head"><h2>Tell us about your event.</h2><button id="close-enquiry" aria-label="Close enquiry form">×</button></div><p>Share the date, venue and what you need, and we will reply with recommendations and a quote.</p><iframe title="HD Events enquiry form" name="lc_contact_form" width="100%" height="600" src="{QUOTE}" loading="lazy"></iframe><div class="dialog-contact"><a href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us: {PHONE} ↗</a><a href="tel:{PHONE_LINK}">Call {PHONE}</a><a href="mailto:{EMAIL}">Email {EMAIL} ↗</a></div></dialog>'
 LX_SUMMARY = '<section id="lxBuildSummary" hidden><label for="lxSpec">Your lectern build</label><textarea id="lxSpec" readonly rows="5" style="width:100%"></textarea><button type="button" id="lxCopy">Copy build details</button><p id="lxCopyStatus" aria-live="polite">Paste your build into the enquiry details below.</p></section>'
+# Google Analytics 4 (Google tag GTM-T49KV83L, owned by hello@hd-events.co.uk). Ad signals are denied by default.
+GOOGLE_TAG = '''<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-T49KV83L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied'});
+  gtag('js', new Date());
+</script>'''
 HEAD_COMMON = '''<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+''' + GOOGLE_TAG + '''
 <meta name="theme-color" content="#050609">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.png" type="image/png">
@@ -518,6 +531,8 @@ def update_home():
             sys.exit(f"public/index.html is missing its {tag} verification tag. Put it back in the <head>.")
     path = os.path.join(ROOT, "index.html")
     s = open(path, encoding="utf-8").read()
+    if "GTM-T49KV83L" not in s:
+        s = s.replace('<meta name="viewport" content="width=device-width, initial-scale=1">', '<meta name="viewport" content="width=device-width, initial-scale=1">\n' + GOOGLE_TAG, 1)
     s = re.sub(r"<header.*?</header>", lambda m: header(None), s, count=1, flags=re.S)
     s = re.sub(r"<footer.*?</footer>", lambda m: footer(), s, count=1, flags=re.S)
     s = re.sub(r'<script type="application/ld\+json">.*?</script>\n', "", s, flags=re.S)
