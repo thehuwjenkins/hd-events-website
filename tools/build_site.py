@@ -510,6 +510,12 @@ def events_page():
 
 # ---------- Home page: shared header, footer and site-wide structured data ----------
 def update_home():
+    # Google Search Console and Bing Webmaster Tools verify the site with these tags in the home page
+    # <head>. Removing them loses verification on both, so the build refuses to run without them.
+    head = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read().split("</head>")[0]
+    for tag in ('name="google-site-verification"', 'name="msvalidate.01"'):
+        if tag not in head:
+            sys.exit(f"public/index.html is missing its {tag} verification tag. Put it back in the <head>.")
     path = os.path.join(ROOT, "index.html")
     s = open(path, encoding="utf-8").read()
     s = re.sub(r"<header.*?</header>", lambda m: header(None), s, count=1, flags=re.S)
