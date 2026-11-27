@@ -230,6 +230,19 @@ def hero_actions(p):
     return "".join(out)
 
 
+BESPOKE_DEFAULT = ("Need something bespoke?", "Every event is different. If what you need isn't listed here, tell us what you're planning and we'll put together a bespoke sound, lighting and video specification around your venue, audience and budget.")
+BESPOKE_SKIP = {"digital-lecterns", "digital-lectern-guide", "pa-repairs", "av-delivery-collection", "event-planning"}
+
+
+def bespoke_block(p, slug):
+    """A nudge to get in touch for anything not listed: industry-standard kit, designed to the brief."""
+    if slug in BESPOKE_SKIP and not p.get("bespoke"):
+        return ""
+    title, text = p.get("bespoke") or BESPOKE_DEFAULT
+    return f'''<section class="bespoke" aria-labelledby="bespoke-title"><div><p class="eyebrow"><i></i> BESPOKE SYSTEMS</p><h2 id="bespoke-title">{e(title)}</h2><p>{e(text)}</p></div>
+    <div class="bespoke-actions"><a class="button solid" href="{QUOTE}" data-enquiry>Discuss your requirements <span>↗</span></a><a class="button" href="{WHATSAPP}" target="_blank" rel="noopener">WhatsApp us <span>↗</span></a></div></section>'''
+
+
 # ---------- Service page ----------
 def service_page(slug, p):
     page_url = url(slug)
@@ -321,6 +334,7 @@ def service_page(slug, p):
     <div class="svc-grid">{services}</div>
     <ul class="event-types" aria-label="Typical events">{chips}</ul>
   </section>
+  {bespoke_block(p, slug)}
 
   <div class="ribbon-divider" data-ribbon="0" aria-hidden="true"><canvas></canvas></div>
 

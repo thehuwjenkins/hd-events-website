@@ -355,3 +355,10 @@
 @media (max-width: 1180px) { .site-header .header-driver { margin-left: auto; } }
 @media (max-width: 600px) { .header-login { margin-left: -4px; padding: 6px; } .header-login span { display: none; } }
 @media (max-width: 380px) { .site-header { gap: 6px; padding: 8px 12px; } .site-header .brand img { width: 88px; height: 42px; } .menu-toggle { padding: 11px 12px; } .menu-toggle .label { display: none; } }
+
+/* ---------- Bespoke systems prompt ---------- */
+.bespoke { margin: 10px 6% 40px; padding: 40px 44px; border-radius: 22px; border: 1px solid #ffffff1f; background: radial-gradient(circle at 0 0, #00eeed22, transparent 45%), radial-gradient(circle at 100% 100%, #9145ff2e, transparent 50%), #0c0d18; display: grid; grid-template-columns: 1.5fr auto; gap: 30px; align-items: center; }
+.bespoke h2 { font-size: clamp(28px, 2.8vw, 40px); font-weight: 300; letter-spacing: -.035em; line-height: 1.08; margin: 0 0 12px; }
+.bespoke p:not(.eyebrow) { color: #b9b9c6; font-size: 17px; line-height: 1.7; margin: 0; max-width: 680px; }
+.bespoke-actions { display: flex; flex-direction: column; gap: 12px; }
+@media (max-width: 900px) { .bespoke { grid-template-columns: 1fr; padding: 30px 24px; margin: 10px 16px 30px; } .bespoke-actions { flex-direction: row; flex-wrap: wrap; } }
