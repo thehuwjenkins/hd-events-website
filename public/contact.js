@@ -8,9 +8,11 @@ document.querySelectorAll('[data-enquiry]').forEach(link => {
 document.getElementById('close-enquiry').onclick = () => enquiryForm.close();
 
 
-// Google Ads WhatsApp click measurement. Advertising tags load only after consent.
+// Google Analytics and Google Ads (WhatsApp click measurement). Nothing from Google loads until the visitor
+// accepts; declining keeps everything off. The page <head> sets every consent type to denied first.
 (() => {
   const adsId = 'AW-18545533050';
+  const containerId = 'GTM-T49KV83L'; // Google Analytics 4 is set up in this container
   const conversionId = 'AW-18545533050/ATUyCJnQ7LgdEPrAmYtF';
   const consentKey = 'hd-events-ads-consent';
   let choice = null;
@@ -48,6 +50,11 @@ document.getElementById('close-enquiry').onclick = () => enquiryForm.close();
     script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(adsId);
     document.head.appendChild(script);
+    window.dataLayer.push({'gtm.start': Date.now(), event: 'gtm.js'});
+    const gtm = document.createElement('script');
+    gtm.async = true;
+    gtm.src = 'https://www.googletagmanager.com/gtm.js?id=' + containerId;
+    document.head.appendChild(gtm);
   };
   if (choice === 'granted') loadTag();
 
@@ -63,22 +70,22 @@ document.getElementById('close-enquiry').onclick = () => enquiryForm.close();
     const notice = document.createElement('div');
     notice.id = 'hd-ads-consent';
     notice.setAttribute('role', 'region');
-    notice.setAttribute('aria-label', 'Advertising cookies');
+    notice.setAttribute('aria-label', 'Cookies');
     notice.style.cssText = 'position:fixed;bottom:12px;left:12px;right:12px;z-index:99999;background:#17212a;color:white;padding:16px;border:1px solid #82909d;border-radius:10px;max-width:470px;box-shadow:0 3px 18px #0006;font:14px/1.5 Arial,sans-serif';
-    notice.innerHTML = '<p style="margin:0 0 10px">Can we use advertising cookies to measure enquiries from our website? You can decline and still use the site.</p><button type="button" data-consent="deny" style="padding:8px 12px;margin-right:8px;cursor:pointer">Decline</button><button type="button" data-consent="accept" style="padding:8px 12px;cursor:pointer">Accept</button>';
+    notice.innerHTML = '<p style="margin:0 0 10px">Can we use analytics and advertising cookies to see how people use our website and measure enquiries? You can decline and still use the site.</p><button type="button" data-consent="deny" style="padding:8px 12px;margin-right:8px;cursor:pointer">Decline</button><button type="button" data-consent="accept" style="padding:8px 12px;cursor:pointer">Accept</button>';
     notice.addEventListener('click', event => {
       const button = event.target.closest('[data-consent]');
       if (button) setConsent(button.dataset.consent === 'accept');
     });
     document.body.appendChild(notice);
   }
-  // Visitors can reopen advertising consent and withdraw it at any time.
+  // Visitors can reopen cookie consent and withdraw it at any time.
   const footer = document.querySelector('footer');
   if (footer) {
     const settings = document.createElement('button');
     settings.type = 'button';
-    settings.textContent = 'Advertising cookie settings';
-    settings.setAttribute('aria-label', 'Change advertising cookie preferences');
+    settings.textContent = 'Cookie settings';
+    settings.setAttribute('aria-label', 'Change cookie preferences');
     settings.style.cssText = 'background:transparent;color:inherit;border:1px solid currentColor;border-radius:5px;padding:6px 10px;margin:10px 0;cursor:pointer;font:inherit';
     settings.addEventListener('click', () => {
       try { localStorage.removeItem(consentKey); } catch (_) {}
