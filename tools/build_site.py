@@ -489,6 +489,7 @@ def event_page(ev):
     maps = "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(ev.get("address") or where)
     facts = [("Date", start.strftime("%A ") + str(start.day) + start.strftime(" %B %Y")),
              ("Doors", ev["doors"]) if ev.get("doors") else ("Time", _nice_time(start)),
+             *([("Starts", _nice_time(start).replace(":", "."))] if ev.get("doors") else []),
              ("Venue", f'{where} · <a href="{e(maps)}" target="_blank" rel="noopener">Map ↗</a>')]
     if ev.get("price"):
         facts.append(("Tickets", e(ev["price"])))
@@ -541,7 +542,7 @@ def event_page(ev):
       {about}
       {f'<h2>Line-up</h2><ul class="evp-lineup">{lineup}</ul>' if lineup else ""}
       <h2>Getting there</h2>
-      <p><b>{e(where)}</b>{" · doors " + e(ev["doors"]) if ev.get("doors") else ""}. <a href="{e(maps)}" target="_blank" rel="noopener">Open in Google Maps ↗</a></p>
+      <p><b>{e(where)}</b>{" · doors " + e(ev["doors"]) + ", starts " + _nice_time(start).replace(":", ".") if ev.get("doors") else ""}. <a href="{e(maps)}" target="_blank" rel="noopener">Open in Google Maps ↗</a></p>
       <div class="evp-cta bottom">{cta}<a class="button" href="/events">All events <span>→</span></a></div>
     </div>
   </section>
