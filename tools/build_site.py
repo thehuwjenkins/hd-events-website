@@ -7,7 +7,7 @@ Writes:  public/<slug>.html for every service page, the shared header/footer and
 structured data into public/index.html, plus sitemap.xml, robots.txt, llms.txt,
 _redirects and _headers. Old page files that have moved are removed.
 """
-import datetime, html, json, os, re, sys
+import datetime, html, json, os, re, sys, urllib.parse
 
 sys.path.insert(0, os.path.dirname(__file__))
 from site_content import *  # noqa
@@ -422,11 +422,16 @@ def event_card(ev):
     else:
         cta = '<span class="button ev-off" aria-disabled="true">Tickets coming soon</span>'
     price = f'<span class="ev-price">{e(ev["price"])}</span>' if ev.get("price") else ""
+    page = f"/events/{ev['slug']}" if ev.get("slug") else ""
+    if page:
+        poster = f'<a href="{page}" aria-label="{e(ev["title"])}: event details">{poster}</a>'
+        cta += f'<a class="button ev-more" href="{page}">More info <span>→</span></a>'
+    title = f'<a href="{page}">{e(ev["title"])}</a>' if page else e(ev["title"])
     return f'''<article class="ev-card" data-start="{start.isoformat()}" data-end="{end.isoformat()}">
       <figure class="ev-poster">{poster}{tag}</figure>
       <div class="ev-body">
         <p class="ev-date"><time datetime="{start.isoformat()}">{_nice_dates(start, end)}</time></p>
-        <h3>{e(ev["title"])}</h3>
+        <h3>{title}</h3>
         {f'<p class="ev-where">{e(where)}</p>' if where else ""}
         <p class="ev-desc">{e(ev.get("description", ""))}</p>
         <div class="ev-cta">{cta}{price}</div>
@@ -442,8 +447,17 @@ def event_jsonld(ev):
            "eventStatus": "https://schema.org/EventCancelled" if status == "cancelled" else "https://schema.org/EventScheduled",
            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": place,
            "description": ev.get("description", ""), "organizer": {"@id": ORG_ID}}
-    if ev.get("poster"):
-        out["image"] = [SITE + "/assets/" + ev["poster"]]
+    if ev.get("poster") or ev.get("banner"):
+        out["image"] = [SITE + "/assets/" + x for x in (ev.get("poster"), ev.get("banner")) if x]
+    if ev.get("slug"):
+        out["url"] = SITE + "/events/" + ev["slug"]
+    if ev.get("lineup"):
+        out["performer"] = [{"@type": "PerformingGroup" if "band" in what.lower() else "Person", "name": name} for name, what in ev["lineup"]]
+    if ev.get("doors"):
+        m = re.match(r"(\d{1,2})(?:[.:](\d\d))?\s*(am|pm)", ev["doors"].lower())
+        if m:
+            h = int(m.group(1)) % 12 + (12 if m.group(3) == "pm" else 0)
+            out["doorTime"] = start.replace(hour=h, minute=int(m.group(2) or 0)).isoformat()
     if ev.get("tickets"):
         offer = {"@type": "Offer", "url": ev["tickets"], "priceCurrency": "GBP",
                  "availability": "https://schema.org/SoldOut" if status == "sold out" else "https://schema.org/InStock"}
@@ -454,6 +468,120 @@ def event_jsonld(ev):
             offer["price"] = "0"
         out["offers"] = offer
     return out
+
+
+def event_page(ev):
+    """A full page for one event: /events/<slug>."""
+    start, end = _when(ev)
+    page_url = SITE + "/events/" + ev["slug"]
+    status = (ev.get("status") or "").lower()
+    where = ", ".join(x for x in (ev.get("venue"), ev.get("town")) if x)
+    title = f"{ev['title']} | {_nice_dates(start, end).split(' · ')[0]}, {where} | Tickets"
+    desc = ev.get("description", "")
+    if status == "cancelled":
+        cta = '<span class="button ev-off" aria-disabled="true">Cancelled</span>'
+    elif status == "sold out":
+        cta = '<span class="button ev-off" aria-disabled="true">Sold out</span>'
+    elif ev.get("tickets"):
+        cta = f'<a class="button solid ev-buy" href="{e(ev["tickets"])}" target="_blank" rel="noopener">Buy tickets <span>↗</span></a>'
+    else:
+        cta = '<span class="button ev-off" aria-disabled="true">Tickets coming soon</span>'
+    maps = "https://www.google.com/maps/search/?api=1&query=" + urllib.parse.quote(ev.get("address") or where)
+    facts = [("Date", start.strftime("%A ") + str(start.day) + start.strftime(" %B %Y")),
+             ("Doors", ev["doors"]) if ev.get("doors") else ("Time", _nice_time(start)),
+             ("Venue", f'{where} · <a href="{e(maps)}" target="_blank" rel="noopener">Map ↗</a>')]
+    if ev.get("price"):
+        facts.append(("Tickets", e(ev["price"])))
+    fact_html = "".join(f'<div><dt>{k}</dt><dd>{v if k == "Venue" else e(v)}</dd></div>' for k, v in facts)
+    lineup = "".join(f"<li><b>{e(n)}</b><span>{e(w)}</span></li>" for n, w in ev.get("lineup", []))
+    about = "".join(f"<p>{e(x)}</p>" for x in ev.get("about") or [desc])
+    graph = [
+        {"@type": "WebPage", "@id": page_url + "#webpage", "url": page_url, "name": title, "description": desc,
+         "isPartOf": {"@id": SITE + "/#website"}, "dateModified": TODAY, "inLanguage": "en-GB"},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": "Events", "item": url("events")},
+            {"@type": "ListItem", "position": 3, "name": ev["title"], "item": page_url}]},
+        ORG, event_jsonld(ev),
+    ]
+    share_text = urllib.parse.quote(f"{ev['title']} · {_nice_dates(start, end).split(' · ')[0]} · {where} {page_url}")
+    return f'''<!doctype html>
+<html lang="en-GB">
+<head>
+{HEAD_COMMON}
+<title>{e(title)}</title>
+<meta name="description" content="{e(desc)}">
+{social(title, desc, page_url, ev.get("banner") or ev.get("poster"))}
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/home.css">
+<link rel="stylesheet" href="/site.css">
+{jsonld({"@context": "https://schema.org", "@graph": graph})}
+</head>
+<body class="home page event-page">
+<a class="skip" href="#main">Skip to content</a>
+{header("Events")}
+{WHATSAPP_BUTTON}
+<main id="main">
+  <section class="evp-hero" aria-labelledby="page-title" data-end="{end.isoformat()}">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span aria-hidden="true">/</span> <a href="/events">Events</a> <span aria-hidden="true">/</span> <span aria-current="page">{e(ev["title"])}</span></nav>
+    {f'<figure class="evp-banner"><img src="/assets/{e(ev["banner"])}" alt="{e(ev["title"])}: {e(ev.get("subtitle", ""))} at {e(where)}" width="2000" height="1041"></figure>' if ev.get("banner") else ""}
+    <div class="evp-head">
+      <div><p class="eyebrow"><i></i> {e((ev.get("subtitle") or "Live event").upper())}</p>
+        <h1 id="page-title">{e(ev["title"])}</h1>
+        <dl class="evp-facts">{fact_html}</dl></div>
+      <div class="evp-cta">{cta}<p class="evp-note" hidden>This event has finished. Thank you to everyone who came.</p>
+        <div class="evp-share"><span>Share</span><a href="https://wa.me/?text={share_text}" target="_blank" rel="noopener">WhatsApp</a><a href="https://www.facebook.com/sharer/sharer.php?u={urllib.parse.quote(page_url)}" target="_blank" rel="noopener">Facebook</a><button type="button" data-copy="{page_url}">Copy link</button></div></div>
+    </div>
+  </section>
+
+  <section class="evp-body">
+    {f'<figure class="evp-poster"><img src="/assets/{e(ev["poster"])}" alt="Poster for {e(ev["title"])}" loading="lazy" width="1200" height="1500"></figure>' if ev.get("poster") else ""}
+    <div class="evp-text">
+      <h2>About the event</h2>
+      {about}
+      {f'<h2>Line-up</h2><ul class="evp-lineup">{lineup}</ul>' if lineup else ""}
+      <h2>Getting there</h2>
+      <p><b>{e(where)}</b>{" · doors " + e(ev["doors"]) if ev.get("doors") else ""}. <a href="{e(maps)}" target="_blank" rel="noopener">Open in Google Maps ↗</a></p>
+      <div class="evp-cta bottom">{cta}<a class="button" href="/events">All events <span>→</span></a></div>
+    </div>
+  </section>
+</main>
+{footer()}
+{DIALOG}
+<script>
+(() => {{
+  const hero = document.querySelector('.evp-hero');
+  if (hero && new Date(hero.dataset.end) < new Date()) {{
+    document.querySelectorAll('.ev-buy').forEach((b) => b.replaceWith(Object.assign(document.createElement('span'), {{className: 'button ev-off', textContent: 'This event has finished'}})));
+    document.querySelector('.evp-note').hidden = false;
+  }}
+  document.querySelectorAll('[data-copy]').forEach((b) => b.addEventListener('click', () => {{
+    const done = () => {{ b.textContent = 'Link copied'; setTimeout(() => (b.textContent = 'Copy link'), 2000); }};
+    if (navigator.share) navigator.share({{title: document.title, url: b.dataset.copy}}).catch(() => {{}});
+    else navigator.clipboard?.writeText(b.dataset.copy).then(done, () => {{}});
+  }}));
+}})();
+</script>
+<script src="/contact.js"></script>
+<script src="/nav.js"></script>
+<script src="/home.js"></script>
+</body>
+</html>
+'''
+
+
+def featured_event_banner():
+    """A slim "tickets on sale" bar on the home page for events marked feature=True (hidden once they've passed)."""
+    out = []
+    for ev in sorted((x for x in EVENTS if x.get("feature") and x.get("slug")), key=lambda x: x["start"]):
+        start, end = _when(ev)
+        if end.date() < datetime.date.today():
+            continue
+        where = ", ".join(x for x in (ev.get("venue"), ev.get("town")) if x)
+        out.append(f'''<aside class="feat-ev" data-end="{end.isoformat()}" aria-label="Upcoming event"><a href="/events/{ev["slug"]}" class="feat-ev-link"><span class="feat-ev-tag">On sale now</span><span><b>{e(ev["title"])}</b> · {_nice_dates(start, end).split(" · ")[0]} · {e(where)}</span></a>{f'<a class="feat-ev-btn" href="{e(ev["tickets"])}" target="_blank" rel="noopener">Get tickets ↗</a>' if ev.get("tickets") else ""}</aside>''')
+    if not out:
+        return ""
+    return "<!-- featured-event -->" + "".join(out) + "<script>document.querySelectorAll('.feat-ev').forEach(function(a){if(new Date(a.dataset.end)<new Date())a.remove();});</script><!-- /featured-event -->"
 
 
 def events_page():
@@ -547,7 +675,8 @@ def update_home():
     # Replace whatever Google tag block the home page has with the current one.
     s = re.sub(r"<!-- Google tag[^\n]*-->\n(?:<script[^>]*>.*?</script>\n?)+", "", s, count=1, flags=re.S)
     s = s.replace('<meta name="viewport" content="width=device-width, initial-scale=1">', '<meta name="viewport" content="width=device-width, initial-scale=1">\n' + GOOGLE_TAG, 1)
-    s = re.sub(r"<header.*?</header>", lambda m: header(None), s, count=1, flags=re.S)
+    s = re.sub(r"<!-- featured-event -->.*?<!-- /featured-event -->\n?", "", s, flags=re.S)
+    s = re.sub(r"<header.*?</header>", lambda m: header(None) + "\n" + featured_event_banner(), s, count=1, flags=re.S)
     s = re.sub(r"<footer.*?</footer>", lambda m: footer(), s, count=1, flags=re.S)
     s = re.sub(r'<script type="application/ld\+json">.*?</script>\n', "", s, flags=re.S)
     home_graph = {"@context": "https://schema.org", "@graph": [
@@ -583,7 +712,7 @@ def stamp_assets():
     import hashlib
     ver = {f: hashlib.sha1(open(os.path.join(ROOT, f), "rb").read()).hexdigest()[:8]
            for f in os.listdir(ROOT) if f.endswith((".css", ".js"))}
-    for f in os.listdir(ROOT):
+    for f in os.listdir(ROOT) + ["events/" + x for x in (os.listdir(os.path.join(ROOT, "events")) if os.path.isdir(os.path.join(ROOT, "events")) else [])]:
         if f.endswith(".html"):
             path = os.path.join(ROOT, f)
             s = open(path, encoding="utf-8").read()
@@ -597,6 +726,10 @@ def main():
     for slug, p in PAGES.items():
         write(slug + ".html", service_page(slug, p))
     write("events.html", events_page())
+    os.makedirs(os.path.join(ROOT, "events"), exist_ok=True)
+    for ev in EVENTS:
+        if ev.get("slug"):
+            write("events/" + ev["slug"] + ".html", event_page(ev))
     # Remove page files that have moved (the redirects send visitors to the new pages)
     for old in REDIRECTS:
         if old.endswith(".html") and os.path.exists(os.path.join(ROOT, old[1:])):
@@ -604,7 +737,7 @@ def main():
     stamp_assets()
     write("_redirects", "".join(f"{a} {b} 301\n" for a, b in REDIRECTS.items()))
     write("_headers", "/assets/*\n  Cache-Control: public, max-age=2592000\n/*.css\n  Cache-Control: public, max-age=86400\n/*.js\n  Cache-Control: public, max-age=86400\n")
-    urls = [("", "1.0")] + [(s, "0.9" if PAGES[s]["nav"] != "More" else "0.6") for s in PAGES] + [("events", "0.8")]
+    urls = [("", "1.0")] + [(s, "0.9" if PAGES[s]["nav"] != "More" else "0.6") for s in PAGES] + [("events", "0.8")] + [("events/" + ev["slug"], "0.7") for ev in EVENTS if ev.get("slug")]
     write("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
           "".join(f"  <url><loc>{url(s)}</loc><lastmod>{TODAY}</lastmod><priority>{pr}</priority></url>\n" for s, pr in urls) + "</urlset>\n")
     bots = ["Googlebot", "Bingbot", "Google-Extended", "GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-SearchBot", "Claude-User", "PerplexityBot", "Perplexity-User", "Applebot", "Applebot-Extended", "DuckDuckBot"]
@@ -622,6 +755,9 @@ def main():
     for slug, p in PAGES.items():
         llms.append(f"- [{p['title'].split(' | ')[0]}]({url(slug)}): {p['description']}\n")
     llms.append(f"- [Upcoming events and tickets]({url('events')}): {EVENTS_PAGE['description']}\n")
+    for ev in EVENTS:
+        if ev.get("slug"):
+            llms.append(f"- [{ev['title']}]({url('events/' + ev['slug'])}): {ev.get('description', '')}\n")
     write("llms.txt", "".join(llms))
 
 

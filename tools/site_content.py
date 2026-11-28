@@ -637,5 +637,34 @@ LECTERN = dict(
 #   tickets      Link to the ticket page.  Leave "" for "Tickets coming soon"
 #   price        Optional, e.g. "From £15" or "Free entry"
 #   status       Optional: "sold out" or "cancelled"
+# For a full event page at /events/<slug>, also add:
+#   slug         e.g. "bronwen-lewis-taff-rapids"
+#   banner       Wide header image in public/assets/events/
+#   doors        e.g. "6.30pm"
+#   about        List of paragraphs for the event page (the card uses "description")
+#   lineup       List of (name, one-line description)
+#   feature      True to show a "Tickets on sale" banner on the home page until the event has passed
 EVENTS = [
+    dict(
+        slug="bronwen-lewis-taff-rapids",
+        title="Bronwen Lewis & Taff Rapids",
+        subtitle="An evening of live music and stories",
+        start="2027-01-29T18:30",
+        doors="6.30pm",
+        venue="St David's Church",
+        town="Neath",
+        address="St David's Church, Neath, Wales",
+        poster="events/bronwen-lewis-taff-rapids-poster.jpg",
+        banner="events/bronwen-lewis-taff-rapids-banner.jpg",
+        description="An evening of live music and stories with Bronwen Lewis and Taff Rapids at St David's Church, Neath. Doors 6.30pm.",
+        about=[
+            "Join us at St David's Church in Neath for an evening of live music and stories with Bronwen Lewis and Taff Rapids.",
+        ],
+        lineup=[
+            ("Bronwen Lewis", "Singer-songwriter"),
+            ("Taff Rapids", "Band"),
+        ],
+        tickets="https://www.ticketsource.com/hdevents/t-zoxmeed",
+        feature=True,
+    ),
 ]

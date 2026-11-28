@@ -362,3 +362,49 @@
 .bespoke p:not(.eyebrow) { color: #b9b9c6; font-size: 17px; line-height: 1.7; margin: 0; max-width: 680px; }
 .bespoke-actions { display: flex; flex-direction: column; gap: 12px; }
 @media (max-width: 900px) { .bespoke { grid-template-columns: 1fr; padding: 30px 24px; margin: 10px 16px 30px; } .bespoke-actions { flex-direction: row; flex-wrap: wrap; } }
+
+/* ---------- Event detail page ---------- */
+.evp-hero { padding: 120px 6% 30px; }
+.evp-hero .crumbs { margin-bottom: 18px; }
+.evp-banner { margin: 0 0 30px; border-radius: 22px; overflow: hidden; border: 1px solid #ffffff1c; background: #0c0d14; }
+.evp-banner img { display: block; width: 100%; height: auto; }
+.evp-head { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; }
+.evp-head h1 { font-size: clamp(40px, 5.6vw, 84px); font-weight: 300; letter-spacing: -.05em; line-height: 1; margin: 6px 0 22px; }
+.evp-facts { display: flex; flex-wrap: wrap; gap: 10px 34px; margin: 0; }
+.evp-facts dt { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan); margin-bottom: 4px; }
+.evp-facts dd { margin: 0; font-size: 18px; color: #e6e6ee; }
+.evp-facts a { color: #c9c9d4; }
+.evp-cta { display: flex; flex-direction: column; gap: 14px; align-items: stretch; }
+.evp-cta .button { justify-content: center; font-size: 18px; padding: 20px 28px; }
+.evp-note { margin: 0; color: #c9c9d4; }
+.evp-share { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; color: #a9a9b8; font-size: 14px; }
+.evp-share a, .evp-share button { color: #d8d8e0; background: none; border: 0; padding: 0; font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.evp-body { display: grid; grid-template-columns: minmax(0, 420px) 1fr; gap: 56px; padding: 50px 6% 100px; align-items: start; }
+.evp-poster { margin: 0; position: sticky; top: 110px; border-radius: 20px; overflow: hidden; border: 1px solid #ffffff1c; }
+.evp-poster img { display: block; width: 100%; height: auto; }
+.evp-text h2 { font-size: clamp(26px, 2.4vw, 36px); font-weight: 300; letter-spacing: -.03em; margin: 0 0 16px; }
+.evp-text h2:not(:first-child) { margin-top: 44px; }
+.evp-text p { color: #c3c3cf; font-size: 18px; line-height: 1.75; margin: 0 0 16px; max-width: 720px; }
+.evp-text a { color: var(--cyan); }
+.evp-lineup { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; max-width: 720px; }
+.evp-lineup li { display: flex; justify-content: space-between; gap: 16px; border: 1px solid #ffffff1c; border-radius: 14px; padding: 16px 20px; background: #0c0d18; }
+.evp-lineup b { font-size: 20px; font-weight: 500; }
+.evp-lineup span { color: #a9a9b8; }
+.evp-cta.bottom { flex-direction: row; flex-wrap: wrap; margin-top: 34px; max-width: 720px; }
+.evp-cta.bottom .button { flex: 1; min-width: 200px; }
+.ev-body h3 a { color: inherit; text-decoration: none; }
+.ev-body h3 a:hover { color: var(--cyan); }
+.ev-more { flex: 1; justify-content: center; }
+@media (max-width: 900px) {
+  .evp-hero { padding: 100px 16px 20px; }
+  .evp-head { grid-template-columns: 1fr; gap: 24px; }
+  .evp-body { grid-template-columns: 1fr; padding: 30px 16px 70px; gap: 34px; }
+  .evp-poster { position: static; max-width: 460px; }
+}
+
+/* ---------- Home: featured event bar ---------- */
+.feat-ev { position: relative; z-index: 40; margin: 96px 6% -70px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 18px; padding: 12px 14px 12px 18px; border-radius: 18px; background: linear-gradient(110deg, #00eeed26, #9145ff38); border: 1px solid #ffffff2e; backdrop-filter: blur(10px); }
+.feat-ev-link { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; color: #fff; text-decoration: none; font-size: 15px; }
+.feat-ev-tag { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: #fff; color: #0a0b12; border-radius: 999px; padding: 5px 10px; }
+.feat-ev-btn { background: linear-gradient(120deg, var(--cyan), var(--purple)); color: #05060a; font-weight: 700; border-radius: 999px; padding: 10px 18px; text-decoration: none; white-space: nowrap; }
+@media (max-width: 640px) { .feat-ev { margin: 86px 16px -50px; } .feat-ev-btn { width: 100%; text-align: center; } }
